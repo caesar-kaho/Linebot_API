@@ -22,11 +22,13 @@
     <None Remove="Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer" />
     <None Remove="Dtos\" />
     <None Remove="Dtos\Webhook\" />
+    <None Remove="Dtos\Webhook\Events\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Controllers\" />
     <Folder Include="Dtos\" />
     <Folder Include="Dtos\Webhook\" />
+    <Folder Include="Dtos\Webhook\Events\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\.editorconfig" />
