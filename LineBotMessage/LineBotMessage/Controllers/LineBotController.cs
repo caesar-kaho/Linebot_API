@@ -3,8 +3,7 @@
 namespace LineBotMessage.Controllers
 {
 
-    [Route("api/v{version:apiVersion}/[Controller]")]
-    [ApiVersion("1.0")]
+    [Route("api/[Controller]")]
     [ApiController]
     public class LineBotController : ControllerBase
     {
