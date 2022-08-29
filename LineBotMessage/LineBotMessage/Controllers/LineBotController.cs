@@ -25,10 +25,5 @@ namespace LineBotMessage.Controllers
             return Ok();
         }
 
-        [HttpGet("GetWebhook")]
-        public IActionResult GetWebhook()
-        {
-            return Ok();
-        }
     }
 }
