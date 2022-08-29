@@ -20,8 +20,15 @@
     <None Remove="Autofac" />
     <None Remove="Autofac.Extensions.DependencyInjection" />
     <None Remove="Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer" />
+    <None Remove="Dtos\" />
+    <None Remove="Dtos\Webhook\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Controllers\" />
+    <Folder Include="Dtos\" />
+    <Folder Include="Dtos\Webhook\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\.editorconfig" />
   </ItemGroup>
 </Project>

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using LineBotMessage.Dtos;
+using Microsoft.AspNetCore.Mvc;
 
 namespace LineBotMessage.Controllers
 {
@@ -19,8 +20,9 @@ namespace LineBotMessage.Controllers
         }
 
         [HttpPost("Webhook")]
-        public IActionResult Webhook()
+        public IActionResult Webhook(WebhookRequestBodyDto body)
         {
+            Console.WriteLine(body);
             return Ok();
         }
 

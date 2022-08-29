@@ -5,6 +5,11 @@ VisualStudioVersion = 25.0.1700.7
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LineBotMessage", "LineBotMessage\LineBotMessage.csproj", "{B1D5A693-E978-4943-8B15-E2FCBD5599E4}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "解決方案項目", "解決方案項目", "{2FAFF213-AFD4-47EB-B8F6-62DA5B399DDF}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
