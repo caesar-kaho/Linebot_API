@@ -1,4 +1,5 @@
 ﻿using LineBotMessage.Dtos;
+using LineBotMessage.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LineBotMessage.Controllers
@@ -9,20 +10,17 @@ namespace LineBotMessage.Controllers
     public class LineBotController : ControllerBase
     {
 
-        // 貼上 messaging api channel 中的 accessToken & secret
-        private readonly string channelAccessToken = "Your channel access token";
-        private readonly string channelSecret = "Your channel secret";
-
+        private readonly ILineBotService _lineBotService; 
         // constructor
-        public LineBotController()
+        public LineBotController(ILineBotService lineBotService)
         {
-
+            _lineBotService = lineBotService; // 注入 LineBotService
         }
 
         [HttpPost("Webhook")]
         public IActionResult Webhook(WebhookRequestBodyDto body)
         {
-            Console.WriteLine(body);
+            _lineBotService.ReceiveWebhook(body);
             return Ok();
         }
 

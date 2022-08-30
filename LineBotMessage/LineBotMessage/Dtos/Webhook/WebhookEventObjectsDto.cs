@@ -11,6 +11,8 @@ namespace LineBotMessage.Dtos
         public DeliverycontextDto DeliveryContext { get; set; } // 是否為重新傳送之事件 DeliveryContext.IsRedelivery : true | false
         public string? ReplyToken { get; set; } // 回覆此事件所使用的 token
         public MessageEventObjectsDto? Message { get; set; } // 收到訊息的事件，可收到 text、sticker、image、file、video、audio、location 訊息
+        public UnsendEventObjectDto? Unsend { get; set; } //使用者“收回”訊息事件
+        
 
         public PostbackDto? Postback { get; set; }
         public VideoPlayCompleteDto? VideoPlayComplete { get; set; }
@@ -20,7 +22,9 @@ namespace LineBotMessage.Dtos
     public class SourceDto
     {
         public string Type { get; set; }
-        public string UserId { get; set; }
+        public string? UserId { get; set; }
+        public string? GroupId { get; set; }
+        public string? RoomId { get; set; }
     }
 
     public class DeliverycontextDto

@@ -1,5 +1,4 @@
-﻿using System;
-namespace LineBotMessage.Dtos.Webhook.Events
+﻿namespace LineBotMessage.Dtos
 {
     public class UnsendEventObjectDto
     {
