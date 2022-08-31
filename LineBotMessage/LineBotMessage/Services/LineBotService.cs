@@ -65,6 +65,11 @@ namespace LineBotMessage.Services
                 }
             }   
         }
+
+        public void BroadcastingMessage(BroadcastingMessageRequestDto request)
+        {
+
+        }
     }
 }
 
