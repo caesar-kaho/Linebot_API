@@ -40,11 +40,31 @@ namespace LineBotMessage.Services
                     case WebhookEventTypeEnum.Leave:
                         Console.WriteLine("我們被聊天室踢出了");
                         break;
+                    case WebhookEventTypeEnum.MemberJoined:
+                        string joinedMemberIds = "";
+                        foreach(var member in eventObject.joined.members)
+                        {
+                            joinedMemberIds += $"{member.UserId} ";
+                        }
+                        Console.WriteLine($"使用者{joinedMemberIds}加入了群組！");
+                        break;
+                    case WebhookEventTypeEnum.MemberLeft:
+                        string leftMemberIds = "";
+                        foreach (var member in eventObject.joined.members)
+                        {
+                            leftMemberIds += $"{member.UserId} ";
+                        }
+                        Console.WriteLine($"使用者{leftMemberIds}離開了群組！");
+                        break;
+                    case WebhookEventTypeEnum.Postback:
+                        Console.WriteLine($"使用者{eventObject.Source.UserId}觸發了postback事件");
+                        break;
+                    case WebhookEventTypeEnum.VideoPlayComplete:
+                        Console.WriteLine($"使用者{eventObject.Source.UserId}");
+                        break;
                 }
             }   
         }
-
-
     }
 }
 
