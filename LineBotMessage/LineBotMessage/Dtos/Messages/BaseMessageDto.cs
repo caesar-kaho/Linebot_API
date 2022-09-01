@@ -1,9 +1,8 @@
 ﻿namespace LineBotMessage.Dtos
 {
-    public class BaseMessageObjectDto
+    public class BaseMessageDto
     {
         public string Type { get; set; }
-
     }
 }
 

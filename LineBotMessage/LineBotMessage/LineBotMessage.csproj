@@ -26,6 +26,7 @@
     <None Remove="Enum\" />
     <None Remove="Domain\Interfaces\" />
     <None Remove="Dtos\Messages\" />
+    <None Remove="Providers\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Controllers\" />
@@ -35,6 +36,7 @@
     <Folder Include="Enum\" />
     <Folder Include="Domain\Interfaces\" />
     <Folder Include="Dtos\Messages\" />
+    <Folder Include="Providers\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\.editorconfig" />

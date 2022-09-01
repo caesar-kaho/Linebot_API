@@ -24,5 +24,11 @@ namespace LineBotMessage.Controllers
             return Ok();
         }
 
+        [HttpPost("Message/Broadcast")]
+        public IActionResult Broadcast(object body)
+        {
+            _lineBotService.BroadcastMessageReqeust(body as BroadcastingMessageRequestDto);
+            return Ok();
+        }
     }
 }

@@ -2,6 +2,7 @@
 using System.Reflection;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
+using LineBotMessage.Providers;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
@@ -16,7 +17,11 @@ builder.Host.ConfigureContainer<ContainerBuilder>(builder =>
     .AsImplementedInterfaces();
 });
 
+builder.Services.AddHttpClient();
 builder.Services.AddControllers();
+
+builder.Services.AddSingleton<JsonProvider>();
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 

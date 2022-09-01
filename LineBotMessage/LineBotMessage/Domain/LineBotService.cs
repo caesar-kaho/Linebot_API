@@ -1,7 +1,9 @@
-﻿using System;
+﻿using System.Net.Http.Headers;
 using LineBotMessage.Dtos;
 using LineBotMessage.Enum;
 using LineBotMessage.Domain.Interfaces;
+using LineBotMessage.Providers;
+using System.Text;
 
 namespace LineBotMessage.Domain
 {
@@ -12,18 +14,30 @@ namespace LineBotMessage.Domain
         private readonly string channelAccessToken = "gCEru16JH8CSHv+YoIXiCDD+vac9RAiIr/eJaXL4ZbRaRhwJdpJa8Uhd59DoXAjAXEvXYXbTCnIScSxl7ek2S/rV4LHBaxXt4I4bgSsuWM0gu9vncuOxFZ9odba9x7J0+P7j9ioVFweZe/Dhfq8fcwdB04t89/1O/w1cDnyilFU=";
         private readonly string channelSecret = "7b79ab80c255e148755672de6e73583b";
 
-        public LineBotService()
+        private readonly IHttpClientFactory _httpClientFactory;
+        private readonly JsonProvider _jsonProvider;
+        public LineBotService(IHttpClientFactory httpClientFactory, JsonProvider jsonProvider)
         {
+            _httpClientFactory = httpClientFactory;
+            _jsonProvider = jsonProvider;
         }
 
         public void ReceiveWebhook(WebhookRequestBodyDto requestBody)
         {
-            foreach(var eventObject in requestBody.Events)
+            foreach (var eventObject in requestBody.Events)
             {
                 switch (eventObject.Type)
                 {
                     case WebhookEventTypeEnum.Message:
-                        Console.WriteLine("收到使用者傳送訊息！");
+                        var replyMessage = new ReplyMessageRequestDto<TextMessageDto>()
+                        {
+                            ReplyToken = eventObject.ReplyToken,
+                            Messages = new List<TextMessageDto>
+                            {
+                                new TextMessageDto(){Text = $"您好，您傳送了\"{eventObject.Message.Text}\"!"}
+                            }
+                        };
+                        ReplyMessageRequest(replyMessage);
                         break;
                     case WebhookEventTypeEnum.Unsend:
                         Console.WriteLine($"使用者{eventObject.Source.UserId}在聊天室收回訊息！");
@@ -42,7 +56,7 @@ namespace LineBotMessage.Domain
                         break;
                     case WebhookEventTypeEnum.MemberJoined:
                         string joinedMemberIds = "";
-                        foreach(var member in eventObject.Joined.Members)
+                        foreach (var member in eventObject.Joined.Members)
                         {
                             joinedMemberIds += $"{member.UserId} ";
                         }
@@ -63,12 +77,77 @@ namespace LineBotMessage.Domain
                         Console.WriteLine($"使用者{eventObject.Source.UserId}");
                         break;
                 }
-            }   
+            }
         }
 
-        public void BroadcastingMessage(BroadcastingMessageRequestDto request)
-        {
 
+
+        public async void ReplyMessageRequest<T>(ReplyMessageRequestDto<T> requestBody)
+        {
+            //判斷訊息類型
+
+            switch (typeof(T).Name)
+            {
+                case "TextMessageDto":
+                    ReplyMessage(requestBody as ReplyMessageRequestDto<TextMessageDto>);
+                    break;
+            }
+            
+            if(requestBody.Messages.Count <= 0)
+            {
+                return;
+            }
+            
+        }
+
+        public async void BroadcastMessageReqeust(BroadcastingMessageRequestDto requestBody)
+        {
+            if(requestBody.Messages.Count <= 0)
+            {
+                return;
+            }
+
+            switch (requestBody.Messages[0].GetType().Name)
+            {
+                case "TextMessageDto":
+                    BroadcastMessage(requestBody);
+                    break;
+
+            }
+        }
+
+        public async void ReplyMessage<T>(ReplyMessageRequestDto<T> request)
+        {
+            var client = _httpClientFactory.CreateClient();
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", channelAccessToken); //帶入 channel access token
+            var json = _jsonProvider.Serialize(request);
+            var requestMessage = new HttpRequestMessage
+            {
+                Method = HttpMethod.Post,
+                RequestUri = new Uri("https://api.line.me/v2/bot/message/reply"),
+                Content = new StringContent(json, Encoding.UTF8, "application/json")
+            };
+
+            var response = await client.SendAsync(requestMessage);
+            Console.WriteLine(await response.Content.ReadAsStringAsync());
+        }
+
+        public async void BroadcastMessage(BroadcastingMessageRequestDto request)
+        {
+            var client = _httpClientFactory.CreateClient();
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", channelAccessToken); //帶入 channel access token
+            var json = _jsonProvider.Serialize(request);
+            var requestMessage = new HttpRequestMessage
+            {
+                Method = HttpMethod.Post,
+                RequestUri = new Uri("https://api.line.me/v2/bot/message/broadcast"),
+                Content = new StringContent(json, Encoding.UTF8, "application/json")
+            };
+
+            var response = await client.SendAsync(requestMessage);
+            Console.WriteLine(await response.Content.ReadAsStringAsync());
         }
     }
 }
