@@ -1,6 +1,6 @@
 ﻿using LineBotMessage.Dtos;
 
-namespace LineBotMessage.Services.Interfaces
+namespace LineBotMessage.Domain.Interfaces
 {
     public interface ILineBotService
     {

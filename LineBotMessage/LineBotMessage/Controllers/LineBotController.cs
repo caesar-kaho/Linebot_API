@@ -1,5 +1,5 @@
 ﻿using LineBotMessage.Dtos;
-using LineBotMessage.Services.Interfaces;
+using LineBotMessage.Domain.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LineBotMessage.Controllers
