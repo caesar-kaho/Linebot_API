@@ -42,7 +42,7 @@ namespace LineBotMessage.Services
                         break;
                     case WebhookEventTypeEnum.MemberJoined:
                         string joinedMemberIds = "";
-                        foreach(var member in eventObject.joined.members)
+                        foreach(var member in eventObject.Joined.Members)
                         {
                             joinedMemberIds += $"{member.UserId} ";
                         }
@@ -50,7 +50,7 @@ namespace LineBotMessage.Services
                         break;
                     case WebhookEventTypeEnum.MemberLeft:
                         string leftMemberIds = "";
-                        foreach (var member in eventObject.joined.members)
+                        foreach (var member in eventObject.Left.Members)
                         {
                             leftMemberIds += $"{member.UserId} ";
                         }

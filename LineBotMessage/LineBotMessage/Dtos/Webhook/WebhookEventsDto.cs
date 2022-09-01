@@ -18,7 +18,7 @@
         public MemberEventDto? Joined { get; set; } // Memmber Joined Event
         public MemberEventDto? Left { get; set; } // Member Leave Event
         public PostbackEventDto? Postback { get; set; } // Postback Event
-        public VideoViewingCompleteEventObjectDto? VideoPlayComplete { get; set; } // Video viewing complete event
+        public VideoViewingCompleteEventDto? VideoPlayComplete { get; set; } // Video viewing complete event
     }
 
 
