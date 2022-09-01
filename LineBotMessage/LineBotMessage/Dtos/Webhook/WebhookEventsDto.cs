@@ -1,5 +1,4 @@
-﻿using System;
-namespace LineBotMessage.Dtos
+﻿namespace LineBotMessage.Dtos
 {
 
     public class WebhookEventDto
@@ -10,11 +9,11 @@ namespace LineBotMessage.Dtos
         public long Timestamp { get; set; } // 事件發生時間 : event occurred time in milliseconds
         public SourceDto Source { get; set; } // 事件來源 : user | group chat | multi-person chat
         public string WebhookEventId { get; set; } // webhook event id - ULID format
-        // -------- 以下 event properties--------
         public DeliverycontextDto DeliveryContext { get; set; } // 是否為重新傳送之事件 DeliveryContext.IsRedelivery : true | false
-        public string? ReplyToken { get; set; } // 回覆此事件所使用的 token
+        // -------- 以下 event properties--------
         public MessageEventDto? Message { get; set; } // 收到訊息的事件，可收到 text、sticker、image、file、video、audio、location 訊息
         public UnsendEventDto? Unsend { get; set; } //使用者“收回”訊息事件
+        public string? ReplyToken { get; set; } // 回覆此事件所使用的 token
     }
 
 
