@@ -5,7 +5,6 @@ namespace LineBotMessage.Services.Interfaces
     public interface ILineBotService
     {
         public void ReceiveWebhook(WebhookRequestBodyDto requestBody);
-        public void BroadcastingMessage(BroadcastingMessageRequestDto request);
     }
 }
 
