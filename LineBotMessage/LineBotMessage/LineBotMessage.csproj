@@ -22,7 +22,6 @@
     <None Remove="Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer" />
     <None Remove="Dtos\" />
     <None Remove="Dtos\Webhook\" />
-    <None Remove="Dtos\Webhook\Events\" />
     <None Remove="Services\" />
     <None Remove="Enum\" />
     <None Remove="Services\Interfaces\" />
@@ -31,7 +30,6 @@
     <Folder Include="Controllers\" />
     <Folder Include="Dtos\" />
     <Folder Include="Dtos\Webhook\" />
-    <Folder Include="Dtos\Webhook\Events\" />
     <Folder Include="Services\" />
     <Folder Include="Enum\" />
     <Folder Include="Services\Interfaces\" />
