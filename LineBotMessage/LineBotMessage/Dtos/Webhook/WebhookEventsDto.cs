@@ -14,6 +14,11 @@
         public MessageEventDto? Message { get; set; } // 收到訊息的事件，可收到 text、sticker、image、file、video、audio、location 訊息
         public UnsendEventDto? Unsend { get; set; } //使用者“收回”訊息事件
         public string? ReplyToken { get; set; } // 回覆此事件所使用的 token
+
+        public MemberEventDto? Joined { get; set; } // Memmber Joined Event
+        public MemberEventDto? Left { get; set; } // Member Leave Event
+        public PostbackEventDto? Postback { get; set; } // Postback Event
+        public VideoViewingCompleteEventObjectDto? VideoPlayComplete { get; set; } // Video viewing complete event
     }
 
 
@@ -99,5 +104,32 @@
         public string messageId { get; set; }
     }
 
+    // -------- 以下 member joined & left event --------
+    public class MemberEventDto
+    {
+        public List<SourceDto> Members { get; set; }
+    }
+
+    // -------- 以下 postback event --------
+    public class PostbackEventDto
+    {
+        public string? Data { get; set; }
+        public PostbackEventParamDto? Params { get; set; }
+    }
+
+    public class PostbackEventParamDto
+    {
+        public string? Date { get; set; }
+        public string? Time { get; set; }
+        public string? Datetime { get; set; }
+        public string? NewRichMenuAliasId { get; set; }
+        public string? Status { get; set; }
+    }
+
+    // -------- 以下 videoViewingCompleteEventDto event --------
+    public class VideoViewingCompleteEventDto
+    {
+        public string TrackingId { get; set; }
+    }
 }
 
