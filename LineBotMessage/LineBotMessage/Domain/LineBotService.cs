@@ -1,9 +1,9 @@
 ﻿using System;
 using LineBotMessage.Dtos;
 using LineBotMessage.Enum;
-using LineBotMessage.Services.Interfaces;
+using LineBotMessage.Domain.Interfaces;
 
-namespace LineBotMessage.Services
+namespace LineBotMessage.Domain
 {
     public class LineBotService : ILineBotService
     {
