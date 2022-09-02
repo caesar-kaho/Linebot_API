@@ -2,7 +2,7 @@
 using LineBotMessage.Dtos;
 using LineBotMessage.Enum;
 
-namespace LineBotMessage.Services
+namespace LineBotMessage.Domain
 {
     public class LineBotService
     {
