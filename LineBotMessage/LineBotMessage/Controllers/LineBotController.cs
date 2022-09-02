@@ -1,20 +1,19 @@
 ﻿using LineBotMessage.Dtos;
-using LineBotMessage.Domain.Interfaces;
+using LineBotMessage.Domain;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LineBotMessage.Controllers
 {
-
     [Route("api/[Controller]")]
     [ApiController]
     public class LineBotController : ControllerBase
     {
 
-        private readonly ILineBotService _lineBotService; 
+        private readonly LineBotService _lineBotService; 
         // constructor
-        public LineBotController(ILineBotService lineBotService)
+        public LineBotController()
         {
-            _lineBotService = lineBotService; // 注入 LineBotService
+            _lineBotService = new LineBotService();
         }
 
         [HttpPost("Webhook")]

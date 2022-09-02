@@ -48,8 +48,8 @@
 
         // Text Message Event
         public string? Text { get; set; }
-        public TextMessageEventEmojiDto? Emojis { get; set; }
-        public TextMessageEventMentionDto? Mentionees { get; set; }
+        public List<TextMessageEventEmojiDto>? Emojis { get; set; }
+        public TextMessageEventMentionDto? Mention { get; set; }
 
         // Image & Video & Audio Message Event
         public ContentProviderDto? ContentProvider { get; set; }
@@ -80,6 +80,10 @@
         public string EmojiId { get; set; }
     }
     public class TextMessageEventMentionDto
+    {
+        public List<TextMessageEventMentioneeDto> Mentionees { get; set; }
+    }
+    public class TextMessageEventMentioneeDto
     {
         public int Index { get; set; }
         public int Length { get; set; }

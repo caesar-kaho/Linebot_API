@@ -1,11 +1,9 @@
 ﻿using System;
 using LineBotMessage.Dtos;
 using LineBotMessage.Enum;
-using LineBotMessage.Domain.Interfaces;
-
 namespace LineBotMessage.Domain
 {
-    public class LineBotService : ILineBotService
+    public class LineBotService
     {
 
         // 貼上 messaging api channel 中的 accessToken & secret

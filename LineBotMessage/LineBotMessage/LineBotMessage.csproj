@@ -22,6 +22,7 @@
     <None Remove="Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer" />
     <None Remove="Dtos\" />
     <None Remove="Dtos\Webhook\" />
+    <None Remove="Domain\" />
     <None Remove="Enum\" />
   </ItemGroup>
   <ItemGroup>
@@ -30,7 +31,7 @@
     <Folder Include="Dtos\Webhook\" />
     <Folder Include="Enum\" />
     <Folder Include="Domain" />
-    <Folder Include="Domain\Interfaces" />
+    <Folder Include="Enum\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\.editorconfig" />
