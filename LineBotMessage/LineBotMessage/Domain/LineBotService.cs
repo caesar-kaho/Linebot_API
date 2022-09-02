@@ -1,7 +1,7 @@
 ﻿using System.Net.Http.Headers;
 using LineBotMessage.Dtos;
 using LineBotMessage.Enum;
-using LineBotMessage.Domain.Interfaces;
+using LineBotMessage.Domain;
 using LineBotMessage.Providers;
 using System.Text;
 
@@ -24,7 +24,7 @@ namespace LineBotMessage.Domain
 
         public void ReceiveWebhook(WebhookRequestBodyDto requestBody)
         {
-            foreach (var eventObject in requestBody.Events)
+            foreach(var eventObject in requestBody.Events)
             {
                 switch (eventObject.Type)
                 {
