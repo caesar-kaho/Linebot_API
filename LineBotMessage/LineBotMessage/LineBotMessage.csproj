@@ -24,7 +24,6 @@
     <None Remove="Dtos\Webhook\" />
     <None Remove="Domain\" />
     <None Remove="Enum\" />
-    <None Remove="Domain\Interfaces\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Controllers\" />
@@ -32,7 +31,6 @@
     <Folder Include="Dtos\Webhook\" />
     <Folder Include="Domain\" />
     <Folder Include="Enum\" />
-    <Folder Include="Domain\Interfaces\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\.editorconfig" />
