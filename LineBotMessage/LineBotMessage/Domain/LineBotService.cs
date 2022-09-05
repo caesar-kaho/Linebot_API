@@ -1,30 +1,28 @@
 ﻿using System.Net.Http.Headers;
 using LineBotMessage.Dtos;
 using LineBotMessage.Enum;
-using LineBotMessage.Domain;
 using LineBotMessage.Providers;
 using System.Text;
 
 namespace LineBotMessage.Domain
 {
-    public class LineBotService : ILineBotService
+    public class LineBotService
     {
 
         // 貼上 messaging api channel 中的 accessToken & secret
         private readonly string channelAccessToken = "gCEru16JH8CSHv+YoIXiCDD+vac9RAiIr/eJaXL4ZbRaRhwJdpJa8Uhd59DoXAjAXEvXYXbTCnIScSxl7ek2S/rV4LHBaxXt4I4bgSsuWM0gu9vncuOxFZ9odba9x7J0+P7j9ioVFweZe/Dhfq8fcwdB04t89/1O/w1cDnyilFU=";
         private readonly string channelSecret = "7b79ab80c255e148755672de6e73583b";
 
-        private readonly IHttpClientFactory _httpClientFactory;
+        private static HttpClient client = new HttpClient();
         private readonly JsonProvider _jsonProvider;
-        public LineBotService(IHttpClientFactory httpClientFactory, JsonProvider jsonProvider)
+        public LineBotService()
         {
-            _httpClientFactory = httpClientFactory;
-            _jsonProvider = jsonProvider;
+            _jsonProvider = new JsonProvider();
         }
 
         public void ReceiveWebhook(WebhookRequestBodyDto requestBody)
         {
-            foreach(var eventObject in requestBody.Events)
+            foreach (var eventObject in requestBody.Events)
             {
                 switch (eventObject.Type)
                 {
@@ -92,33 +90,29 @@ namespace LineBotMessage.Domain
                     ReplyMessage(requestBody as ReplyMessageRequestDto<TextMessageDto>);
                     break;
             }
-            
-            if(requestBody.Messages.Count <= 0)
+
+            if (requestBody.Messages.Count <= 0)
             {
                 return;
             }
-            
+
         }
 
-        public async void BroadcastMessageReqeust(BroadcastingMessageRequestDto requestBody)
+        public async void BroadcastMessageHandler(string messageType, object requestBody)
         {
-            if(requestBody.Messages.Count <= 0)
+            string strBody = requestBody.ToString();
+            switch (messageType)
             {
-                return;
-            }
-
-            switch (requestBody.Messages[0].GetType().Name)
-            {
-                case "TextMessageDto":
-                    BroadcastMessage(requestBody);
+                case MessageTypeEnum.Text:
+                    var messageRequest = _jsonProvider.Deserialize<BroadcastingMessageRequestDto<TextMessageDto>>(strBody);
+                    BroadcastMessage(messageRequest);
                     break;
-
             }
+
         }
 
         public async void ReplyMessage<T>(ReplyMessageRequestDto<T> request)
         {
-            var client = _httpClientFactory.CreateClient();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", channelAccessToken); //帶入 channel access token
             var json = _jsonProvider.Serialize(request);
@@ -133,9 +127,8 @@ namespace LineBotMessage.Domain
             Console.WriteLine(await response.Content.ReadAsStringAsync());
         }
 
-        public async void BroadcastMessage(BroadcastingMessageRequestDto request)
+        public async void BroadcastMessage<T>(BroadcastingMessageRequestDto<T> request)
         {
-            var client = _httpClientFactory.CreateClient();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", channelAccessToken); //帶入 channel access token
             var json = _jsonProvider.Serialize(request);

@@ -1,6 +1,9 @@
 using LineBotMessage.Dtos;
 using LineBotMessage.Domain;
 using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel.DataAnnotations;
+using LineBotMessage.Enum;
+using LineBotMessage.Providers;
 
 namespace LineBotMessage.Controllers
 {
@@ -9,11 +12,13 @@ namespace LineBotMessage.Controllers
     public class LineBotController : ControllerBase
     {
 
-        private readonly LineBotService _lineBotService; 
+        private readonly LineBotService _lineBotService;
+        private readonly JsonProvider _jsonProvider;
         // constructor
         public LineBotController()
         {
             _lineBotService = new LineBotService();
+            _jsonProvider = new JsonProvider();
         }
 
         [HttpPost("Webhook")]
@@ -23,10 +28,10 @@ namespace LineBotMessage.Controllers
             return Ok();
         }
 
-        [HttpPost("Message/Broadcast")]
-        public IActionResult Broadcast(object body)
+        [HttpPost("Broadcast")]
+        public IActionResult Broadcast([Required] string messageType, object body)
         {
-            _lineBotService.BroadcastMessageReqeust(body as BroadcastingMessageRequestDto);
+            _lineBotService.BroadcastMessageHandler(messageType, body);
             return Ok();
         }
     }

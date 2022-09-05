@@ -10,18 +10,22 @@ namespace LineBotMessage.Providers
             PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
             PropertyNameCaseInsensitive = true,
             DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
-            WriteIndented = true,
             Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping
         };
 
-        public string Serialize<T>(T str)
+        private static JsonSerializerOptions deserializeOptions = new JsonSerializerOptions
         {
-            return JsonSerializer.Serialize(str, serializeOption);
+            PropertyNameCaseInsensitive = true,
+        };
+
+        public string Serialize<T>(T obj)
+        {
+            return JsonSerializer.Serialize(obj, serializeOption);
         }
 
-        public string SerializeObject<T>(T str)
+        public T Deserialize<T>(string str)
         {
-            return JsonSerializer.Serialize<Object>(str, serializeOption);
+            return JsonSerializer.Deserialize<T>(str, deserializeOptions);
         }
     }
 }
