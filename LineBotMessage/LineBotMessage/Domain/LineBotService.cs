@@ -13,8 +13,8 @@ namespace LineBotMessage.Domain
         private readonly string channelAccessToken = "gCEru16JH8CSHv+YoIXiCDD+vac9RAiIr/eJaXL4ZbRaRhwJdpJa8Uhd59DoXAjAXEvXYXbTCnIScSxl7ek2S/rV4LHBaxXt4I4bgSsuWM0gu9vncuOxFZ9odba9x7J0+P7j9ioVFweZe/Dhfq8fcwdB04t89/1O/w1cDnyilFU=";
         private readonly string channelSecret = "7b79ab80c255e148755672de6e73583b";
 
-        private readonly string replyMessageUrl = "https://api.line.me/v2/bot/message/reply";
-        private readonly string broadcastMessageUrl = "https://api.line.me/v2/bot/message/broadcast";
+        private readonly string replyMessageUri = "https://api.line.me/v2/bot/message/reply";
+        private readonly string broadcastMessageUri = "https://api.line.me/v2/bot/message/broadcast";
         
 
         private static HttpClient client = new HttpClient();
@@ -88,18 +88,13 @@ namespace LineBotMessage.Domain
         public void BroadcastMessageHandler(string messageType, object requestBody)
         {
             string strBody = requestBody.ToString();
-            dynamic messageRequest = new BroadcastMessageRequestDto<BaseMessageDto>();
             switch (messageType)
             {
                 case MessageTypeEnum.Text:
-                    messageRequest = _jsonProvider.Deserialize<BroadcastMessageRequestDto<TextMessageDto>>(strBody);
-                    break;
-
-                case MessageTypeEnum.Sticker:
-                    messageRequest = _jsonProvider.Deserialize<BroadcastMessageRequestDto<StickerMessageDto>>(strBody);
+                    var messageRequest = _jsonProvider.Deserialize<BroadcastMessageRequestDto<TextMessageDto>>(strBody);
+                    BroadcastMessage(messageRequest);
                     break;
             }
-            BroadcastMessage(messageRequest);
 
         }
 
@@ -116,7 +111,7 @@ namespace LineBotMessage.Domain
             var requestMessage = new HttpRequestMessage
             {
                 Method = HttpMethod.Post,
-                RequestUri = new Uri(broadcastMessageUrl),
+                RequestUri = new Uri(broadcastMessageUri),
                 Content = new StringContent(json, Encoding.UTF8, "application/json")
             };
 
@@ -147,7 +142,7 @@ namespace LineBotMessage.Domain
             var requestMessage = new HttpRequestMessage
             {
                 Method = HttpMethod.Post,
-                RequestUri = new Uri(replyMessageUrl),
+                RequestUri = new Uri(replyMessageUri),
                 Content = new StringContent(json, Encoding.UTF8, "application/json")
             };
 
