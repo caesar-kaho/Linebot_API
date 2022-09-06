@@ -88,13 +88,22 @@ namespace LineBotMessage.Domain
         public void BroadcastMessageHandler(string messageType, object requestBody)
         {
             string strBody = requestBody.ToString();
+            dynamic messageRequest = new BroadcastMessageRequestDto<BaseMessageDto>();
             switch (messageType)
             {
                 case MessageTypeEnum.Text:
-                    var messageRequest = _jsonProvider.Deserialize<BroadcastMessageRequestDto<TextMessageDto>>(strBody);
-                    BroadcastMessage(messageRequest);
+                    messageRequest = _jsonProvider.Deserialize<BroadcastMessageRequestDto<TextMessageDto>>(strBody);
+                    break;
+
+                case MessageTypeEnum.Sticker:
+                    messageRequest = _jsonProvider.Deserialize<BroadcastMessageRequestDto<StickerMessageDto>>(strBody);
+                    break;
+
+                case MessageTypeEnum.Image:
+                    messageRequest = _jsonProvider.Deserialize<BroadcastMessageRequestDto<ImageMessageDto>>(strBody);
                     break;
             }
+            BroadcastMessage(messageRequest);
 
         }
 
