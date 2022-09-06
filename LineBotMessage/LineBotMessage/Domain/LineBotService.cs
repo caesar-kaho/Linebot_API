@@ -115,6 +115,10 @@ namespace LineBotMessage.Domain
                 case MessageTypeEnum.Video:
                     messageRequest = _jsonProvider.Deserialize<BroadcastMessageRequestDto<VideoMessageDto>>(strBody);
                     break;
+
+                case MessageTypeEnum.Audio:
+                    messageRequest = _jsonProvider.Deserialize<BroadcastMessageRequestDto<AudioMessageDto>>(strBody);
+                    break;
             }
             BroadcastMessage(messageRequest);
 
