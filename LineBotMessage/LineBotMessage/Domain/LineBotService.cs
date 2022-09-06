@@ -24,12 +24,13 @@ namespace LineBotMessage.Domain
 
         public void ReceiveWebhook(WebhookRequestBodyDto requestBody)
         {
+            dynamic replyMessage;
             foreach (var eventObject in requestBody.Events)
             {
                 switch (eventObject.Type)
                 {
                     case WebhookEventTypeEnum.Message:
-                        var replyMessage = new ReplyMessageRequestDto<TextMessageDto>()
+                        replyMessage = new ReplyMessageRequestDto<TextMessageDto>()
                         {
                             ReplyToken = eventObject.ReplyToken,
                             Messages = new List<TextMessageDto>
@@ -74,7 +75,15 @@ namespace LineBotMessage.Domain
                         Console.WriteLine($"使用者{eventObject.Source.UserId}觸發了postback事件");
                         break;
                     case WebhookEventTypeEnum.VideoPlayComplete:
-                        Console.WriteLine($"使用者{eventObject.Source.UserId}");
+                        replyMessage = new ReplyMessageRequestDto<TextMessageDto>()
+                        {
+                            ReplyToken = eventObject.ReplyToken,
+                            Messages = new List<TextMessageDto>
+                            {
+                                new TextMessageDto(){Text = $"使用者您好，謝謝您收看我們的宣傳影片，祝您身體健康萬事如意 !"}
+                            }
+                        };
+                        ReplyMessageHandler("text", replyMessage);
                         break;
                 }
             }
@@ -101,6 +110,10 @@ namespace LineBotMessage.Domain
 
                 case MessageTypeEnum.Image:
                     messageRequest = _jsonProvider.Deserialize<BroadcastMessageRequestDto<ImageMessageDto>>(strBody);
+                    break;
+
+                case MessageTypeEnum.Video:
+                    messageRequest = _jsonProvider.Deserialize<BroadcastMessageRequestDto<VideoMessageDto>>(strBody);
                     break;
             }
             BroadcastMessage(messageRequest);
