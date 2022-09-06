@@ -1,6 +1,6 @@
 ﻿using LineBotMessage.Enum;
 
-namespace LineBotMessage.Dtos.Messages
+namespace LineBotMessage.Dtos
 {
     public class ImageMessageDto : BaseMessageDto
     {
