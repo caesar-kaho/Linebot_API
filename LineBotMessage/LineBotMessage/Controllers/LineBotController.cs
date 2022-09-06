@@ -28,7 +28,7 @@ namespace LineBotMessage.Controllers
             return Ok();
         }
 
-        [HttpPost("Broadcast")]
+        [HttpPost("SendMessage/Broadcast")]
         public IActionResult Broadcast([Required] string messageType, object body)
         {
             _lineBotService.BroadcastMessageHandler(messageType, body);

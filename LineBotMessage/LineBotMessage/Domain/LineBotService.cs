@@ -13,12 +13,14 @@ namespace LineBotMessage.Domain
         private readonly string channelAccessToken = "gCEru16JH8CSHv+YoIXiCDD+vac9RAiIr/eJaXL4ZbRaRhwJdpJa8Uhd59DoXAjAXEvXYXbTCnIScSxl7ek2S/rV4LHBaxXt4I4bgSsuWM0gu9vncuOxFZ9odba9x7J0+P7j9ioVFweZe/Dhfq8fcwdB04t89/1O/w1cDnyilFU=";
         private readonly string channelSecret = "7b79ab80c255e148755672de6e73583b";
 
+        private readonly string replyMessageUrl = "https://api.line.me/v2/bot/message/reply";
+        private readonly string broadcastMessageUrl = "https://api.line.me/v2/bot/message/broadcast";
+        
+
         private static HttpClient client = new HttpClient();
-        private readonly JsonProvider _jsonProvider;
-        public LineBotService()
-        {
-            _jsonProvider = new JsonProvider();
-        }
+        private readonly JsonProvider _jsonProvider = new JsonProvider();
+
+        public LineBotService(){}
 
         public void ReceiveWebhook(WebhookRequestBodyDto requestBody)
         {
@@ -35,7 +37,7 @@ namespace LineBotMessage.Domain
                                 new TextMessageDto(){Text = $"您好，您傳送了\"{eventObject.Message.Text}\"!"}
                             }
                         };
-                        ReplyMessageRequest(replyMessage);
+                        ReplyMessageHandler("text",replyMessage);
                         break;
                     case WebhookEventTypeEnum.Unsend:
                         Console.WriteLine($"使用者{eventObject.Source.UserId}在聊天室收回訊息！");
@@ -78,39 +80,65 @@ namespace LineBotMessage.Domain
             }
         }
 
-
-
-        public async void ReplyMessageRequest<T>(ReplyMessageRequestDto<T> requestBody)
-        {
-            //判斷訊息類型
-
-            switch (typeof(T).Name)
-            {
-                case "TextMessageDto":
-                    ReplyMessage(requestBody as ReplyMessageRequestDto<TextMessageDto>);
-                    break;
-            }
-
-            if (requestBody.Messages.Count <= 0)
-            {
-                return;
-            }
-
-        }
-
-        public async void BroadcastMessageHandler(string messageType, object requestBody)
+        /// <summary>
+        /// 接收到廣播請求時，在將請求傳至 Line 前多一層處理，依據收到的 messageType 將 messages 轉換成正確的型別，這樣 Json 轉換時才能正確轉換。
+        /// </summary>
+        /// <param name="messageType"></param>
+        /// <param name="requestBody"></param>
+        public void BroadcastMessageHandler(string messageType, object requestBody)
         {
             string strBody = requestBody.ToString();
+            dynamic messageRequest = new BroadcastMessageRequestDto<BaseMessageDto>();
             switch (messageType)
             {
                 case MessageTypeEnum.Text:
-                    var messageRequest = _jsonProvider.Deserialize<BroadcastingMessageRequestDto<TextMessageDto>>(strBody);
-                    BroadcastMessage(messageRequest);
+                    messageRequest = _jsonProvider.Deserialize<BroadcastMessageRequestDto<TextMessageDto>>(strBody);
+                    break;
+
+                case MessageTypeEnum.Sticker:
+                    messageRequest = _jsonProvider.Deserialize<BroadcastMessageRequestDto<StickerMessageDto>>(strBody);
                     break;
             }
+            BroadcastMessage(messageRequest);
 
         }
 
+        /// <summary>
+        /// 將廣播訊息請求送到 Line
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="request"></param>
+        public async void BroadcastMessage<T>(BroadcastMessageRequestDto<T> request)
+        {
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", channelAccessToken); //帶入 channel access token
+            var json = _jsonProvider.Serialize(request);
+            var requestMessage = new HttpRequestMessage
+            {
+                Method = HttpMethod.Post,
+                RequestUri = new Uri(broadcastMessageUrl),
+                Content = new StringContent(json, Encoding.UTF8, "application/json")
+            };
+
+            var response = await client.SendAsync(requestMessage);
+            Console.WriteLine(await response.Content.ReadAsStringAsync());
+        }
+
+        /// <summary>
+        /// 接收到回覆請求時，在將請求傳至 Line 前多一層處理(目前為預留)
+        /// </summary>
+        /// <param name="messageType"></param>
+        /// <param name="requestBody"></param>
+        public void ReplyMessageHandler<T>(string messageType, ReplyMessageRequestDto<T> requestBody)
+        {
+            ReplyMessage(requestBody);
+        }
+
+        /// <summary>
+        /// 將回覆訊息請求送到 Line
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="request"></param>
         public async void ReplyMessage<T>(ReplyMessageRequestDto<T> request)
         {
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
@@ -119,23 +147,7 @@ namespace LineBotMessage.Domain
             var requestMessage = new HttpRequestMessage
             {
                 Method = HttpMethod.Post,
-                RequestUri = new Uri("https://api.line.me/v2/bot/message/reply"),
-                Content = new StringContent(json, Encoding.UTF8, "application/json")
-            };
-
-            var response = await client.SendAsync(requestMessage);
-            Console.WriteLine(await response.Content.ReadAsStringAsync());
-        }
-
-        public async void BroadcastMessage<T>(BroadcastingMessageRequestDto<T> request)
-        {
-            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", channelAccessToken); //帶入 channel access token
-            var json = _jsonProvider.Serialize(request);
-            var requestMessage = new HttpRequestMessage
-            {
-                Method = HttpMethod.Post,
-                RequestUri = new Uri("https://api.line.me/v2/bot/message/broadcast"),
+                RequestUri = new Uri(replyMessageUrl),
                 Content = new StringContent(json, Encoding.UTF8, "application/json")
             };
 
