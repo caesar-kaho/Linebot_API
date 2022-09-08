@@ -119,6 +119,10 @@ namespace LineBotMessage.Domain
                 case MessageTypeEnum.Audio:
                     messageRequest = _jsonProvider.Deserialize<BroadcastMessageRequestDto<AudioMessageDto>>(strBody);
                     break;
+
+                case MessageTypeEnum.Location:
+                    messageRequest = _jsonProvider.Deserialize<BroadcastMessageRequestDto<LocationMessageDto>>(strBody);
+                    break;
             }
             BroadcastMessage(messageRequest);
 
