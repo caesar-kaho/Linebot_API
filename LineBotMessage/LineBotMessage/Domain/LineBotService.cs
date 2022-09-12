@@ -123,6 +123,10 @@ namespace LineBotMessage.Domain
                 case MessageTypeEnum.Location:
                     messageRequest = _jsonProvider.Deserialize<BroadcastMessageRequestDto<LocationMessageDto>>(strBody);
                     break;
+
+                case MessageTypeEnum.Imagemap:
+                    messageRequest = _jsonProvider.Deserialize<BroadcastMessageRequestDto<ImagemapMessageDto>>(strBody);
+                    break;
             }
             BroadcastMessage(messageRequest);
 
