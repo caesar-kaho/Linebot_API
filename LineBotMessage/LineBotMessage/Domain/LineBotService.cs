@@ -80,7 +80,7 @@ namespace LineBotMessage.Domain
                                 new TextMessageDto(){Text = $"使用者您好，謝謝您收看我們的宣傳影片，祝您身體健康萬事如意 !"}
                             }
                         };
-                        ReplyMessageHandler("text", replyMessage);
+                        ReplyMessageHandler(replyMessage);
                         break;
                 }
             }
@@ -92,10 +92,13 @@ namespace LineBotMessage.Domain
 
             switch (eventDto.Message.Type)
             {
+                // 收到文字訊息
                 case MessageTypeEnum.Text:
+                    // 訊息內容等於 "測試" 時
                     if (eventDto.Message.Text == "測試")
                     {
-                         replyMessage = new ReplyMessageRequestDto<TextMessageDto>
+                        // 回覆文字訊息並挾帶 quick reply button
+                        replyMessage = new ReplyMessageRequestDto<TextMessageDto>
                         {
                             ReplyToken = eventDto.ReplyToken,
                             Messages = new List<TextMessageDto>
@@ -107,49 +110,74 @@ namespace LineBotMessage.Domain
                                     {
                                         Items = new List<QuickReplyButtonDto>
                                         {
+                                            // message action
                                             new QuickReplyButtonDto {
                                                 Action = new ActionDto {
                                                     Type = ActionTypeEnum.Message,
                                                     Label = "message 測試" ,
                                                     Text = "測試"
-                                                }},
+                                                }
+                                            },
+                                            // uri action
                                             new QuickReplyButtonDto {
                                                 Action = new ActionDto {
                                                     Type = ActionTypeEnum.Uri,
                                                     Label = "uri 測試" ,
                                                     Uri = "https://www.appx.com.tw"
-                                                }},
+                                                }
+                                            },
+                                             // 使用 uri schema 分享 Line Bot 資訊
+                                            new QuickReplyButtonDto {
+                                                Action = new ActionDto {
+                                                    Type = ActionTypeEnum.Uri,
+                                                    Label = "分享 Line Bot 資訊" ,
+                                                    Uri = "https://line.me/R/nv/recommendOA/@089yvykp"
+                                                }
+                                            },
+                                            // postback action
                                             new QuickReplyButtonDto {
                                                 Action = new ActionDto {
                                                     Type = ActionTypeEnum.Postback,
                                                     Label = "postback 測試" ,
                                                     Data = "quick reply postback action" ,
-                                                    DisplayText = "DisplayText",
+                                                    DisplayText = "使用者傳送 displayTex，但不會有 Webhook event 產生。",
                                                     InputOption = PostbackInputOptionEnum.OpenKeyboard,
-                                                    FillInText = "文字文字換行文字"
-                                                }},
+                                                    FillInText = "第一行\n第二行"
+                                                }
+                                            },
+                                            // datetime picker action
                                             new QuickReplyButtonDto {
                                                 Action = new ActionDto {
                                                 Type = ActionTypeEnum.DatetimePicker,
                                                 Label = "日期時間選擇",
                                                     Data = "quick reply datetime picker action",
-                                                    Mode = DatetimePickerModeEnum.Datetime
-                                                }},
+                                                    Mode = DatetimePickerModeEnum.Datetime,
+                                                    Initial = "2022-09-30T19:00",
+                                                    Max = "2022-12-31T23:59",
+                                                    Min = "2021-01-01T00:00"
+                                                }
+                                            },
+                                            // camera action
                                             new QuickReplyButtonDto {
                                                 Action = new ActionDto {
                                                     Type = ActionTypeEnum.Camera,
                                                     Label = "開啟相機"
-                                                }},
+                                                }
+                                            },
+                                            // camera roll action
                                             new QuickReplyButtonDto {
                                                 Action = new ActionDto {
                                                     Type = ActionTypeEnum.CameraRoll,
                                                     Label = "開啟相簿"
-                                                }},
+                                                }
+                                            },
+                                            // location action
                                             new QuickReplyButtonDto {
                                                 Action = new ActionDto {
                                                     Type = ActionTypeEnum.Location,
                                                     Label = "開啟位置"
-                                                }}
+                                                }
+                                            }
                                         }
                                     }
                                 }
@@ -159,7 +187,7 @@ namespace LineBotMessage.Domain
                     break;
             }
 
-            ReplyMessageHandler("text", replyMessage);
+            ReplyMessageHandler(replyMessage);
         }
         /// <summary>
         /// 接收到廣播請求時，在將請求傳至 Line 前多一層處理，依據收到的 messageType 將 messages 轉換成正確的型別，這樣 Json 轉換時才能正確轉換。
@@ -230,7 +258,7 @@ namespace LineBotMessage.Domain
         /// </summary>
         /// <param name="messageType"></param>
         /// <param name="requestBody"></param>
-        public void ReplyMessageHandler<T>(string messageType, ReplyMessageRequestDto<T> requestBody)
+        public void ReplyMessageHandler<T>(ReplyMessageRequestDto<T> requestBody)
         {
             ReplyMessage(requestBody);
         }
