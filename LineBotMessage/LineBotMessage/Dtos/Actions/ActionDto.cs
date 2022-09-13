@@ -1,5 +1,4 @@
-﻿using System;
-namespace LineBotMessage.Dtos.Actions
+﻿namespace LineBotMessage.Dtos.Actions
 {
     public class ActionDto
     {

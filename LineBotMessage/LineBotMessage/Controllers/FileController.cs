@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.StaticFiles;
 
 namespace LineBotMessage.Controllers
@@ -22,7 +21,7 @@ namespace LineBotMessage.Controllers
         /// <param name="imageSize"></param>
         /// <returns></returns>
         [HttpGet("UploadFiles/ImagemapImages/{folderName}/{imageSize}")]
-        public IActionResult GetFile(string folderName, string imageSize)
+        public IActionResult GetImagemapImage(string folderName, string imageSize)
         {
             //FileStream fs = new FileStream();
             var path = $"{_configuration.GetValue<string>(WebHostDefaults.ContentRootKey)}/UploadFiles/ImagemapImages/{folderName}/{imageSize}.png";
