@@ -95,7 +95,7 @@ namespace LineBotMessage.Domain
                 case MessageTypeEnum.Text:
                     if (eventDto.Message.Text == "測試")
                     {
-                        replyMessage = new ReplyMessageRequestDto<TextMessageDto>
+                         replyMessage = new ReplyMessageRequestDto<TextMessageDto>
                         {
                             ReplyToken = eventDto.ReplyToken,
                             Messages = new List<TextMessageDto>
@@ -107,13 +107,49 @@ namespace LineBotMessage.Domain
                                     {
                                         Items = new List<QuickReplyButtonDto>
                                         {
-                                            new QuickReplyButtonDto { Action = new ActionDto { Type = ActionTypeEnum.Message, Label = "message 測試" , Text = "測試" } },
-                                            new QuickReplyButtonDto { Action = new ActionDto { Type = ActionTypeEnum.Uri, Label = "uri 測試" , Uri = "https://www.appx.com.tw"} },
-                                            new QuickReplyButtonDto { Action = new ActionDto { Type = ActionTypeEnum.Postback, Label = "postback 測試" , Data = "quick reply postback action" , DisplayText = "DisplayText", InputOption = PostbackInputOptionEnum.OpenKeyboard, FillInText = "文字文字 \n 換行文字"} },
-                                            new QuickReplyButtonDto { Action = new ActionDto { Type = ActionTypeEnum.DatetimePicker, Label = "日期時間選擇" ,Data = "quick reply datetime picker action", Mode = DatetimePickerModeEnum.Datetime} },
-                                            new QuickReplyButtonDto { Action = new ActionDto { Type = ActionTypeEnum.Camera, Label = "開啟相機"} },
-                                            new QuickReplyButtonDto { Action = new ActionDto { Type = ActionTypeEnum.CameraRoll, Label = "開啟相簿"} },
-                                            new QuickReplyButtonDto { Action = new ActionDto { Type = ActionTypeEnum.Location, Label = "開啟位置"} }
+                                            new QuickReplyButtonDto {
+                                                Action = new ActionDto {
+                                                    Type = ActionTypeEnum.Message,
+                                                    Label = "message 測試" ,
+                                                    Text = "測試"
+                                                }},
+                                            new QuickReplyButtonDto {
+                                                Action = new ActionDto {
+                                                    Type = ActionTypeEnum.Uri,
+                                                    Label = "uri 測試" ,
+                                                    Uri = "https://www.appx.com.tw"
+                                                }},
+                                            new QuickReplyButtonDto {
+                                                Action = new ActionDto {
+                                                    Type = ActionTypeEnum.Postback,
+                                                    Label = "postback 測試" ,
+                                                    Data = "quick reply postback action" ,
+                                                    DisplayText = "DisplayText",
+                                                    InputOption = PostbackInputOptionEnum.OpenKeyboard,
+                                                    FillInText = "文字文字換行文字"
+                                                }},
+                                            new QuickReplyButtonDto {
+                                                Action = new ActionDto {
+                                                Type = ActionTypeEnum.DatetimePicker,
+                                                Label = "日期時間選擇",
+                                                    Data = "quick reply datetime picker action",
+                                                    Mode = DatetimePickerModeEnum.Datetime
+                                                }},
+                                            new QuickReplyButtonDto {
+                                                Action = new ActionDto {
+                                                    Type = ActionTypeEnum.Camera,
+                                                    Label = "開啟相機"
+                                                }},
+                                            new QuickReplyButtonDto {
+                                                Action = new ActionDto {
+                                                    Type = ActionTypeEnum.CameraRoll,
+                                                    Label = "開啟相簿"
+                                                }},
+                                            new QuickReplyButtonDto {
+                                                Action = new ActionDto {
+                                                    Type = ActionTypeEnum.Location,
+                                                    Label = "開啟位置"
+                                                }}
                                         }
                                     }
                                 }
