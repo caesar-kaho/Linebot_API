@@ -35,8 +35,9 @@ namespace LineBotMessage.Domain
                             ReplyToken = eventObject.ReplyToken,
                             Messages = new List<TextMessageDto>
                             {
-                                new TextMessageDto(){Text = $"您好，您傳送了\"{eventObject.Message.Text}\"!"}
-                            }
+                                new TextMessageDto(){Text = $"您好，您傳送了\"{eventObject.Message.Text}\"!",QuickReply = new QuickReplyItemDto{ Items = new List<QuickReplyButtonDto>{ new QuickReplyButtonDto { Action = new ActionDto { Type = ActionTypeEnum.Message, Text = "1234", Label = "1234"},ImageUrl = "https://b489-61-63-154-173.jp.ngrok.io/UploadFiles/appx.png" } } } }
+                            },
+                            
                         };
                         ReplyMessageHandler("text",replyMessage);
                         break;

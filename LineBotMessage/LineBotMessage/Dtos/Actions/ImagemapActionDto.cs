@@ -1,6 +1,4 @@
-﻿using LineBotMessage.Dtos;
-
-namespace LineBotMessage.Dtos.Actions
+﻿namespace LineBotMessage.Dtos
 {
     public class ImagemapActionDto
     {

@@ -1,5 +1,4 @@
-﻿using LineBotMessage.Dtos.Actions;
-using LineBotMessage.Enum;
+﻿using LineBotMessage.Enum;
 namespace LineBotMessage.Dtos
 {
     public class ImagemapMessageDto : BaseMessageDto

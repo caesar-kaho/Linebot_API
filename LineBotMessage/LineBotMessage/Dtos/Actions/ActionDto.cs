@@ -1,4 +1,4 @@
-﻿namespace LineBotMessage.Dtos.Actions
+﻿namespace LineBotMessage.Dtos
 {
     public class ActionDto
     {
