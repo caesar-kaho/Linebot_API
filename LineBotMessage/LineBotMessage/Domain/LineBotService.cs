@@ -15,13 +15,17 @@ namespace LineBotMessage.Domain
 
         private readonly string replyMessageUri = "https://api.line.me/v2/bot/message/reply";
         private readonly string broadcastMessageUri = "https://api.line.me/v2/bot/message/broadcast";
-        
+
 
         private static HttpClient client = new HttpClient();
         private readonly JsonProvider _jsonProvider = new JsonProvider();
 
-        public LineBotService(){}
+        public LineBotService() { }
 
+        /// <summary>
+        /// 接收 webhook event 處理
+        /// </summary>
+        /// <param name="requestBody"></param>
         public void ReceiveWebhook(WebhookRequestBodyDto requestBody)
         {
             dynamic replyMessage;
@@ -30,16 +34,8 @@ namespace LineBotMessage.Domain
                 switch (eventObject.Type)
                 {
                     case WebhookEventTypeEnum.Message:
-                        replyMessage = new ReplyMessageRequestDto<TextMessageDto>()
-                        {
-                            ReplyToken = eventObject.ReplyToken,
-                            Messages = new List<TextMessageDto>
-                            {
-                                new TextMessageDto(){Text = $"您好，您傳送了\"{eventObject.Message.Text}\"!",QuickReply = new QuickReplyItemDto{ Items = new List<QuickReplyButtonDto>{ new QuickReplyButtonDto { Action = new ActionDto { Type = ActionTypeEnum.Message, Text = "1234", Label = "1234"},ImageUrl = "https://b489-61-63-154-173.jp.ngrok.io/UploadFiles/appx.png" } } } }
-                            },
-                            
-                        };
-                        ReplyMessageHandler("text",replyMessage);
+                        if (eventObject.Message.Type == MessageTypeEnum.Text)
+                            ReceiveMessageWebhookEvent(eventObject);
                         break;
                     case WebhookEventTypeEnum.Unsend:
                         Console.WriteLine($"使用者{eventObject.Source.UserId}在聊天室收回訊息！");
@@ -90,6 +86,45 @@ namespace LineBotMessage.Domain
             }
         }
 
+        private void ReceiveMessageWebhookEvent(WebhookEventDto eventDto)
+        {
+            dynamic replyMessage = new ReplyMessageRequestDto<BaseMessageDto>();
+
+            switch (eventDto.Message.Type)
+            {
+                case MessageTypeEnum.Text:
+                    if (eventDto.Message.Text == "測試")
+                    {
+                        replyMessage = new ReplyMessageRequestDto<TextMessageDto>
+                        {
+                            ReplyToken = eventDto.ReplyToken,
+                            Messages = new List<TextMessageDto>
+                            {
+                                new TextMessageDto
+                                {
+                                    Text = "QuickReply 測試訊息",
+                                    QuickReply = new QuickReplyItemDto
+                                    {
+                                        Items = new List<QuickReplyButtonDto>
+                                        {
+                                            new QuickReplyButtonDto { Action = new ActionDto { Type = ActionTypeEnum.Message, Label = "message 測試" , Text = "測試" } },
+                                            new QuickReplyButtonDto { Action = new ActionDto { Type = ActionTypeEnum.Uri, Label = "uri 測試" , Uri = "https://www.appx.com.tw"} },
+                                            new QuickReplyButtonDto { Action = new ActionDto { Type = ActionTypeEnum.Postback, Label = "postback 測試" , Data = "quick reply postback action" , DisplayText = "DisplayText", InputOption = PostbackInputOptionEnum.OpenKeyboard, FillInText = "文字文字 \n 換行文字"} },
+                                            new QuickReplyButtonDto { Action = new ActionDto { Type = ActionTypeEnum.DatetimePicker, Label = "日期時間選擇" ,Data = "quick reply datetime picker action", Mode = DatetimePickerModeEnum.Datetime} },
+                                            new QuickReplyButtonDto { Action = new ActionDto { Type = ActionTypeEnum.Camera, Label = "開啟相機"} },
+                                            new QuickReplyButtonDto { Action = new ActionDto { Type = ActionTypeEnum.CameraRoll, Label = "開啟相簿"} },
+                                            new QuickReplyButtonDto { Action = new ActionDto { Type = ActionTypeEnum.Location, Label = "開啟位置"} }
+                                        }
+                                    }
+                                }
+                            }
+                        };
+                    }
+                    break;
+            }
+
+            ReplyMessageHandler("text", replyMessage);
+        }
         /// <summary>
         /// 接收到廣播請求時，在將請求傳至 Line 前多一層處理，依據收到的 messageType 將 messages 轉換成正確的型別，這樣 Json 轉換時才能正確轉換。
         /// </summary>
