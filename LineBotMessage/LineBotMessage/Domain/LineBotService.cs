@@ -184,6 +184,34 @@ namespace LineBotMessage.Domain
                             }
                         };
                     }
+                    if (eventDto.Message.Text == "Sender")
+                    {
+                        replyMessage = new ReplyMessageRequestDto<TextMessageDto>
+                        {
+                            ReplyToken = eventDto.ReplyToken,
+                            Messages = new List<TextMessageDto>
+                            {
+                                new TextMessageDto
+                                {
+                                    Text = "你好，我是客服人員 1號",
+                                    Sender = new SenderDto
+                                    {
+                                        Name = "客服人員 1號",
+                                        IconUrl = "https://b489-61-63-154-173.jp.ngrok.io/UploadFiles/man.png"
+                                    }
+                                },
+                                new TextMessageDto
+                                {
+                                    Text = "你好，我是客服人員 2號",
+                                    Sender = new SenderDto
+                                    {
+                                        Name = "客服人員 2號",
+                                        IconUrl = "https://b489-61-63-154-173.jp.ngrok.io/UploadFiles/gamer.png"
+                                    }
+                                }
+                            }
+                        };
+                    }
                     break;
             }
 
