@@ -94,7 +94,7 @@ namespace LineBotMessage.Domain
             {
                 // 收到文字訊息
                 case MessageTypeEnum.Text:
-                    // 訊息內容等於 "測試" 時
+                    // 關鍵字 : "測試"
                     if (eventDto.Message.Text == "測試")
                     {
                         // 回覆文字訊息並挾帶 quick reply button
@@ -184,6 +184,7 @@ namespace LineBotMessage.Domain
                             }
                         };
                     }
+                    // 關鍵字 : "Sender"
                     if (eventDto.Message.Text == "Sender")
                     {
                         replyMessage = new ReplyMessageRequestDto<TextMessageDto>
@@ -209,6 +210,98 @@ namespace LineBotMessage.Domain
                                         IconUrl = "https://b489-61-63-154-173.jp.ngrok.io/UploadFiles/gamer.png"
                                     }
                                 }
+                            }
+                        };
+                    }
+                    // 關鍵字 : "Buttons"
+                    if (eventDto.Message.Text == "Buttons")
+                    {
+                        replyMessage = new ReplyMessageRequestDto<TemplateMessageDto<ButtonsTemplateDto>>
+                        {
+                            ReplyToken = eventDto.ReplyToken,
+                            Messages = new List<TemplateMessageDto<ButtonsTemplateDto>>
+                            {
+                                new TemplateMessageDto<ButtonsTemplateDto>
+                                {
+                                    AltText = "這是按鈕模板訊息",
+                                    Template = new ButtonsTemplateDto
+                                    {
+                                        ThumbnailImageUrl = "https://i.imgur.com/CP6ywwc.jpg",
+                                        ImageAspectRatio = TemplateImageAspectRatioEnum.Rectangle,
+                                        ImageSize = TemplateImageSizeEnum.Cover,
+                                        Title = "親愛的用戶您好，歡迎您使用本美食推薦系統",
+                                        Text = "請選擇今天想吃的主食，系統會推薦附近的餐廳給您。",
+                                        Actions = new List<ActionDto>
+                                        {
+                                            new ActionDto
+                                            {
+                                                Type = ActionTypeEnum.Postback,
+                                                Data = "foodType=sushi",
+                                                Label = "壽司",
+                                                DisplayText = "壽司"
+                                            },
+                                            new ActionDto
+                                            {
+                                                Type = ActionTypeEnum.Postback,
+                                                Data = "foodType=hot-pot",
+                                                Label = "火鍋",
+                                                DisplayText = "火鍋"
+                                            },
+                                            new ActionDto
+                                            {
+                                                Type = ActionTypeEnum.Postback,
+                                                Data = "foodType=steak",
+                                                Label = "牛排",
+                                                DisplayText = "牛排"
+                                            },
+                                            new ActionDto
+                                            {
+                                                Type = ActionTypeEnum.Postback,
+                                                Data = "foodType=next",
+                                                Label = "下一個",
+                                                DisplayText = "下一個"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        };
+                    }
+                    // 關鍵字 : "Confirm"
+                    if (eventDto.Message.Text == "Confirm")
+                    {
+                        replyMessage = new ReplyMessageRequestDto<TemplateMessageDto<ConfirmTemplateDto>>
+                        {
+                            ReplyToken = eventDto.ReplyToken,
+                            Messages = new List<TemplateMessageDto<ConfirmTemplateDto>>
+                            {
+                                new TemplateMessageDto<ConfirmTemplateDto>
+                                {
+                                    AltText = "這是確認模組訊息",
+                                    Template = new ConfirmTemplateDto
+                                    {
+                                        Text = "請問您是否喜歡本產品?\n(產品編號123)",
+                                        Actions = new List<ActionDto>
+                                        {
+                                            new ActionDto
+                                            {
+                                                Type = ActionTypeEnum.Postback,
+                                                Data = "id=123&like=yes",
+                                                Label = "喜歡",
+                                                DisplayText = "喜歡",
+                                            },
+                                            new ActionDto
+                                            {
+                                                Type = ActionTypeEnum.Postback,
+                                                Data = "id=123&like=no",
+                                                Label = "不喜歡",
+                                                DisplayText = "不喜歡",
+                                            }
+                                        }
+
+                                    }
+                                }
+
                             }
                         };
                     }
