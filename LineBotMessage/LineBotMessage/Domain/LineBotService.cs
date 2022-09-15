@@ -305,6 +305,86 @@ namespace LineBotMessage.Domain
                             }
                         };
                     }
+                    // 關鍵字 : "Carousel"
+                    if(eventDto.Message.Text == "Carousel")
+                    {
+                        replyMessage = new ReplyMessageRequestDto<TemplateMessageDto<CarouselTemplateDto>>
+                        {
+                            ReplyToken = eventDto.ReplyToken,
+                            Messages = new List<TemplateMessageDto<CarouselTemplateDto>>
+                            {
+                                new TemplateMessageDto<CarouselTemplateDto>
+                                {
+                                    AltText = "這是輪播訊息",
+                                    Template = new CarouselTemplateDto
+                                    {
+                                        Columns = new List<CarouselColumnObjectDto>
+                                        {
+                                            //column objects
+                                            new CarouselColumnObjectDto
+                                            {
+                                                ThumbnailImageUrl = "https://www.apple.com/v/iphone-14-pro/a/images/meta/iphone-14-pro_overview__e2a7u9jy63ma_og.png",
+                                                Title = "全新上市 iPhone 14 Pro",
+                                                Text = "現在購買享優惠，全品項 9 折",
+                                                Actions = new List<ActionDto>
+                                                {
+                                                    // 按鈕 action
+                                                    new ActionDto
+                                                    {
+                                                        Type = ActionTypeEnum.Uri,
+                                                        Label ="立即購買",
+                                                        Uri = "https://www.apple.com/tw/iphone-14-pro/?afid=p238%7Cs2W650oa9-dc_mtid_2092576n66464_pcrid_620529299490_pgrid_144614079327_&cid=wwa-tw-kwgo-iphone-slid---productid--Brand-iPhone14Pro-Announce-"
+                                                    }
+                                                }
+                                            },
+                                        }
+                                    }
+                                }
+                            }
+                        };
+                    }
+                    // 關鍵字 : "ImageCarousel"
+                    if(eventDto.Message.Text == "ImageCarousel")
+                    {
+                        replyMessage = new ReplyMessageRequestDto<TemplateMessageDto<ImageCarouselTemplateDto>>
+                        {
+                            ReplyToken = eventDto.ReplyToken,
+                            Messages = new List<TemplateMessageDto<ImageCarouselTemplateDto>>
+                            {
+                                new TemplateMessageDto<ImageCarouselTemplateDto>
+                                {
+                                    AltText = "這是圖片輪播訊息",
+                                    Template = new ImageCarouselTemplateDto
+                                    {
+                                        Columns = new List<ImageCarouselColumnObjectDto>
+                                        {
+                                            new ImageCarouselColumnObjectDto
+                                            {
+                                                ImageUrl = "https://i.imgur.com/74I9rlb.png",
+                                                Action = new ActionDto
+                                                {
+                                                    Type = ActionTypeEnum.Uri,
+                                                    Label = "前往官網",
+                                                    Uri = "https://www.apple.com/tw/iphone-14-pro/?afid=p238%7Cs2W650oa9-dc_mtid_2092576n66464_pcrid_620529299490_pgrid_144614079327_&cid=wwa-tw-kwgo-iphone-slid---productid--Brand-iPhone14Pro-Announce-"
+                                                }
+                                            },
+                                            new ImageCarouselColumnObjectDto
+                                            {
+                                                ImageUrl = "https://www.apple.com/v/iphone-14-pro/a/images/meta/iphone-14-pro_overview__e2a7u9jy63ma_og.png",
+                                                Action = new ActionDto
+                                                {
+                                                    Type = ActionTypeEnum.Uri,
+                                                    Label = "立即購買",
+                                                    Uri = "https://www.apple.com/tw/iphone-14-pro/?afid=p238%7Cs2W650oa9-dc_mtid_2092576n66464_pcrid_620529299490_pgrid_144614079327_&cid=wwa-tw-kwgo-iphone-slid---productid--Brand-iPhone14Pro-Announce-"
+                                                }
+                                            },
+                                            
+                                        }
+                                    }
+                                }
+                            }
+                        };
+                    }
                     break;
             }
 
