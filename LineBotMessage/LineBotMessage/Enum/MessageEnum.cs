@@ -11,6 +11,8 @@
         public const string Imagemap = "imagemap";
         public const string Template = "template";
         public const string Flex = "flex";
+        public const string FlexBubble = "flexBubble";
+        public const string FlexCarousel = "flexCarousel";
     }
 
     public static class ActionTypeEnum
@@ -58,6 +60,12 @@
     {
         public const string Cover = "cover";
         public const string Contain = "contain";
+    }
+
+    public static class FlexContainerTypeEnum
+    {
+        public const string Bubble = "bubble";
+        public const string Carousel = "carousel";
     }
 }
 

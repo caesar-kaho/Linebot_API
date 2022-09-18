@@ -385,6 +385,7 @@ namespace LineBotMessage.Domain
                             }
                         };
                     }
+
                     break;
             }
 
@@ -427,6 +428,14 @@ namespace LineBotMessage.Domain
 
                 case MessageTypeEnum.Imagemap:
                     messageRequest = _jsonProvider.Deserialize<BroadcastMessageRequestDto<ImagemapMessageDto>>(strBody);
+                    break;
+
+                case MessageTypeEnum.FlexBubble:
+                    messageRequest = _jsonProvider.Deserialize<BroadcastMessageRequestDto<FlexMessageDto<FlexBubbleContainerDto>>>(strBody);
+                    break;
+
+                case MessageTypeEnum.FlexCarousel:
+                    messageRequest = _jsonProvider.Deserialize<BroadcastMessageRequestDto<FlexMessageDto<FlexCarouselContainerDto>>>(strBody);
                     break;
             }
             BroadcastMessage(messageRequest);
