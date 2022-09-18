@@ -59,7 +59,7 @@ namespace LineBotMessage.Controllers
             return Ok();
         }
 
-        [HttpPost("RichMenu/SetDefault/{richMenuId}")]
+        [HttpGet("RichMenu/SetDefault/{richMenuId}")]
         public IActionResult SetDefaultRichMenu(string richMenuId)
         {
             _richMenuService.SetDefaultRichMenu(richMenuId);

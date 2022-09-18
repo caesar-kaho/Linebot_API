@@ -12,22 +12,22 @@
         public string? FillInText { get; set; }
 
         //Message action.
-        public string Text { get; set; }
+        public string? Text { get; set; }
 
         //Uri action.
-        public string Uri { get; set; }
-        public UriActionAltUriDto AltUri { get; set; }
+        public string? Uri { get; set; }
+        public UriActionAltUriDto? AltUri { get; set; }
 
         //Datetime picker action. Data 屬性與 Postback 共用
-        public string Mode { get; set; } 
-        public string Initial { get; set; } 
-        public string Max { get; set; } 
-        public string Min { get; set; }
+        public string? Mode { get; set; } 
+        public string? Initial { get; set; } 
+        public string? Max { get; set; } 
+        public string? Min { get; set; }
 
         //Camera & Camera roll & Location 屬性已宣告
 
         //Rich menu switch action. Data 屬性與 Postback 共用
-        public string RichMenuAliasId { get; set; }
+        public string? RichMenuAliasId { get; set; }
     }
 
     public class UriActionAltUriDto
