@@ -29,6 +29,7 @@
     <None Remove="Dtos\Messages\Request\" />
     <None Remove="UploadFiles\" />
     <None Remove="Dtos\Actions\" />
+    <None Remove="Dtos\Richmenu\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Controllers\" />
@@ -41,6 +42,7 @@
     <Folder Include="Dtos\Messages\Request\" />
     <Folder Include="UploadFiles\" />
     <Folder Include="Dtos\Actions\" />
+    <Folder Include="Dtos\Richmenu\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\.editorconfig" />
