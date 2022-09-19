@@ -14,6 +14,7 @@ namespace LineBotMessage.Domain
 
         private readonly string validateRichMenuUri = "https://api.line.me/v2/bot/richmenu/validate";
         private readonly string createRichMenuUri = "https://api.line.me/v2/bot/richmenu";
+        private readonly string getRichMenuListUri = "https://api.line.me/v2/bot/richmenu/list";
         private readonly string uploadRichMenuImageUri = "https://api-data.line.me/v2/bot/richmenu/{0}/content";
         private readonly string setDefaultRichMenuUri = "https://api.line.me/v2/bot/user/all/richmenu/{0}";
 
@@ -39,7 +40,7 @@ namespace LineBotMessage.Domain
             return await response.Content.ReadAsStringAsync();
         }
 
-        public async void CreateRichMenu(RichMenuDto richMenu)
+        public async Task<string> CreateRichMenu(RichMenuDto richMenu)
         {
             var jsonBody = new StringContent(_jsonProvider.Serialize(richMenu), Encoding.UTF8, "application/json");
             var request = new HttpRequestMessage
@@ -51,15 +52,32 @@ namespace LineBotMessage.Domain
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", channelAccessToken);
             var response = await client.SendAsync(request);
 
-            Console.WriteLine(await response.Content.ReadAsStringAsync());
+            return await response.Content.ReadAsStringAsync();
         }
 
-        public async void UploadRichMenuImage(string richMenuId, IFormFile imageFile)
+        public async Task<RichMenuListDto> GetRichMenuList()
+        {
+            var request = new HttpRequestMessage
+            {
+                Method = HttpMethod.Get,
+                RequestUri = new Uri(getRichMenuListUri),
+            };
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", channelAccessToken);
+            var response = await client.SendAsync(request);
+
+            Console.WriteLine(await response.Content.ReadAsStringAsync());
+            var list = _jsonProvider.Deserialize<RichMenuListDto>(await response.Content.ReadAsStringAsync());
+            // 依照名稱排序
+            list.Richmenus = list.Richmenus.OrderBy((rm) => rm.Name).ToList();
+            return list;
+        }
+
+        public async Task<string> UploadRichMenuImage(string richMenuId, IFormFile imageFile)
         {
             //判斷檔案格式 需為 png or jpeg
             if (!(Path.GetExtension(imageFile.FileName).Equals(".png", StringComparison.OrdinalIgnoreCase) || Path.GetExtension(imageFile.FileName).Equals(".jpeg", StringComparison.OrdinalIgnoreCase)))
             {
-                return;
+                return "圖片格式錯誤，須為 png or jpeg";
             }
             using (var stream = new MemoryStream())
             {
@@ -75,18 +93,18 @@ namespace LineBotMessage.Domain
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", channelAccessToken);
                 var response = await client.SendAsync(request);
 
-                Console.WriteLine(await response.Content.ReadAsStringAsync());
+                return await response.Content.ReadAsStringAsync();
             }
         }
 
-        public async void SetDefaultRichMenu(string richMenuId)
+        public async Task<string> SetDefaultRichMenu(string richMenuId)
         {
             var request = new HttpRequestMessage(HttpMethod.Post, String.Format(setDefaultRichMenuUri,richMenuId));
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", channelAccessToken);
 
             var response = await client.SendAsync(request);
 
-            Console.WriteLine(await response.Content.ReadAsStringAsync());
+           return await response.Content.ReadAsStringAsync();
         }
     }
 }

@@ -39,31 +39,33 @@ namespace LineBotMessage.Controllers
 
         //rich menu api
         [HttpPost("RichMenu/Validate")]
-        public IActionResult ValidateRichMenu(RichMenuDto richMenu)
+        public async Task<IActionResult> ValidateRichMenu(RichMenuDto richMenu)
         {
-            _richMenuService.ValidateRichMenu(richMenu);
-            return Ok();
+            return Ok(await _richMenuService.ValidateRichMenu(richMenu));
         }
 
         [HttpPost("RichMenu/Create")]
-        public IActionResult CreateRichMenu(RichMenuDto richMenu)
+        public async Task<IActionResult> CreateRichMenu(RichMenuDto richMenu)
         {
-            _richMenuService.CreateRichMenu(richMenu);
-            return Ok();
+            return Ok(await _richMenuService.CreateRichMenu(richMenu));
+        }
+
+        [HttpGet("RichMenu/GetList")]
+        public async Task<IActionResult> GetRichMenuList()
+        {
+            return Ok(await _richMenuService.GetRichMenuList());
         }
 
         [HttpPost("RichMenu/UploadImage/{richMenuId}")]
-        public IActionResult UploadRichMenuImage([FromForm] IFormFile imageFile, [FromForm] string richMenuId)
+        public async Task<IActionResult> UploadRichMenuImage(IFormFile imageFile, string richMenuId)
         {
-            _richMenuService.UploadRichMenuImage(richMenuId, imageFile);
-            return Ok();
+            return Ok(_richMenuService.UploadRichMenuImage(richMenuId, imageFile));
         }
 
         [HttpGet("RichMenu/SetDefault/{richMenuId}")]
-        public IActionResult SetDefaultRichMenu(string richMenuId)
+        public async Task<IActionResult> SetDefaultRichMenu(string richMenuId)
         {
-            _richMenuService.SetDefaultRichMenu(richMenuId);
-            return Ok();
+            return Ok(_richMenuService.SetDefaultRichMenu(richMenuId));
         }
     }
 }
