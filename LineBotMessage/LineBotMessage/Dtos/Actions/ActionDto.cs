@@ -25,9 +25,6 @@
         public string? Min { get; set; }
 
         //Camera & Camera roll & Location 屬性已宣告
-
-        //Rich menu switch action. Data 屬性與 Postback 共用
-        public string? RichMenuAliasId { get; set; }
     }
 
     public class UriActionAltUriDto
