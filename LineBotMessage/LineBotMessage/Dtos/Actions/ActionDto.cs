@@ -25,6 +25,9 @@
         public string? Min { get; set; }
 
         //Camera & Camera roll & Location 屬性已宣告
+
+        // rich menu switch action
+        public string? RichMenuAliasId { get; set; }
     }
 
     public class UriActionAltUriDto

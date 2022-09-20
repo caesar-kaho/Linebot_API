@@ -18,6 +18,10 @@ namespace LineBotMessage.Domain
         private readonly string uploadRichMenuImageUri = "https://api-data.line.me/v2/bot/richmenu/{0}/content";
         private readonly string setDefaultRichMenuUri = "https://api.line.me/v2/bot/user/all/richmenu/{0}";
 
+        private readonly string createRichMenuAliasUri = "https://api.line.me/v2/bot/richmenu/alias";
+        private readonly string commonRichMenuAliasUri = "https://api.line.me/v2/bot/richmenu/alias/{0}";
+        private readonly string getRichMenuAliasListUri = "https://api.line.me/v2/bot/richmenu/alias/list";
+
         private static HttpClient client = new HttpClient();
         private readonly JsonProvider _jsonProvider = new JsonProvider();
 
@@ -86,7 +90,7 @@ namespace LineBotMessage.Domain
                 var fileBytes = stream.ToArray();
                 var content = new ByteArrayContent(fileBytes);
                 content.Headers.ContentType = new MediaTypeHeaderValue("image/png");
-                var request = new HttpRequestMessage(HttpMethod.Post, String.Format(uploadRichMenuImageUri, richMenuId))
+                var request = new HttpRequestMessage(HttpMethod.Post, string.Format(uploadRichMenuImageUri, richMenuId))
                 {
                     Content = content
                 };
@@ -99,12 +103,77 @@ namespace LineBotMessage.Domain
 
         public async Task<string> SetDefaultRichMenu(string richMenuId)
         {
-            var request = new HttpRequestMessage(HttpMethod.Post, String.Format(setDefaultRichMenuUri,richMenuId));
+            var request = new HttpRequestMessage(HttpMethod.Post, string.Format(setDefaultRichMenuUri, richMenuId));
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", channelAccessToken);
 
             var response = await client.SendAsync(request);
 
-           return await response.Content.ReadAsStringAsync();
+            return await response.Content.ReadAsStringAsync();
+        }
+
+        // Rich menu alias
+        public async Task<string> CreateRichMenuAlias(RichMenuAliasDto richMenuAlias)
+        {
+
+            var jsonBody = new StringContent(_jsonProvider.Serialize(richMenuAlias), Encoding.UTF8, "application/json");
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", channelAccessToken);
+            var request = new HttpRequestMessage(HttpMethod.Post, createRichMenuAliasUri)
+            {
+                Content = jsonBody
+            };
+
+            var response = await client.SendAsync(request);
+
+            return await response.Content.ReadAsStringAsync();
+        }
+
+        public async Task<string> DeleteRichMenuAlias(string richMenuAliasId)
+        {
+            var request = new HttpRequestMessage(HttpMethod.Delete, string.Format(commonRichMenuAliasUri, richMenuAliasId));
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", channelAccessToken);
+
+            var response = await client.SendAsync(request);
+            return await response.Content.ReadAsStringAsync();
+        }
+
+        public async Task<string> UpdateRichMenuAlias(string richMenuAliasId, string richMenuId)
+        {
+            var body = new { richMenuId = richMenuId };
+            var jsonBody = new StringContent(_jsonProvider.Serialize(body), Encoding.UTF8, "application/json");
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", channelAccessToken);
+            var request = new HttpRequestMessage(HttpMethod.Post, string.Format(commonRichMenuAliasUri, richMenuAliasId))
+            {
+                Content = jsonBody
+            };
+
+            var response = await client.SendAsync(request);
+            return await response.Content.ReadAsStringAsync();
+        }
+
+        public async Task<RichMenuAliasDto> GetRichMenuAliasInfo(string richMenuAliasId)
+        {
+            var request = new HttpRequestMessage(HttpMethod.Get, string.Format(commonRichMenuAliasUri, richMenuAliasId));
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", channelAccessToken);
+
+            var response = await client.SendAsync(request);
+
+            if (response.StatusCode == System.Net.HttpStatusCode.OK)
+                return _jsonProvider.Deserialize<RichMenuAliasDto>(await response.Content.ReadAsStringAsync());
+            else
+                return new RichMenuAliasDto();
+        }
+
+        public async Task<RichMenuAliasListDto> GetRichMenuAliasListInfo()
+        {
+            var request = new HttpRequestMessage(HttpMethod.Get, getRichMenuAliasListUri);
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", channelAccessToken);
+
+            var response = await client.SendAsync(request);
+
+            if (response.StatusCode == System.Net.HttpStatusCode.OK)
+                return _jsonProvider.Deserialize<RichMenuAliasListDto>(await response.Content.ReadAsStringAsync());
+            else
+                return new RichMenuAliasListDto();
         }
     }
 }

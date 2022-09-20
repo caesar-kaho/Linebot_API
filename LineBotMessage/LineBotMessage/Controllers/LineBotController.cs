@@ -59,13 +59,44 @@ namespace LineBotMessage.Controllers
         [HttpPost("RichMenu/UploadImage/{richMenuId}")]
         public async Task<IActionResult> UploadRichMenuImage(IFormFile imageFile, string richMenuId)
         {
-            return Ok(_richMenuService.UploadRichMenuImage(richMenuId, imageFile));
+            return Ok(await _richMenuService.UploadRichMenuImage(richMenuId, imageFile));
         }
 
         [HttpGet("RichMenu/SetDefault/{richMenuId}")]
         public async Task<IActionResult> SetDefaultRichMenu(string richMenuId)
         {
-            return Ok(_richMenuService.SetDefaultRichMenu(richMenuId));
+            return Ok(await _richMenuService.SetDefaultRichMenu(richMenuId));
+        }
+
+        //Rich menu alias
+        [HttpPost("RichMenu/Alias/Create")]
+        public async Task<IActionResult> CreateRichMenuAlias(RichMenuAliasDto richMenuAlias)
+        {
+            return Ok(await _richMenuService.CreateRichMenuAlias(richMenuAlias));
+        }
+
+        [HttpDelete("RichMenu/Alias/Delete/{richMenuAliasId}")]
+        public async Task<IActionResult> DeleteRichMenuAlias(string richMenuAliasId)
+        {
+            return Ok(await _richMenuService.DeleteRichMenuAlias(richMenuAliasId));
+        }
+
+        [HttpPost("RichMenu/Alias/Upadte/{richMenuAliasId}")]
+        public async Task<IActionResult> UpdateRichMenuAlias(string richMenuAliasId, string richMenuId)
+        {
+            return Ok(await _richMenuService.UpdateRichMenuAlias(richMenuAliasId, richMenuId));
+        }
+
+        [HttpGet("RichMenu/Alias/GetInfo/{richMenuAliasId}")]
+        public async Task<IActionResult> GetRichMenuAliasInfomation(string richMenuAliasId)
+        {
+            return Ok(await _richMenuService.GetRichMenuAliasInfo(richMenuAliasId));
+        }
+
+        [HttpGet("RichMenu/Alias/GetInfo/List")]
+        public async Task<IActionResult> GetRichMenuAliasList()
+        {
+            return Ok(await _richMenuService.GetRichMenuAliasListInfo());
         }
     }
 }
