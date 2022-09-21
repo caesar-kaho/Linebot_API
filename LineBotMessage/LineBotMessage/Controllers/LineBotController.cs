@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
 using LineBotMessage.Enum;
 using LineBotMessage.Providers;
+using System.Net.Mime;
 
 namespace LineBotMessage.Controllers
 {
@@ -66,6 +67,60 @@ namespace LineBotMessage.Controllers
         public async Task<IActionResult> SetDefaultRichMenu(string richMenuId)
         {
             return Ok(await _richMenuService.SetDefaultRichMenu(richMenuId));
+        }
+
+        [HttpGet("RichMenu/DownloadImage/{richMenuId}")]
+        public async Task<FileContentResult> DownloadRichMenuImageById(string richMenuId)
+        {
+            return await _richMenuService.DownloadRichMenuImage(richMenuId);
+        }
+
+        [HttpDelete("RichMenu/Delete/{richMenuId}")]
+        public async Task<IActionResult> DeleteRichMenu(string richMenuId)
+        {
+            return Ok(await _richMenuService.DeleteRichMenu(richMenuId));
+        }
+
+        [HttpGet("RichMenu/Get/{richMenuId}")]
+        public async Task<IActionResult> GetRichMenuById(string richMenuId)
+        {
+            return Ok(await _richMenuService.GetRichMenuById(richMenuId));
+        }
+
+        [HttpGet("RichMenu/Default/GetId")]
+        public async Task<IActionResult> GetDefaultRichMenuId()
+        {
+            return Ok(await _richMenuService.GetDefaultRichMenuId());
+        }
+
+        [HttpGet("RichMenu/Default/Cancel")]
+        public async Task<IActionResult> CancelDefaultRichMenu()
+        {
+            return Ok(await _richMenuService.CancelDefaultRichMenu());
+        }
+
+        [HttpGet("RichMenu/Link/{userId}/{richMenuId}")]
+        public async Task<IActionResult> LinkRichMenuToUser(string userId, string richMenuId)
+        {
+            return Ok(await _richMenuService.LinkRichMenuToUser(userId, richMenuId));
+        }
+
+        [HttpPost("RichMenu/Link/Multiple")]
+        public async Task<IActionResult> LinkRichMenuToMultipleUser(LinkRichMenuToMultipleUserDto dto)
+        {
+            return Ok(await _richMenuService.LinkRichMenuToMultipleUser(dto));
+        }
+
+        [HttpDelete("RichMenu/Unlink/{userId}")]
+        public async Task<IActionResult> UnlinkRichMenuFromUser(string userId)
+        {
+            return Ok(await _richMenuService.UnlinkRichMenuFromUser(userId));
+        }
+
+        [HttpPost("RichMenu/Unlink/Multiple")]
+        public async Task<IActionResult> UnlinkRichMenuFromMMultipleUser(LinkRichMenuToMultipleUserDto dto)
+        {
+            return Ok(await _richMenuService.UnlinkRichMenuFromMultipleUser(dto));
         }
 
         //Rich menu alias
