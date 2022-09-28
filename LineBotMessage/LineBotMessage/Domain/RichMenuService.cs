@@ -226,6 +226,7 @@ namespace LineBotMessage.Domain
 
             return await response.Content.ReadAsStringAsync();
         }
+
         // Rich menu alias
         public async Task<string> CreateRichMenuAlias(RichMenuAliasDto richMenuAlias)
         {

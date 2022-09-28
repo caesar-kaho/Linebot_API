@@ -99,6 +99,12 @@ namespace LineBotMessage.Controllers
             return Ok(await _richMenuService.CancelDefaultRichMenu());
         }
 
+        [HttpGet("RichMenu/GetLinkedId/{userId}")]
+        public async Task<IActionResult> GetRichMenuIdLinkedToUser(string userId)
+        {
+            return Ok(await _richMenuService.GetRichMenuIdLinkedToUser(userId));
+        }
+        
         [HttpGet("RichMenu/Link/{userId}/{richMenuId}")]
         public async Task<IActionResult> LinkRichMenuToUser(string userId, string richMenuId)
         {
