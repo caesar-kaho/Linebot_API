@@ -30,6 +30,8 @@
     <None Remove="UploadFiles\" />
     <None Remove="Dtos\Actions\" />
     <None Remove="Dtos\Richmenu\" />
+    <None Remove="Dtos\Login\" />
+    <None Remove="Dtos\Profile\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Controllers\" />
@@ -43,6 +45,8 @@
     <Folder Include="UploadFiles\" />
     <Folder Include="Dtos\Actions\" />
     <Folder Include="Dtos\Richmenu\" />
+    <Folder Include="Dtos\Login\" />
+    <Folder Include="Dtos\Profile\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\.editorconfig" />
