@@ -16,6 +16,8 @@ namespace LineBotMessage.Domain
 
         private readonly string tokenUrl = "https://api.line.me/oauth2/v2.1/token";
         private readonly string profileUrl = "https://api.line.me/v2/profile";
+        private readonly string idTokenProfileUrl = "https://api.line.me/oauth2/v2.1/verify/?id_token={0}&client_id={1}";
+
 
         private static HttpClient client = new HttpClient();
         private readonly JsonProvider _jsonProvider = new JsonProvider();
@@ -28,7 +30,7 @@ namespace LineBotMessage.Domain
         public string GetLoginUrl(string redirectUrl)
         {
             // 根據想要得到的資訊填寫 scope
-            var scope = "profile&openId";
+            var scope = "profile%20openid%20email";
             // 這個 state 是隨便打的
             var state = "1qazRTGFDY5ysg";
             var uri = string.Format(loginUrl, "code", clientId, HttpUtility.UrlEncode(redirectUrl), state,scope);
@@ -37,7 +39,6 @@ namespace LineBotMessage.Domain
 
         public async Task<TokensResponseDto> GetTokensByAuthToken(string authToken, string callbackUri)
         {
-
             var formContent = new FormUrlEncodedContent(new[]
             {
                 new KeyValuePair<string, string>("grant_type", "authorization_code"),
@@ -88,6 +89,16 @@ namespace LineBotMessage.Domain
             var profile = _jsonProvider.Deserialize<UserProfileDto>(await response.Content.ReadAsStringAsync());
 
             return profile;
+        }
+
+
+        public async Task<UserIdTokenProfileDto> GetUserProfileByIdToken(string idToken)
+        {
+            var request = new HttpRequestMessage(HttpMethod.Post, string.Format(idTokenProfileUrl,idToken,clientId));
+            var response = await client.SendAsync(request);
+            var dto = _jsonProvider.Deserialize<UserIdTokenProfileDto>(await response.Content.ReadAsStringAsync());
+
+            return dto;
         }
     }
 }

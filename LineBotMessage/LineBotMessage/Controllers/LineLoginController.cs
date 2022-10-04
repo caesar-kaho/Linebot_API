@@ -28,13 +28,6 @@ namespace LineBotMessage.Controllers
             return await _lineLoginService.GetTokensByAuthToken(authToken, callbackUrl);
         }
 
-        // 使用 access token 取得 user profile
-        [HttpGet("Profile/{accessToken}")]
-        public async Task<UserProfileDto> GetUserProfileByAccessToken(string accessToken)
-        {
-            return await _lineLoginService.GetUserProfileByAccessToken(accessToken);
-        }
-
         // 使用 auth token 取得 user profile
         [HttpGet("Profile/ByAuthToken")]
         public async Task<UserProfileDto> GetUserProfileByAuthToken([FromQuery] string authToken, [FromQuery] string callbackUrl)
@@ -42,6 +35,19 @@ namespace LineBotMessage.Controllers
             return await _lineLoginService.GetUserProfileByAuthToken(authToken, callbackUrl);
         }
 
+        // 使用 access token 取得 user profile
+        [HttpGet("Profile/{accessToken}")]
+        public async Task<UserProfileDto> GetUserProfileByAccessToken(string accessToken)
+        {
+            return await _lineLoginService.GetUserProfileByAccessToken(accessToken);
+        }
+
+        // 使用 id token 取得 user profile
+        [HttpGet("Profile/IdToken/{idToken}")]
+        public async Task<UserIdTokenProfileDto> GetUserProfileByIdToken(string idToken)
+        {
+            return await _lineLoginService.GetUserProfileByIdToken(idToken);
+        }
     }
 }
 
