@@ -32,6 +32,7 @@
     <None Remove="Dtos\Richmenu\" />
     <None Remove="Dtos\Login\" />
     <None Remove="Dtos\Profile\" />
+    <None Remove="Dtos\LinePay\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Controllers\" />
@@ -47,6 +48,7 @@
     <Folder Include="Dtos\Richmenu\" />
     <Folder Include="Dtos\Login\" />
     <Folder Include="Dtos\Profile\" />
+    <Folder Include="Dtos\LinePay\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\.editorconfig" />
