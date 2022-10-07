@@ -28,8 +28,6 @@
         public int? OriginalPrice { get; set; }
     }
 
-
-
     public class RedirectUrlsDto
     {
         public string ConfirmUrl { get; set; }

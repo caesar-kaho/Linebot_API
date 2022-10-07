@@ -1,11 +1,6 @@
-﻿using System;
-using LineBotMessage.Dtos;
+﻿using LineBotMessage.Dtos;
 using LineBotMessage.Domain;
 using Microsoft.AspNetCore.Mvc;
-using System.ComponentModel.DataAnnotations;
-using LineBotMessage.Enum;
-using LineBotMessage.Providers;
-using System.Net.Mime;
 
 namespace LineBotMessage.Controllers
 {
