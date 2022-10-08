@@ -198,7 +198,7 @@ namespace LineBotMessage.Domain
                                     Sender = new SenderDto
                                     {
                                         Name = "客服人員 1號",
-                                        IconUrl = "https://b489-61-63-154-173.jp.ngrok.io/UploadFiles/man.png"
+                                        IconUrl = "https://3a8e-114-37-157-213.jp.ngrok.io/UploadFiles/man.png"
                                     }
                                 },
                                 new TextMessageDto
@@ -207,7 +207,7 @@ namespace LineBotMessage.Domain
                                     Sender = new SenderDto
                                     {
                                         Name = "客服人員 2號",
-                                        IconUrl = "https://b489-61-63-154-173.jp.ngrok.io/UploadFiles/gamer.png"
+                                        IconUrl = "https://3a8e-114-37-157-213.jp.ngrok.io/UploadFiles/gamer.png"
                                     }
                                 }
                             }
