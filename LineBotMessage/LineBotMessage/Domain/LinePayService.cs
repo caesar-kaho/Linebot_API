@@ -76,6 +76,52 @@ namespace LineBotMessage.Domain
             return responseDto;
         }
 
+        public async Task<PaymentConfirmResponseDto> CheckRegKey(string regKey)
+        {
+            var nonce = Guid.NewGuid().ToString();
+            var requestUrl = string.Format("/v3/payments/preapprovedPay/{0}/check", regKey);
+            var request = new HttpRequestMessage(HttpMethod.Get, linePayBaseApiUrl + requestUrl);
+            var result = SignatureProvider.HMACSHA256(channelSecretKey, channelSecretKey + requestUrl + nonce);
+            client.DefaultRequestHeaders.Add("X-LINE-ChannelId", channelId);
+            client.DefaultRequestHeaders.Add("X-LINE-Authorization-Nonce", nonce);
+            client.DefaultRequestHeaders.Add("X-LINE-Authorization", result);
+            var response = await client.SendAsync(request);
+
+            return _jsonProvider.Deserialize<PaymentConfirmResponseDto>(await response.Content.ReadAsStringAsync());
+        }
+
+        public async Task<PaymentConfirmResponseDto> PayPreapproved(string regKey, PayPreapprovedDto dto)
+        {
+            var json = _jsonProvider.Serialize(dto);
+            var nonce = Guid.NewGuid().ToString();
+            var requestUrl = string.Format("/v3/payments/preapprovedPay/{0}/payment", regKey);
+            var request = new HttpRequestMessage(HttpMethod.Post, linePayBaseApiUrl + requestUrl)
+            {
+                Content = new StringContent(json,Encoding.UTF8, "application/json")
+            };
+            var result = SignatureProvider.HMACSHA256(channelSecretKey, channelSecretKey + requestUrl + json + nonce);
+            client.DefaultRequestHeaders.Add("X-LINE-ChannelId", channelId);
+            client.DefaultRequestHeaders.Add("X-LINE-Authorization-Nonce", nonce);
+            client.DefaultRequestHeaders.Add("X-LINE-Authorization", result);
+            var response = await client.SendAsync(request);
+
+            return _jsonProvider.Deserialize<PaymentConfirmResponseDto>(await response.Content.ReadAsStringAsync());
+        }
+
+        public async Task<PaymentConfirmResponseDto> ExpireRegKey(string regKey)
+        {
+            var nonce = Guid.NewGuid().ToString();
+            var requestUrl = string.Format("/v3/payments/preapprovedPay/{0}/expire", regKey);
+            var request = new HttpRequestMessage(HttpMethod.Post, linePayBaseApiUrl + requestUrl);
+            var result = SignatureProvider.HMACSHA256(channelSecretKey, channelSecretKey + requestUrl + nonce);
+            client.DefaultRequestHeaders.Add("X-LINE-ChannelId", channelId);
+            client.DefaultRequestHeaders.Add("X-LINE-Authorization-Nonce", nonce);
+            client.DefaultRequestHeaders.Add("X-LINE-Authorization", result);
+            var response = await client.SendAsync(request);
+
+            return _jsonProvider.Deserialize<PaymentConfirmResponseDto>(await response.Content.ReadAsStringAsync());
+        }
+
         public async void TransactionCancel(string transactionId)
         {
             //使用者取消交易則會到這裏。
