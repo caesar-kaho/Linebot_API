@@ -38,7 +38,7 @@ namespace LineBotMessage.Controllers
             return await _linePayService.PayPreapproved(regKey, dto);
         }
 
-        [HttpPost("PayPreapproved/{regKey}")]
+        [HttpPost("ExpireRegKey/{regKey}")]
         public async Task<PaymentConfirmResponseDto> ExpireRegKey(string regKey)
         {
             return await _linePayService.ExpireRegKey(regKey);
