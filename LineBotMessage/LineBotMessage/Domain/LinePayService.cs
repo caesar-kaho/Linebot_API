@@ -14,8 +14,8 @@ namespace LineBotMessage.Domain
             _jsonProvider = new JsonProvider();
         }
 
-        private readonly string channelId = "1657306405";
-        private readonly string channelSecretKey = "720c8af4d271ce2fef3535b8821d9e8e";
+        private readonly string channelId = "1657928402";
+        private readonly string channelSecretKey = "d6cb0eeb502d5bac960b89a55f249cd4";
 
 
         private readonly string linePayBaseApiUrl = "https://sandbox-api-pay.line.me";
