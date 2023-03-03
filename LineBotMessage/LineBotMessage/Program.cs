@@ -2,8 +2,12 @@
 using System.Reflection;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
+using LineBotMessage.Models;
 using LineBotMessage.Providers;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.FileProviders;
+using Microsoft.Extensions.Options;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,6 +18,13 @@ builder.Services.AddCors(option =>
         policy.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
     });
 });
+
+string sConnectionString =
+    builder.Configuration.GetConnectionString("LinebotContextCS");
+builder.Services.AddDbContext<LinebotAPIContext>(Options => Options.UseMySql(sConnectionString,
+    MariaDbServerVersion.AutoDetect(sConnectionString))
+    .EnableDetailedErrors());
+
 
 // Add services to the container.
 builder.Services.AddControllers();
