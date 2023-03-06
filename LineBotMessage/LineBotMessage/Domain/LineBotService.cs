@@ -34,10 +34,10 @@ namespace LineBotMessage.Domain
             {
                 switch (eventObject.Type)
                 {
-                    case WebhookEventTypeEnum.Message:
-                        if (eventObject.Message.Type == MessageTypeEnum.Text)
-                            ReceiveWebhookEvent(eventObject);
-                        break;
+                    //case WebhookEventTypeEnum.Message:
+                    //    if (eventObject.Message.Type == MessageTypeEnum.Text)
+                    //        ReceiveWebhookEvent(eventObject);
+                    //    break;
 
                     case WebhookEventTypeEnum.Follow:
                         replyMessage = new ReplyMessageRequestDto<TemplateMessageDto<ButtonsTemplateDto>>
@@ -50,40 +50,33 @@ namespace LineBotMessage.Domain
                                     AltText = "這是按鈕模板訊息",
                                     Template = new ButtonsTemplateDto
                                     {
-                                        ThumbnailImageUrl = "https://i.imgur.com/CP6ywwc.jpg",
+                                        ThumbnailImageUrl = "https://i.imgur.com/lAhzp6L.png?2",
                                         ImageAspectRatio = TemplateImageAspectRatioEnum.Rectangle,
-                                        ImageSize = TemplateImageSizeEnum.Cover,
-                                        Title = "親愛的用戶您好，歡迎您使用本美食推薦系統",
-                                        Text = "請選擇今天想吃的主食，系統會推薦附近的餐廳給您。",
+                                        ImageSize = TemplateImageSizeEnum.Contain,
+                                        Title = "親愛的用戶您好，歡迎您使用分機查尋系統",
+                                        Text = "請選擇需要查尋的資訊",
                                         Actions = new List<ActionDto>
                                         {
                                             new ActionDto
                                             {
                                                 Type = ActionTypeEnum.Postback,
-                                                Data = "foodType=sushi",
-                                                Label = "壽司",
-                                                DisplayText = "壽司"
+                                                Data = "dataType=staffs",
+                                                Label = "職員",
+                                                DisplayText = "職員"
                                             },
                                             new ActionDto
                                             {
                                                 Type = ActionTypeEnum.Postback,
-                                                Data = "foodType=hot-pot",
-                                                Label = "火鍋",
-                                                DisplayText = "火鍋"
+                                                Data = "dataType=departments",
+                                                Label = "單位",
+                                                DisplayText = "單位"
                                             },
                                             new ActionDto
                                             {
                                                 Type = ActionTypeEnum.Postback,
-                                                Data = "foodType=steak",
-                                                Label = "牛排",
-                                                DisplayText = "牛排"
-                                            },
-                                            new ActionDto
-                                            {
-                                                Type = ActionTypeEnum.Postback,
-                                                Data = "foodType=next",
-                                                Label = "下一個",
-                                                DisplayText = "下一個"
+                                                Data = "dataType=extentionNumbers",
+                                                Label = "分機",
+                                                DisplayText = "分機"
                                             }
                                         }
                                     }
