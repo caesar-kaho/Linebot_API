@@ -73,7 +73,7 @@ namespace LineBotMessage.Domain
                                             },
                                             new ActionDto
                                             {
-                                                Type = ActionTypeEnum.Postback,
+                                                Type = ActionTypeEnum.Message,
                                                 Data = "dataType=extentionNumbers",
                                                 Label = "分機",
                                                 DisplayText = "分機"
