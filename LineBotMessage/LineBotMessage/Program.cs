@@ -5,6 +5,7 @@ using Autofac.Extensions.DependencyInjection;
 using LineBotMessage.Models;
 using LineBotMessage.Providers;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Options;
 
