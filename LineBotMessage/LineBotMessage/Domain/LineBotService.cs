@@ -40,7 +40,7 @@ namespace LineBotMessage.Domain
         public void ReceiveWebhook(WebhookRequestBodyDto requestBody)
         {
             dynamic replyMessage;
-            foreach(var eventObject in requestBody.Events) 
+            foreach (var eventObject in requestBody.Events)
             {
                 switch (eventObject.Type)
                 {
@@ -75,7 +75,7 @@ namespace LineBotMessage.Domain
                                             {
                                                 Type = ActionTypeEnum.Postback,
                                                 Data = "dataType=staffs",
-                                                Label = "職員",                                                                                             
+                                                Label = "職員",
                                                 DisplayText = "職員"
                                             },
                                             new ActionDto
@@ -99,8 +99,8 @@ namespace LineBotMessage.Domain
                         };
 
                         ReplyMessageHandler(replyMessage);
-                        break;     
-                        
+                        break;
+
                 }
             }
         }
@@ -167,36 +167,60 @@ namespace LineBotMessage.Domain
                     string userInput = eventDto.Message.Text.Trim();
 
                     // 使用 LINQ 查詢資料庫中是否有對應的 ExtentionNumber、Staff 或 Department 記錄
-                    var phoneExtentionNumber = _context.Staffs
-                        .Include(s => s.StaffsDepartment)
-                        .FirstOrDefault(pext => pext.StaffsExtentionnumber.Equals(userInput));
+                    var extentionnumber = _context.Staffs.FirstOrDefault(pext => pext.StaffsExtentionnumber.Equals(userInput));
+                    var multiExtentionnumber = extentionnumber == null ?
+                        _context.StaffsMultiExtentionnumbers.FirstOrDefault(pext =>
+                        pext.StaffsExtentionnumber1.Equals(userInput) ||
+                        pext.StaffsExtentionnumber2.Equals(userInput) ||
+                        pext.StaffsExtentionnumber3.Equals(userInput)) :
+                        null;
 
-                    var staff = _context.Staffs
-                        .Include(s => s.StaffsDepartment)
-                        .FirstOrDefault(s => s.StaffsName.Equals(userInput));
+                    var staff = _context.Staffs.FirstOrDefault(pext => pext.StaffsName.Equals(userInput));
+                    var staffMulti = staff == null ?
+                        _context.StaffsMultiExtentionnumbers.FirstOrDefault(pext => pext.StaffsName.Equals(userInput)) :
+                        null;
 
-                    //var dept = from s in _context.Staffs
-                    //           join ss in _context.StaffsMultiExtentionnumbers
-                    //           on s.StaffsDepartment equals ss.StaffsDepartment
-                    //           where s.StaffsDepartment.Equals(userInput)
-                    //           select new {Staff}
-                               
+                    //var dept = from staff_dept in _context.Staffs
+                    //           join staffMulti_dept in _context.StaffsMultiExtentionnumbers on staff_dept.StaffsDepartment equals staffMulti_dept.StaffsDepartment
+                    //           select new { staff_dept, staffMulti_dept };
+                                       
 
                     // 判斷是否找到對應的 PhoneExtentionNumber、Staff 或 Department 記錄
-                    if (phoneExtentionNumber != null)
+                    if (staff != null)
                     {
-                        messageText = $"職員名稱: {phoneExtentionNumber.StaffsName}\n所屬單位: {phoneExtentionNumber.StaffsDepartment}";
+                        messageText = $"所屬單位: {staff.StaffsDepartment}\n分機號碼: {staff.StaffsExtentionnumber}";
                     }
-                    else if (staff != null)
+                    else if (staffMulti != null)                      
                     {
-                        messageText = $"職員名稱: {staff.StaffsName}\n所屬單位: {staff.StaffsDepartment}\n分機: {staff.StaffsExtentionnumber}";
+                        string extNumbers = "";
+                        if (staffMulti.StaffsExtentionnumber1 != null)
+                        {
+                            extNumbers += staffMulti.StaffsExtentionnumber1 + " ";
+                        }
+                        if (staffMulti.StaffsExtentionnumber2 != null)
+                        {
+                            extNumbers += staffMulti.StaffsExtentionnumber2 + " ";
+                        }
+                        if (staffMulti.StaffsExtentionnumber3 != null)
+                        {
+                            extNumbers += staffMulti.StaffsExtentionnumber3 + " ";
+                        }
+                        messageText = $"所屬單位: {staffMulti.StaffsDepartment}\n分機號碼: {extNumbers}";
+                    }
+                    else if (extentionnumber != null)
+                    {
+                        messageText = $"職員名稱: {extentionnumber.StaffsName} \n所屬單位:  {extentionnumber.StaffsDepartment}";
+                    }
+                    else if(multiExtentionnumber != null)
+                    {
+                        messageText = $"職員名稱: {multiExtentionnumber.StaffsName} \n所屬單位:  {multiExtentionnumber.StaffsDepartment}";
                     }
                     //else if (dept.Any())
                     //{
                     //    messageText = "";
                     //    foreach (var staffcount in dept)
                     //    {
-                    //        messageText += $"職員名稱: {staffcount.Name}\n所屬單位: {staffcount.Department.DepartmentName}\n分機: {string.Join(",", staffcount.ExtentionNumbers.Select(e => e.ExtentionNumbers))}\n\n";
+                    //        messageText += $"職員名稱: {staffcount.staff_dept.StaffsName}\n所屬單位: {staffcount.Department.DepartmentName}\n分機: {string.Join(",", staffcount.ExtentionNumbers.Select(e => e.ExtentionNumbers))}\n\n";
                     //    }
                     //}
                     else
