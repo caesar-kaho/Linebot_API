@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using LineBotMessage.Enum;
 using LineBotMessage.Providers;
 using System.Net.Mime;
+using LineBotMessage.Models;
 
 namespace LineBotMessage.Controllers
 {
@@ -16,9 +17,12 @@ namespace LineBotMessage.Controllers
         private readonly LineBotService _lineBotService;
         private readonly RichMenuService _richMenuService;
         private readonly JsonProvider _jsonProvider;
+        private readonly LinebotAPIContext _context;
+
         // constructor
-        public LineBotController()
+        public LineBotController(LinebotAPIContext context)
         {
+            _context = context;
             _lineBotService = new LineBotService();
             _richMenuService = new RichMenuService();
             _jsonProvider = new JsonProvider();

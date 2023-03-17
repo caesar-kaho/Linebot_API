@@ -3,6 +3,8 @@ using LineBotMessage.Dtos;
 using LineBotMessage.Enum;
 using LineBotMessage.Providers;
 using System.Text;
+using LineBotMessage.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace LineBotMessage.Domain
 {
@@ -19,14 +21,22 @@ namespace LineBotMessage.Domain
 
         private static HttpClient client = new HttpClient();
         private readonly JsonProvider _jsonProvider = new JsonProvider();
+        private readonly LinebotAPIContext _context;
 
         public LineBotService() { }
+
+        public LineBotService(LinebotAPIContext context)
+        {
+            _context = context;
+        }
+
+
 
         /// <summary>
         /// 接收 webhook event 處理
         /// </summary>
         /// <param name="requestBody"></param>
-        
+
         public void ReceiveWebhook(WebhookRequestBodyDto requestBody)
         {
             dynamic replyMessage;
@@ -34,10 +44,10 @@ namespace LineBotMessage.Domain
             {
                 switch (eventObject.Type)
                 {
-                    //case WebhookEventTypeEnum.Message:
-                    //    if (eventObject.Message.Type == MessageTypeEnum.Text)
-                    //        ReceiveMessageWebhookEvent(eventObject);
-                    //    break;
+                    case WebhookEventTypeEnum.Message:
+                        if (eventObject.Message.Type == MessageTypeEnum.Text)
+                            ReceiveMessageWebhookEvent(eventObject);
+                        break;
 
                     case WebhookEventTypeEnum.Postback:
                         ReceivePostbackWebhookEvent(eventObject);
@@ -144,6 +154,79 @@ namespace LineBotMessage.Domain
             ReplyMessageHandler(replyMessage);
         }
 
+        public void ReceiveMessageWebhookEvent(WebhookEventDto eventDto)
+        {
+            var replyMessage = new ReplyMessageRequestDto<TextMessageDto>();
+            string messageText = "";
+
+            switch (eventDto.Message.Type)
+            {
+                case MessageTypeEnum.Text:
+
+                    // 將使用者輸入的字串存到 userInput 變數
+                    string userInput = eventDto.Message.Text.Trim();
+
+                    // 使用 LINQ 查詢資料庫中是否有對應的 ExtentionNumber、Staff 或 Department 記錄
+                    var phoneExtentionNumber = _context.Staffs
+                        .Include(s => s.StaffsDepartment)
+                        .FirstOrDefault(pext => pext.StaffsExtentionnumber.Equals(userInput));
+
+                    var staff = _context.Staffs
+                        .Include(s => s.StaffsDepartment)
+                        .FirstOrDefault(s => s.StaffsName.Equals(userInput));
+
+                    //var dept = from s in _context.Staffs
+                    //           join ss in _context.StaffsMultiExtentionnumbers
+                    //           on s.StaffsDepartment equals ss.StaffsDepartment
+                    //           where s.StaffsDepartment.Equals(userInput)
+                    //           select new {Staff}
+                               
+
+                    // 判斷是否找到對應的 PhoneExtentionNumber、Staff 或 Department 記錄
+                    if (phoneExtentionNumber != null)
+                    {
+                        messageText = $"職員名稱: {phoneExtentionNumber.StaffsName}\n所屬單位: {phoneExtentionNumber.StaffsDepartment}";
+                    }
+                    else if (staff != null)
+                    {
+                        messageText = $"職員名稱: {staff.StaffsName}\n所屬單位: {staff.StaffsDepartment}\n分機: {staff.StaffsExtentionnumber}";
+                    }
+                    //else if (dept.Any())
+                    //{
+                    //    messageText = "";
+                    //    foreach (var staffcount in dept)
+                    //    {
+                    //        messageText += $"職員名稱: {staffcount.Name}\n所屬單位: {staffcount.Department.DepartmentName}\n分機: {string.Join(",", staffcount.ExtentionNumbers.Select(e => e.ExtentionNumbers))}\n\n";
+                    //    }
+                    //}
+                    else
+                    {
+                        replyMessage = new ReplyMessageRequestDto<TextMessageDto>
+                        {
+                            ReplyToken = eventDto.ReplyToken,
+                            Messages = new List<TextMessageDto>
+                    {
+                        new TextMessageDto(){Text = $"找不到分機號碼，職員名字或單位名稱為 {userInput}"}
+                    }
+                        };
+                    }
+
+                    if (!string.IsNullOrEmpty(messageText))
+                    {
+                        var messageDto = new TextMessageDto { Text = messageText };
+                        // 將訊息物件加入回應訊息列表
+                        replyMessage = new ReplyMessageRequestDto<TextMessageDto>
+                        {
+                            ReplyToken = eventDto.ReplyToken,
+                            Messages = new List<TextMessageDto> { messageDto }
+                        };
+                    }
+
+                    break;
+            }
+
+            ReplyMessageHandler(replyMessage);
+        }
         //public void ReceiveMessageWebhookEvent(WebhookEventDto eventDto)
         //{
         //    dynamic replyMessage = new ReplyMessageRequestDto<BaseMessageDto>();
