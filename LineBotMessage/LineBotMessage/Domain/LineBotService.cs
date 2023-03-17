@@ -21,7 +21,7 @@ namespace LineBotMessage.Domain
 
         private static HttpClient client = new HttpClient();
         private readonly JsonProvider _jsonProvider = new JsonProvider();
-        private readonly LinebotAPIContext _context;
+        private readonly LinebotAPIContext _context = new LinebotAPIContext();
 
         public LineBotService() { }
 
