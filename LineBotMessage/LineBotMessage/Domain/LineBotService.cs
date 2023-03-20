@@ -5,6 +5,8 @@ using LineBotMessage.Providers;
 using System.Text;
 using LineBotMessage.Models;
 using Microsoft.EntityFrameworkCore;
+using System.Linq;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
 
 namespace LineBotMessage.Domain
 {
@@ -180,10 +182,11 @@ namespace LineBotMessage.Domain
                         _context.StaffsMultiExtentionnumbers.FirstOrDefault(pext => pext.StaffsName.Equals(userInput)) :
                         null;
 
-                    //var dept = from staff_dept in _context.Staffs
-                    //           join staffMulti_dept in _context.StaffsMultiExtentionnumbers on staff_dept.StaffsDepartment equals staffMulti_dept.StaffsDepartment
-                    //           select new { staff_dept, staffMulti_dept };
-                                       
+                    var dept = from staff_dept in _context.Staffs
+                               join staffMulti_dept in _context.StaffsMultiExtentionnumbers on staff_dept.StaffsDepartment equals staffMulti_dept.StaffsDepartment
+                               join department in _context.Departments on staff_dept.StaffsDepartment equals department.Id
+                               where department.DepartmentsName == userInput
+                               select new { staff_dept, staffMulti_dept, department.DepartmentsName };
 
                     // 判斷是否找到對應的 PhoneExtentionNumber、Staff 或 Department 記錄
                     if (staff != null)
@@ -215,14 +218,32 @@ namespace LineBotMessage.Domain
                     {
                         messageText = $"職員名稱: {multiExtentionnumber.StaffsName} \n所屬單位:  {multiExtentionnumber.StaffsDepartment}";
                     }
-                    //else if (dept.Any())
-                    //{
-                    //    messageText = "";
-                    //    foreach (var staffcount in dept)
-                    //    {
-                    //        messageText += $"職員名稱: {staffcount.staff_dept.StaffsName}\n所屬單位: {staffcount.Department.DepartmentName}\n分機: {string.Join(",", staffcount.ExtentionNumbers.Select(e => e.ExtentionNumbers))}\n\n";
-                    //    }
-                    //}
+                    else if (dept.Any())
+                    {
+                        messageText = "";
+                        foreach (var staffcount in dept)
+                        {
+                            messageText += $"職員名稱: {staffcount.staff_dept.StaffsName}\n分機: {staffcount.staff_dept.StaffsExtentionnumber}\n";
+                            if (staffcount.staffMulti_dept != null)
+                            {
+                                string extNumbers = "";
+                                if (staffcount.staffMulti_dept.StaffsExtentionnumber1 != null)
+                                {
+                                    extNumbers += staffcount.staffMulti_dept.StaffsExtentionnumber1 + " ";
+                                }
+                                if (staffcount.staffMulti_dept.StaffsExtentionnumber2 != null)
+                                {
+                                    extNumbers += staffcount.staffMulti_dept.StaffsExtentionnumber2 + " ";
+                                }
+                                if (staffcount.staffMulti_dept.StaffsExtentionnumber3 != null)
+                                {
+                                    extNumbers += staffcount.staffMulti_dept.StaffsExtentionnumber3 + " ";
+                                }
+                                messageText += $"職員名稱: {staffcount.staffMulti_dept.StaffsName}\n分機: {extNumbers}";
+                            }
+                            messageText += "\n\n";
+                        }
+                    }
                     else
                     {
                         replyMessage = new ReplyMessageRequestDto<TextMessageDto>
