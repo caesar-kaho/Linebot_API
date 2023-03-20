@@ -169,17 +169,27 @@ namespace LineBotMessage.Domain
                     string userInput = eventDto.Message.Text.Trim();
 
                     // 使用 LINQ 查詢資料庫中是否有對應的 ExtentionNumber、Staff 或 Department 記錄
-                    var extentionnumber = _context.Staffs.FirstOrDefault(pext => pext.StaffsExtentionnumber.Equals(userInput));
+                    var extentionnumber = _context.Staffs
+                        .Include(e => e.StaffsDepartmentNavigation)
+                        .FirstOrDefault(pext => pext.StaffsExtentionnumber.Equals(userInput));
+
                     var multiExtentionnumber = extentionnumber == null ?
-                        _context.StaffsMultiExtentionnumbers.FirstOrDefault(pext =>
+                        _context.StaffsMultiExtentionnumbers
+                        .Include(e => e.StaffsDepartmentNavigation)
+                        .FirstOrDefault(pext =>
                         pext.StaffsExtentionnumber1.Equals(userInput) ||
                         pext.StaffsExtentionnumber2.Equals(userInput) ||
                         pext.StaffsExtentionnumber3.Equals(userInput)) :
                         null;
 
-                    var staff = _context.Staffs.FirstOrDefault(pext => pext.StaffsName.Equals(userInput));
+                    var staff = _context.Staffs
+                        .Include(s => s.StaffsDepartmentNavigation)
+                        .FirstOrDefault(pext => pext.StaffsName.Equals(userInput));
+
                     var staffMulti = staff == null ?
-                        _context.StaffsMultiExtentionnumbers.FirstOrDefault(pext => pext.StaffsName.Equals(userInput)) :
+                        _context.StaffsMultiExtentionnumbers
+                        .Include(s => s.StaffsDepartmentNavigation)
+                        .FirstOrDefault(pext => pext.StaffsName.Equals(userInput)) :
                         null;
                                      
                     var dept = from department in _context.Departments
@@ -194,7 +204,7 @@ namespace LineBotMessage.Domain
                     // 判斷是否找到對應的 PhoneExtentionNumber、Staff 或 Department 記錄
                     if (staff != null)
                     {
-                        messageText = $"所屬單位: {staff.StaffsDepartment}\n分機號碼: {staff.StaffsExtentionnumber}";
+                        messageText = $"所屬單位: {staff.StaffsDepartmentNavigation.DepartmentsName}\n分機號碼: {staff.StaffsExtentionnumber}";
                     }
                     else if (staffMulti != null)                      
                     {
@@ -211,15 +221,15 @@ namespace LineBotMessage.Domain
                         {
                             extNumbers += staffMulti.StaffsExtentionnumber3 + " ";
                         }
-                        messageText = $"所屬單位: {staffMulti.StaffsDepartment}\n分機號碼: {extNumbers}";
+                        messageText = $"所屬單位: {staffMulti.StaffsDepartmentNavigation.DepartmentsName}\n分機號碼: {extNumbers}";
                     }
                     else if (extentionnumber != null)
                     {
-                        messageText = $"職員名稱: {extentionnumber.StaffsName} \n所屬單位:  {extentionnumber.StaffsDepartment}";
+                        messageText = $"職員名稱: {extentionnumber.StaffsName} \n所屬單位: {extentionnumber.StaffsDepartmentNavigation.DepartmentsName}";
                     }
                     else if(multiExtentionnumber != null)
                     {
-                        messageText = $"職員名稱: {multiExtentionnumber.StaffsName} \n所屬單位:  {multiExtentionnumber.StaffsDepartment}";
+                        messageText = $"職員名稱: {multiExtentionnumber.StaffsName} \n所屬單位: {multiExtentionnumber.StaffsDepartmentNavigation.DepartmentsName}";
                     }
                     else if (dept.Any())
                     {
