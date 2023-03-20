@@ -181,11 +181,15 @@ namespace LineBotMessage.Domain
                     var staffMulti = staff == null ?
                         _context.StaffsMultiExtentionnumbers.FirstOrDefault(pext => pext.StaffsName.Equals(userInput)) :
                         null;
+                                     
+                    var dept = from department in _context.Departments
+                               join staff_dept in _context.Staffs on department.Id equals staff_dept.StaffsDepartment into staffsGroup
+                               from staff_dept in staffsGroup.DefaultIfEmpty()
+                               join staffMulti_dept in _context.StaffsMultiExtentionnumbers on department.Id equals staffMulti_dept.StaffsDepartment into staffsMultiGroup
+                               from staffMulti_dept in staffsMultiGroup.DefaultIfEmpty()
+                               where department.DepartmentsName == userInput
+                               select new { staff_dept, staffMulti_dept, department.DepartmentsName };
 
-                    var dept = _context.Staffs
-                        .Include(s => s.StaffsDepartment)
-                        .Where(pext => pextdepartmentsName.Equals(userInput))
-                        .ToList();
 
                     // 判斷是否找到對應的 PhoneExtentionNumber、Staff 或 Department 記錄
                     if (staff != null)
