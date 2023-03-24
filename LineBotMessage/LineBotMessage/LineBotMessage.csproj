@@ -47,12 +47,12 @@
     <None Remove="Dtos\LinePay\" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Controllers\" />
     <Folder Include="Dtos\" />
     <Folder Include="Dtos\Webhook\" />
     <Folder Include="Domain\" />
     <Folder Include="Enum\" />
     <Folder Include="Dtos\Messages\" />
+    <Folder Include="JsonMessages\" />
     <Folder Include="Providers\" />
     <Folder Include="Dtos\Messages\Request\" />
     <Folder Include="UploadFiles\" />
@@ -65,4 +65,5 @@
   <ItemGroup>
     <None Include="..\.editorconfig" />
   </ItemGroup>
+  <ProjectExtensions><VisualStudio><UserProperties /></VisualStudio></ProjectExtensions>
 </Project>
