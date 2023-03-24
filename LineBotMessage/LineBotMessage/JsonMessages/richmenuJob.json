@@ -1,303 +1,311 @@
 {
-  "type": "carousel",
-  "contents": [
+  "Messages": [
     {
-      "type": "bubble",
-      "direction": "ltr",
-      "header": {
-        "type": "box",
-        "layout": "vertical",
+      "Type": "flex",
+      "AltText": "業務職掌",
+      "Contents": {
+        "type": "carousel",
         "contents": [
           {
-            "type": "text",
-            "text": "何先生 組長",
-            "align": "center",
-            "contents": []
-          }
-        ]
-      },
-      "body": {
-        "type": "box",
-        "layout": "vertical",
-        "contents": [
-          {
-            "type": "text",
-            "text": "【業務申請】",
-            "size": "md",
-            "align": "center",
-            "wrap": true,
-            "contents": []
-          },
-          {
-            "type": "text",
-            "text": " 1. 防火牆規則變更申請",
-            "align": "start",
-            "contents": []
-          },
-          {
-            "type": "text",
-            "text": " 2. 流量管制規則變更申請",
-            "align": "start",
-            "contents": []
-          },
-          {
-            "type": "text",
-            "text": " 3. 技術與資安協助評估與諮詢",
-            "align": "start",
-            "contents": []
-          },
-          {
-            "type": "text",
-            "text": "4. 資訊系統問題諮詢",
-            "align": "start",
-            "contents": []
-          },
-          {
-            "type": "text",
-            "text": "5. 資安作業諮詢",
-            "align": "start",
-            "contents": []
-          }
-        ]
-      },
-      "footer": {
-        "type": "box",
-        "layout": "horizontal",
-        "contents": [
-          {
-            "type": "button",
-            "action": {
-              "type": "postback",
-              "label": "分機",
-              "data": "ex_1"
+            "type": "bubble",
+            "direction": "ltr",
+            "header": {
+              "type": "box",
+              "layout": "vertical",
+              "contents": [
+                {
+                  "type": "text",
+                  "text": "何先生 組長",
+                  "align": "center",
+                  "contents": []
+                }
+              ]
+            },
+            "body": {
+              "type": "box",
+              "layout": "vertical",
+              "contents": [
+                {
+                  "type": "text",
+                  "text": "【業務申請】",
+                  "size": "md",
+                  "align": "center",
+                  "wrap": true,
+                  "contents": []
+                },
+                {
+                  "type": "text",
+                  "text": " 1. 防火牆規則變更申請",
+                  "align": "start",
+                  "contents": []
+                },
+                {
+                  "type": "text",
+                  "text": " 2. 流量管制規則變更申請",
+                  "align": "start",
+                  "contents": []
+                },
+                {
+                  "type": "text",
+                  "text": " 3. 技術與資安協助評估與諮詢",
+                  "align": "start",
+                  "contents": []
+                },
+                {
+                  "type": "text",
+                  "text": "4. 資訊系統問題諮詢",
+                  "align": "start",
+                  "contents": []
+                },
+                {
+                  "type": "text",
+                  "text": "5. 資安作業諮詢",
+                  "align": "start",
+                  "contents": []
+                }
+              ]
+            },
+            "footer": {
+              "type": "box",
+              "layout": "horizontal",
+              "contents": [
+                {
+                  "type": "button",
+                  "action": {
+                    "type": "postback",
+                    "label": "分機",
+                    "data": "ex_1"
+                  }
+                },
+                {
+                  "type": "button",
+                  "action": {
+                    "type": "postback",
+                    "label": "Email",
+                    "data": "email_1"
+                  }
+                }
+              ]
             }
           },
           {
-            "type": "button",
-            "action": {
-              "type": "postback",
-              "label": "Email",
-              "data": "email_1"
-            }
-          }
-        ]
-      }
-    },
-    {
-      "type": "bubble",
-      "direction": "ltr",
-      "header": {
-        "type": "box",
-        "layout": "vertical",
-        "contents": [
-          {
-            "type": "text",
-            "text": "汪先生 系統工程師",
-            "align": "center",
-            "contents": []
-          }
-        ]
-      },
-      "body": {
-        "type": "box",
-        "layout": "vertical",
-        "contents": [
-          {
-            "type": "text",
-            "text": "【業務申請】",
-            "align": "center",
-            "contents": []
-          },
-          {
-            "type": "text",
-            "text": "1. 校園網路服務申請/變更",
-            "contents": []
-          },
-          {
-            "type": "text",
-            "text": "2. 校園伺服器申請/變更",
-            "contents": []
-          },
-          {
-            "type": "text",
-            "text": "3. 網路及伺服器問題諮詢",
-            "contents": []
-          },
-          {
-            "type": "text",
-            "text": "4. 資訊系統問題諮詢",
-            "contents": []
-          },
-          {
-            "type": "text",
-            "text": "5. 資安作業諮詢",
-            "contents": []
-          }
-        ]
-      },
-      "footer": {
-        "type": "box",
-        "layout": "horizontal",
-        "contents": [
-          {
-            "type": "button",
-            "action": {
-              "type": "postback",
-              "label": "分機",
-              "data": "ex_2"
-            }
-          },
-          {
-            "type": "button",
-            "action": {
-              "type": "postback",
-              "label": "Email",
-              "data": "email_2"
-            }
-          }
-        ]
-      }
-    },
-    {
-      "type": "bubble",
-      "direction": "ltr",
-      "header": {
-        "type": "box",
-        "layout": "vertical",
-        "contents": [
-          {
-            "type": "text",
-            "text": "謝先生 程式設計師",
-            "align": "center",
-            "contents": []
-          }
-        ]
-      },
-      "body": {
-        "type": "box",
-        "layout": "vertical",
-        "contents": [
-          {
-            "type": "text",
-            "text": "【業務申請】",
-            "align": "center",
-            "contents": []
-          },
-          {
-            "type": "text",
-            "text": "1. 校務系統帳號及權限申請/變更",
-            "contents": []
-          },
-          {
-            "type": "text",
-            "text": "2. 校務系統問題維護申請",
-            "contents": []
-          },
-          {
-            "type": "text",
-            "text": "3. 校務系統問題諮詢",
-            "contents": []
-          },
-          {
-            "type": "text",
-            "text": "4. 資訊系統問題諮詢",
-            "contents": []
-          },
-          {
-            "type": "text",
-            "text": "5. 資安作業諮詢",
-            "contents": []
-          }
-        ]
-      },
-      "footer": {
-        "type": "box",
-        "layout": "horizontal",
-        "contents": [
-          {
-            "type": "button",
-            "action": {
-              "type": "postback",
-              "label": "分機",
-              "data": "ex_3"
+            "type": "bubble",
+            "direction": "ltr",
+            "header": {
+              "type": "box",
+              "layout": "vertical",
+              "contents": [
+                {
+                  "type": "text",
+                  "text": "汪先生 系統工程師",
+                  "align": "center",
+                  "contents": []
+                }
+              ]
+            },
+            "body": {
+              "type": "box",
+              "layout": "vertical",
+              "contents": [
+                {
+                  "type": "text",
+                  "text": "【業務申請】",
+                  "align": "center",
+                  "contents": []
+                },
+                {
+                  "type": "text",
+                  "text": "1. 校園網路服務申請/變更",
+                  "contents": []
+                },
+                {
+                  "type": "text",
+                  "text": "2. 校園伺服器申請/變更",
+                  "contents": []
+                },
+                {
+                  "type": "text",
+                  "text": "3. 網路及伺服器問題諮詢",
+                  "contents": []
+                },
+                {
+                  "type": "text",
+                  "text": "4. 資訊系統問題諮詢",
+                  "contents": []
+                },
+                {
+                  "type": "text",
+                  "text": "5. 資安作業諮詢",
+                  "contents": []
+                }
+              ]
+            },
+            "footer": {
+              "type": "box",
+              "layout": "horizontal",
+              "contents": [
+                {
+                  "type": "button",
+                  "action": {
+                    "type": "postback",
+                    "label": "分機",
+                    "data": "ex_2"
+                  }
+                },
+                {
+                  "type": "button",
+                  "action": {
+                    "type": "postback",
+                    "label": "Email",
+                    "data": "email_2"
+                  }
+                }
+              ]
             }
           },
           {
-            "type": "button",
-            "action": {
-              "type": "postback",
-              "label": "Email",
-              "data": "email_3"
+            "type": "bubble",
+            "direction": "ltr",
+            "header": {
+              "type": "box",
+              "layout": "vertical",
+              "contents": [
+                {
+                  "type": "text",
+                  "text": "謝先生 程式設計師",
+                  "align": "center",
+                  "contents": []
+                }
+              ]
+            },
+            "body": {
+              "type": "box",
+              "layout": "vertical",
+              "contents": [
+                {
+                  "type": "text",
+                  "text": "【業務申請】",
+                  "align": "center",
+                  "contents": []
+                },
+                {
+                  "type": "text",
+                  "text": "1. 校務系統帳號及權限申請/變更",
+                  "contents": []
+                },
+                {
+                  "type": "text",
+                  "text": "2. 校務系統問題維護申請",
+                  "contents": []
+                },
+                {
+                  "type": "text",
+                  "text": "3. 校務系統問題諮詢",
+                  "contents": []
+                },
+                {
+                  "type": "text",
+                  "text": "4. 資訊系統問題諮詢",
+                  "contents": []
+                },
+                {
+                  "type": "text",
+                  "text": "5. 資安作業諮詢",
+                  "contents": []
+                }
+              ]
+            },
+            "footer": {
+              "type": "box",
+              "layout": "horizontal",
+              "contents": [
+                {
+                  "type": "button",
+                  "action": {
+                    "type": "postback",
+                    "label": "分機",
+                    "data": "ex_3"
+                  }
+                },
+                {
+                  "type": "button",
+                  "action": {
+                    "type": "postback",
+                    "label": "Email",
+                    "data": "email_3"
+                  }
+                }
+              ]
             }
-          }
-        ]
-      }
-    },
-    {
-      "type": "bubble",
-      "direction": "ltr",
-      "header": {
-        "type": "box",
-        "layout": "vertical",
-        "contents": [
-          {
-            "type": "text",
-            "text": "詹先生 程式設計師",
-            "align": "center",
-            "contents": []
-          }
-        ]
-      },
-      "body": {
-        "type": "box",
-        "layout": "vertical",
-        "contents": [
-          {
-            "type": "text",
-            "text": "【業務申請】",
-            "align": "center",
-            "contents": []
           },
           {
-            "type": "text",
-            "text": "1. 單一簽入暨入口網介接申請/變更",
-            "contents": []
-          },
-          {
-            "type": "text",
-            "text": "2. 單一簽入暨入口網問題諮詢",
-            "contents": []
-          },
-          {
-            "type": "text",
-            "text": "3. 資訊系統問題諮詢",
-            "contents": []
-          },
-          {
-            "type": "text",
-            "text": "4. 資安作業諮詢",
-            "contents": []
-          }
-        ]
-      },
-      "footer": {
-        "type": "box",
-        "layout": "horizontal",
-        "contents": [
-          {
-            "type": "button",
-            "action": {
-              "type": "postback",
-              "label": "分機",
-              "data": "ex_4"
-            }
-          },
-          {
-            "type": "button",
-            "action": {
-              "type": "postback",
-              "label": "Email",
-              "data": "email_4"
+            "type": "bubble",
+            "direction": "ltr",
+            "header": {
+              "type": "box",
+              "layout": "vertical",
+              "contents": [
+                {
+                  "type": "text",
+                  "text": "詹先生 程式設計師",
+                  "align": "center",
+                  "contents": []
+                }
+              ]
+            },
+            "body": {
+              "type": "box",
+              "layout": "vertical",
+              "contents": [
+                {
+                  "type": "text",
+                  "text": "【業務申請】",
+                  "align": "center",
+                  "contents": []
+                },
+                {
+                  "type": "text",
+                  "text": "1. 單一簽入暨入口網介接申請/變更",
+                  "contents": []
+                },
+                {
+                  "type": "text",
+                  "text": "2. 單一簽入暨入口網問題諮詢",
+                  "contents": []
+                },
+                {
+                  "type": "text",
+                  "text": "3. 資訊系統問題諮詢",
+                  "contents": []
+                },
+                {
+                  "type": "text",
+                  "text": "4. 資安作業諮詢",
+                  "contents": []
+                }
+              ]
+            },
+            "footer": {
+              "type": "box",
+              "layout": "horizontal",
+              "contents": [
+                {
+                  "type": "button",
+                  "action": {
+                    "type": "postback",
+                    "label": "分機",
+                    "data": "ex_4"
+                  }
+                },
+                {
+                  "type": "button",
+                  "action": {
+                    "type": "postback",
+                    "label": "Email",
+                    "data": "email_4"
+                  }
+                }
+              ]
             }
           }
         ]
