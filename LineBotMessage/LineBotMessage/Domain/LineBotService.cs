@@ -108,7 +108,6 @@ namespace LineBotMessage.Domain
                 }
             }
         }
-
         public void ReceivePostbackWebhookEvent(WebhookEventDto eventDto)
         {
             dynamic replyMessage = new ReplyMessageRequestDto<BaseMessageDto>();
@@ -117,70 +116,99 @@ namespace LineBotMessage.Domain
             {
                 case "dataType=staffs":
                     // 回傳使用職員名稱查詢的功能
-                    replyMessage = new ReplyMessageRequestDto<TextMessageDto>
-                    {
-                        ReplyToken = eventDto.ReplyToken,
-                        Messages = new List<TextMessageDto>
-                        {
-                            new TextMessageDto(){Text = $"請輸入職員名稱，例:陳小明"}
-                        }
-                    };
-
+                    replyMessage = CreateTextMessage("請輸入職員名稱，例:陳小明", eventDto);
                     break;
 
                 case "dataType=departments":
                     // 回傳使用單位查詢的功能
-                    replyMessage = new ReplyMessageRequestDto<TextMessageDto>
-                    {
-                        ReplyToken = eventDto.ReplyToken,
-                        Messages = new List<TextMessageDto>
-                        {
-                         new TextMessageDto(){Text = $"請輸入單位名稱，例：資訊服務組"}
-                        }
-                    };
-
+                    replyMessage = CreateTextMessage("請輸入單位名稱，例：資訊服務組", eventDto);
                     break;
 
                 case "dataType=extentionNumbers":
                     // 回傳使用分機查詢的功能
-                    replyMessage = new ReplyMessageRequestDto<TextMessageDto>
-                    {
-                        ReplyToken = eventDto.ReplyToken,
-                        Messages = new List<TextMessageDto>
-                        {
-                         new TextMessageDto(){Text = $"請輸入分機4碼"}
-                        }
-                    };
-                      break;
+                    replyMessage = CreateTextMessage("請輸入分機4碼", eventDto);
+                    break;
 
                 case "dataType=job":
-                    // 回傳設定 Rich Menu 的功能
-                    var richmenuJob = File.ReadAllText("C:\\Users\\caesa\\source\\repos\\Linebot_WebAPI\\LineBotMessage\\LineBotMessage\\JsonMessages\\richmenuJob.json");
-                    replyMessage = new ReplyMessageRequestDto<FlexMessageDto<FlexCarouselContainerDto>>
-                    {
-                        ReplyToken = eventDto.ReplyToken,
-                        Messages = new List<FlexMessageDto<FlexCarouselContainerDto>>
-                        {
-                            new FlexMessageDto<FlexCarouselContainerDto>()
-                                {
-                                    AltText = "業務職掌",
-                                    Contents = _jsonProvider.Deserialize<FlexCarouselContainerDto>(richmenuJob)
-                                }
-                        }
-                    };
+                    // 回傳業務職掌
+                    replyMessage = CreateFlexMessageFromFile("C:\\Users\\caesa\\source\\repos\\Linebot_WebAPI\\LineBotMessage\\LineBotMessage\\JsonMessages\\richmenuJob.json", eventDto, "業務職掌");
+                    break;
 
+                case "ex_1":
+                    //回傳分機
+                    replyMessage = CreateTextMessage("分機號碼: 3310 3321", eventDto);
+                    break;
+
+                case "ex_2":
+                    //回傳分機
+                    replyMessage = CreateTextMessage("分機號碼: 3311", eventDto);
+                    break;
+
+                case "ex_3":
+                    //回傳分機
+                    replyMessage = CreateTextMessage("分機號碼: 3313", eventDto);
+                    break;
+
+                case "ex_4":
+                    //回傳分機
+                    replyMessage = CreateTextMessage("分機號碼: 3312", eventDto);
+                    break;
+
+                case "email_1":
+                    //回傳分機
+                    replyMessage = CreateTextMessage("Email: norrith@ntus.edu.tw", eventDto);
+                    break;
+
+                case "email_2":
+                    //回傳分機
+                    replyMessage = CreateTextMessage("Email: rex@ntus.edu.tw", eventDto);
+                    break;
+
+                case "email_3":
+                    //回傳分機
+                    replyMessage = CreateTextMessage("Email: zonghao.xie@ntus.edu.tw", eventDto);
+                    break;
+
+                case "email_4":
+                    //回傳分機
+                    replyMessage = CreateTextMessage("Email: ", eventDto);
+                    break;
+
+                default:
                     break;
             }
 
-            if (replyMessage is string jsonMessage)
-            {
-                SendJsonMessage(jsonMessage);
-            }
-            else
-            {
-                ReplyMessageHandler(replyMessage);
-            }
+            ReplyMessageHandler(replyMessage);
         }
+
+        private ReplyMessageRequestDto<TextMessageDto> CreateTextMessage(string text, WebhookEventDto eventDto)
+        {
+            return new ReplyMessageRequestDto<TextMessageDto>
+            {
+                ReplyToken = eventDto.ReplyToken,
+                Messages = new List<TextMessageDto>
+                {
+                    new TextMessageDto() { Text = text }
+                }
+            };
+        }
+
+        private ReplyMessageRequestDto<FlexMessageDto<FlexCarouselContainerDto>> CreateFlexMessageFromFile(string filePath, WebhookEventDto eventDto, string altText)
+        {
+            var json = File.ReadAllText(filePath);
+            return new ReplyMessageRequestDto<FlexMessageDto<FlexCarouselContainerDto>>
+            {
+                ReplyToken = eventDto.ReplyToken,
+                Messages = new List<FlexMessageDto<FlexCarouselContainerDto>>
+                {
+                    new FlexMessageDto<FlexCarouselContainerDto>()
+                    {
+                        AltText = altText,
+                        Contents = _jsonProvider.Deserialize<FlexCarouselContainerDto>(json)
+                    }
+                }
+            };
+        }               
 
         public void ReceiveMessageWebhookEvent(WebhookEventDto eventDto)
         {
