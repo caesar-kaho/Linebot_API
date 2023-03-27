@@ -1,311 +1,303 @@
-{
-  "Messages": [
+ï»¿{
+  "type": "carousel",
+  "contents": [
     {
-      "Type": "flex",
-      "AltText": "·~°ÈÂ¾´x",
-      "Contents": {
-        "type": "carousel",
+      "type": "bubble",
+      "direction": "ltr",
+      "header": {
+        "type": "box",
+        "layout": "vertical",
         "contents": [
           {
-            "type": "bubble",
-            "direction": "ltr",
-            "header": {
-              "type": "box",
-              "layout": "vertical",
-              "contents": [
-                {
-                  "type": "text",
-                  "text": "¦ó¥ı¥Í ²Õªø",
-                  "align": "center",
-                  "contents": []
-                }
-              ]
-            },
-            "body": {
-              "type": "box",
-              "layout": "vertical",
-              "contents": [
-                {
-                  "type": "text",
-                  "text": "¡i·~°È¥Ó½Ğ¡j",
-                  "size": "md",
-                  "align": "center",
-                  "wrap": true,
-                  "contents": []
-                },
-                {
-                  "type": "text",
-                  "text": " 1. ¨¾¤õÀğ³W«hÅÜ§ó¥Ó½Ğ",
-                  "align": "start",
-                  "contents": []
-                },
-                {
-                  "type": "text",
-                  "text": " 2. ¬y¶qºŞ¨î³W«hÅÜ§ó¥Ó½Ğ",
-                  "align": "start",
-                  "contents": []
-                },
-                {
-                  "type": "text",
-                  "text": " 3. §Ş³N»P¸ê¦w¨ó§Uµû¦ô»P¿Ô¸ß",
-                  "align": "start",
-                  "contents": []
-                },
-                {
-                  "type": "text",
-                  "text": "4. ¸ê°T¨t²Î°İÃD¿Ô¸ß",
-                  "align": "start",
-                  "contents": []
-                },
-                {
-                  "type": "text",
-                  "text": "5. ¸ê¦w§@·~¿Ô¸ß",
-                  "align": "start",
-                  "contents": []
-                }
-              ]
-            },
-            "footer": {
-              "type": "box",
-              "layout": "horizontal",
-              "contents": [
-                {
-                  "type": "button",
-                  "action": {
-                    "type": "postback",
-                    "label": "¤À¾÷",
-                    "data": "ex_1"
-                  }
-                },
-                {
-                  "type": "button",
-                  "action": {
-                    "type": "postback",
-                    "label": "Email",
-                    "data": "email_1"
-                  }
-                }
-              ]
+            "type": "text",
+            "text": "ä½•å…ˆç”Ÿ çµ„é•·",
+            "align": "center",
+            "contents": []
+          }
+        ]
+      },
+      "body": {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "text": "ã€æ¥­å‹™ç”³è«‹ã€‘",
+            "size": "md",
+            "align": "center",
+            "wrap": true,
+            "contents": []
+          },
+          {
+            "type": "text",
+            "text": " 1. é˜²ç«ç‰†è¦å‰‡è®Šæ›´ç”³è«‹",
+            "align": "start",
+            "contents": []
+          },
+          {
+            "type": "text",
+            "text": " 2. æµé‡ç®¡åˆ¶è¦å‰‡è®Šæ›´ç”³è«‹",
+            "align": "start",
+            "contents": []
+          },
+          {
+            "type": "text",
+            "text": " 3. æŠ€è¡“èˆ‡è³‡å®‰å”åŠ©è©•ä¼°èˆ‡è«®è©¢",
+            "align": "start",
+            "contents": []
+          },
+          {
+            "type": "text",
+            "text": "4. è³‡è¨Šç³»çµ±å•é¡Œè«®è©¢",
+            "align": "start",
+            "contents": []
+          },
+          {
+            "type": "text",
+            "text": "5. è³‡å®‰ä½œæ¥­è«®è©¢",
+            "align": "start",
+            "contents": []
+          }
+        ]
+      },
+      "footer": {
+        "type": "box",
+        "layout": "horizontal",
+        "contents": [
+          {
+            "type": "button",
+            "action": {
+              "type": "postback",
+              "label": "åˆ†æ©Ÿ",
+              "data": "ex_1"
             }
           },
           {
-            "type": "bubble",
-            "direction": "ltr",
-            "header": {
-              "type": "box",
-              "layout": "vertical",
-              "contents": [
-                {
-                  "type": "text",
-                  "text": "¨L¥ı¥Í ¨t²Î¤uµ{®v",
-                  "align": "center",
-                  "contents": []
-                }
-              ]
-            },
-            "body": {
-              "type": "box",
-              "layout": "vertical",
-              "contents": [
-                {
-                  "type": "text",
-                  "text": "¡i·~°È¥Ó½Ğ¡j",
-                  "align": "center",
-                  "contents": []
-                },
-                {
-                  "type": "text",
-                  "text": "1. ®Õ¶éºô¸ôªA°È¥Ó½Ğ/ÅÜ§ó",
-                  "contents": []
-                },
-                {
-                  "type": "text",
-                  "text": "2. ®Õ¶é¦øªA¾¹¥Ó½Ğ/ÅÜ§ó",
-                  "contents": []
-                },
-                {
-                  "type": "text",
-                  "text": "3. ºô¸ô¤Î¦øªA¾¹°İÃD¿Ô¸ß",
-                  "contents": []
-                },
-                {
-                  "type": "text",
-                  "text": "4. ¸ê°T¨t²Î°İÃD¿Ô¸ß",
-                  "contents": []
-                },
-                {
-                  "type": "text",
-                  "text": "5. ¸ê¦w§@·~¿Ô¸ß",
-                  "contents": []
-                }
-              ]
-            },
-            "footer": {
-              "type": "box",
-              "layout": "horizontal",
-              "contents": [
-                {
-                  "type": "button",
-                  "action": {
-                    "type": "postback",
-                    "label": "¤À¾÷",
-                    "data": "ex_2"
-                  }
-                },
-                {
-                  "type": "button",
-                  "action": {
-                    "type": "postback",
-                    "label": "Email",
-                    "data": "email_2"
-                  }
-                }
-              ]
+            "type": "button",
+            "action": {
+              "type": "postback",
+              "label": "Email",
+              "data": "email_1"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "bubble",
+      "direction": "ltr",
+      "header": {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "text": "æ±ªå…ˆç”Ÿ ç³»çµ±å·¥ç¨‹å¸«",
+            "align": "center",
+            "contents": []
+          }
+        ]
+      },
+      "body": {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "text": "ã€æ¥­å‹™ç”³è«‹ã€‘",
+            "align": "center",
+            "contents": []
+          },
+          {
+            "type": "text",
+            "text": "1. æ ¡åœ’ç¶²è·¯æœå‹™ç”³è«‹/è®Šæ›´",
+            "contents": []
+          },
+          {
+            "type": "text",
+            "text": "2. æ ¡åœ’ä¼ºæœå™¨ç”³è«‹/è®Šæ›´",
+            "contents": []
+          },
+          {
+            "type": "text",
+            "text": "3. ç¶²è·¯åŠä¼ºæœå™¨å•é¡Œè«®è©¢",
+            "contents": []
+          },
+          {
+            "type": "text",
+            "text": "4. è³‡è¨Šç³»çµ±å•é¡Œè«®è©¢",
+            "contents": []
+          },
+          {
+            "type": "text",
+            "text": "5. è³‡å®‰ä½œæ¥­è«®è©¢",
+            "contents": []
+          }
+        ]
+      },
+      "footer": {
+        "type": "box",
+        "layout": "horizontal",
+        "contents": [
+          {
+            "type": "button",
+            "action": {
+              "type": "postback",
+              "label": "åˆ†æ©Ÿ",
+              "data": "ex_2"
             }
           },
           {
-            "type": "bubble",
-            "direction": "ltr",
-            "header": {
-              "type": "box",
-              "layout": "vertical",
-              "contents": [
-                {
-                  "type": "text",
-                  "text": "ÁÂ¥ı¥Í µ{¦¡³]­p®v",
-                  "align": "center",
-                  "contents": []
-                }
-              ]
-            },
-            "body": {
-              "type": "box",
-              "layout": "vertical",
-              "contents": [
-                {
-                  "type": "text",
-                  "text": "¡i·~°È¥Ó½Ğ¡j",
-                  "align": "center",
-                  "contents": []
-                },
-                {
-                  "type": "text",
-                  "text": "1. ®Õ°È¨t²Î±b¸¹¤ÎÅv­­¥Ó½Ğ/ÅÜ§ó",
-                  "contents": []
-                },
-                {
-                  "type": "text",
-                  "text": "2. ®Õ°È¨t²Î°İÃDºûÅ@¥Ó½Ğ",
-                  "contents": []
-                },
-                {
-                  "type": "text",
-                  "text": "3. ®Õ°È¨t²Î°İÃD¿Ô¸ß",
-                  "contents": []
-                },
-                {
-                  "type": "text",
-                  "text": "4. ¸ê°T¨t²Î°İÃD¿Ô¸ß",
-                  "contents": []
-                },
-                {
-                  "type": "text",
-                  "text": "5. ¸ê¦w§@·~¿Ô¸ß",
-                  "contents": []
-                }
-              ]
-            },
-            "footer": {
-              "type": "box",
-              "layout": "horizontal",
-              "contents": [
-                {
-                  "type": "button",
-                  "action": {
-                    "type": "postback",
-                    "label": "¤À¾÷",
-                    "data": "ex_3"
-                  }
-                },
-                {
-                  "type": "button",
-                  "action": {
-                    "type": "postback",
-                    "label": "Email",
-                    "data": "email_3"
-                  }
-                }
-              ]
+            "type": "button",
+            "action": {
+              "type": "postback",
+              "label": "Email",
+              "data": "email_2"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "bubble",
+      "direction": "ltr",
+      "header": {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "text": "è¬å…ˆç”Ÿ ç¨‹å¼è¨­è¨ˆå¸«",
+            "align": "center",
+            "contents": []
+          }
+        ]
+      },
+      "body": {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "text": "ã€æ¥­å‹™ç”³è«‹ã€‘",
+            "align": "center",
+            "contents": []
+          },
+          {
+            "type": "text",
+            "text": "1. æ ¡å‹™ç³»çµ±å¸³è™ŸåŠæ¬Šé™ç”³è«‹/è®Šæ›´",
+            "contents": []
+          },
+          {
+            "type": "text",
+            "text": "2. æ ¡å‹™ç³»çµ±å•é¡Œç¶­è­·ç”³è«‹",
+            "contents": []
+          },
+          {
+            "type": "text",
+            "text": "3. æ ¡å‹™ç³»çµ±å•é¡Œè«®è©¢",
+            "contents": []
+          },
+          {
+            "type": "text",
+            "text": "4. è³‡è¨Šç³»çµ±å•é¡Œè«®è©¢",
+            "contents": []
+          },
+          {
+            "type": "text",
+            "text": "5. è³‡å®‰ä½œæ¥­è«®è©¢",
+            "contents": []
+          }
+        ]
+      },
+      "footer": {
+        "type": "box",
+        "layout": "horizontal",
+        "contents": [
+          {
+            "type": "button",
+            "action": {
+              "type": "postback",
+              "label": "åˆ†æ©Ÿ",
+              "data": "ex_3"
             }
           },
           {
-            "type": "bubble",
-            "direction": "ltr",
-            "header": {
-              "type": "box",
-              "layout": "vertical",
-              "contents": [
-                {
-                  "type": "text",
-                  "text": "¸â¥ı¥Í µ{¦¡³]­p®v",
-                  "align": "center",
-                  "contents": []
-                }
-              ]
-            },
-            "body": {
-              "type": "box",
-              "layout": "vertical",
-              "contents": [
-                {
-                  "type": "text",
-                  "text": "¡i·~°È¥Ó½Ğ¡j",
-                  "align": "center",
-                  "contents": []
-                },
-                {
-                  "type": "text",
-                  "text": "1. ³æ¤@Ã±¤Jº[¤J¤fºô¤¶±µ¥Ó½Ğ/ÅÜ§ó",
-                  "contents": []
-                },
-                {
-                  "type": "text",
-                  "text": "2. ³æ¤@Ã±¤Jº[¤J¤fºô°İÃD¿Ô¸ß",
-                  "contents": []
-                },
-                {
-                  "type": "text",
-                  "text": "3. ¸ê°T¨t²Î°İÃD¿Ô¸ß",
-                  "contents": []
-                },
-                {
-                  "type": "text",
-                  "text": "4. ¸ê¦w§@·~¿Ô¸ß",
-                  "contents": []
-                }
-              ]
-            },
-            "footer": {
-              "type": "box",
-              "layout": "horizontal",
-              "contents": [
-                {
-                  "type": "button",
-                  "action": {
-                    "type": "postback",
-                    "label": "¤À¾÷",
-                    "data": "ex_4"
-                  }
-                },
-                {
-                  "type": "button",
-                  "action": {
-                    "type": "postback",
-                    "label": "Email",
-                    "data": "email_4"
-                  }
-                }
-              ]
+            "type": "button",
+            "action": {
+              "type": "postback",
+              "label": "Email",
+              "data": "email_3"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "bubble",
+      "direction": "ltr",
+      "header": {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "text": "è©¹å…ˆç”Ÿ ç¨‹å¼è¨­è¨ˆå¸«",
+            "align": "center",
+            "contents": []
+          }
+        ]
+      },
+      "body": {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "text": "ã€æ¥­å‹™ç”³è«‹ã€‘",
+            "align": "center",
+            "contents": []
+          },
+          {
+            "type": "text",
+            "text": "1. å–®ä¸€ç°½å…¥æš¨å…¥å£ç¶²ä»‹æ¥ç”³è«‹/è®Šæ›´",
+            "contents": []
+          },
+          {
+            "type": "text",
+            "text": "2. å–®ä¸€ç°½å…¥æš¨å…¥å£ç¶²å•é¡Œè«®è©¢",
+            "contents": []
+          },
+          {
+            "type": "text",
+            "text": "3. è³‡è¨Šç³»çµ±å•é¡Œè«®è©¢",
+            "contents": []
+          },
+          {
+            "type": "text",
+            "text": "4. è³‡å®‰ä½œæ¥­è«®è©¢",
+            "contents": []
+          }
+        ]
+      },
+      "footer": {
+        "type": "box",
+        "layout": "horizontal",
+        "contents": [
+          {
+            "type": "button",
+            "action": {
+              "type": "postback",
+              "label": "åˆ†æ©Ÿ",
+              "data": "ex_4"
+            }
+          },
+          {
+            "type": "button",
+            "action": {
+              "type": "postback",
+              "label": "Email",
+              "data": "email_4"
             }
           }
         ]

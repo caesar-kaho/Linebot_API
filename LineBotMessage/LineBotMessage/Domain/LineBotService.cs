@@ -154,9 +154,20 @@ namespace LineBotMessage.Domain
                       break;
 
                 case "richmenu_job":
-                    //回傳業務職掌
+                    // 回傳設定 Rich Menu 的功能
                     var json = File.ReadAllText("C:\\Users\\caesa\\source\\repos\\Linebot_WebAPI\\LineBotMessage\\LineBotMessage\\JsonMessages\\richmenuJob.json");
-                    replyMessage = json;
+                    replyMessage = new ReplyMessageRequestDto<FlexMessageDto<FlexCarouselContainerDto>>
+                    {
+                        ReplyToken = eventDto.ReplyToken,
+                        Messages = new List<FlexMessageDto<FlexCarouselContainerDto>>
+                        {
+                            new FlexMessageDto<FlexCarouselContainerDto>()
+                                {
+                                    AltText = "業務職掌",
+                                    Contents = _jsonProvider.Deserialize<FlexCarouselContainerDto>(json)
+                                }
+                        }
+                    };
 
                     break;
             }
