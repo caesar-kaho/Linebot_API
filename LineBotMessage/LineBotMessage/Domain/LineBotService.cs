@@ -134,6 +134,11 @@ namespace LineBotMessage.Domain
                     replyMessage = CreateFlexMessageFromFile("C:\\Users\\caesa\\source\\repos\\Linebot_WebAPI\\LineBotMessage\\LineBotMessage\\JsonMessages\\richmenuJob.json", eventDto, "業務職掌");
                     break;
 
+                case "dataType=service":
+                    // 回傳業務職掌
+                    replyMessage = CreateFlexMessageFromFile("C:\\Users\\caesa\\source\\repos\\Linebot_WebAPI\\LineBotMessage\\LineBotMessage\\JsonMessages\\richmenuService.json", eventDto, "服務項目");
+                    break;
+
                 case "ex_1":
                     //回傳分機
                     replyMessage = CreateTextMessage("分機號碼: 3310 3321", eventDto);
@@ -434,21 +439,6 @@ namespace LineBotMessage.Domain
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", channelAccessToken); //帶入 channel access token
             var json = _jsonProvider.Serialize(request);
-            var requestMessage = new HttpRequestMessage
-            {
-                Method = HttpMethod.Post,
-                RequestUri = new Uri(replyMessageUri),
-                Content = new StringContent(json, Encoding.UTF8, "application/json")
-            };
-
-            var response = await client.SendAsync(requestMessage);
-            Console.WriteLine(await response.Content.ReadAsStringAsync());
-        }
-
-        public async void SendJsonMessage(string json)
-        {
-            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", channelAccessToken);
             var requestMessage = new HttpRequestMessage
             {
                 Method = HttpMethod.Post,

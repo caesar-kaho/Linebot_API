@@ -52,7 +52,7 @@ namespace LineBotMessage.Dtos
         public string? MaxHeight { get; set; }
         public int? Flex { get; set; }
         public string? Spacing { get; set; }
-        public string? Mergin { get; set; }
+        public string? Margin { get; set; }
         public string? PaddingAll { get; set; }
         public string? PaddingTop { get; set; }
         public string? PaddingBottom { get; set; }
@@ -91,7 +91,7 @@ namespace LineBotMessage.Dtos
         public bool? Wrap { get; set; }
         public string? LineSpaceing { get; set; }
         public int? Maxlines { get; set; }
-        public string? Wㄍight { get; set; }
+        public string? Weight { get; set; }
         public string? Decoration { get; set; }
 
         //icon, span, separator, filler 屬性已宣告過
