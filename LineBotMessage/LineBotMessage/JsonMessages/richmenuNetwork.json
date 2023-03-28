@@ -50,9 +50,9 @@
       {
         "type": "button",
         "action": {
-          "type": "postback",
+          "type": "uri",
           "label": "校園無線區域網路操作說明",
-          "data": "dataType=wifi"
+          "uri": "https://lis.ntus.edu.tw/index.php?code=list&flag=detail&ids=819&article_id=23051"
         }
       },
       {

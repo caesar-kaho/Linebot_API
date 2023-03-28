@@ -259,6 +259,53 @@ namespace LineBotMessage.Domain
 
                     break;
 
+                case "dataType=ads":
+                    //回傳廣告信和攻擊行為
+                    replyMessage = CreateTextMessage("廣告信件：\r\n本校MailServer 只限校內IP，外界IP無法使用此MailServer寄\r\n發廣告信，不會成為廣告信轉發站；且本校MailServer有anti-spam機制，可防治廣告垃圾信之濫發。", eventDto);
+                    break;
+
+                case "dataType=abuse":
+                    //回傳Abuse
+                    replyMessage = CreateTextMessage("Abuse 和 copyright 帳號：   \r\n本校已建該帳號並有專人管理，資訊服務組同仁各依權責處理並為帳號管理人。\r\n \r\n管理人    帳號 \r\n汪新隆    abuse@ntus.edu.tw\r\n汪新隆    security@ntus.edu.tw", eventDto);
+                    break;
+
+                case "dataType=rules":
+                    //回傳校園網路使用相關規範
+                    replyMessage = new ReplyMessageRequestDto<TemplateMessageDto<ButtonsTemplateDto>>
+                    {
+                        ReplyToken = eventDto.ReplyToken,
+                        Messages = new List<TemplateMessageDto<ButtonsTemplateDto>>
+                        {
+                            new TemplateMessageDto<ButtonsTemplateDto>
+                            {
+                                AltText = "校園網路使用相關規範",
+                                Template = new ButtonsTemplateDto
+                                {
+                                    Text = "校園網路使用相關規範",
+                                   
+
+                                    Actions = new List<ActionDto>
+                                    {
+                                        new ActionDto
+                                        {
+                                            Type = ActionTypeEnum.Uri,
+                                            Label = "校園網路使用規範要點",
+                                            Uri = "https://www.ntus.edu.tw/upload/ckfinder/files/computer02.pdf"
+                                        },
+                                        new ActionDto
+                                        {
+                                            Type = ActionTypeEnum.Uri,
+                                            Label = "電子郵件管理要點",
+                                            Uri = "https://www.ntus.edu.tw/js/upload/ckfinder/files/%E9%9B%BB%E5%AD%90%E9%83%B5%E4%BB%B6%E7%AE%A1%E7%90%86%E8%A6%81%E9%BB%9E.pdf"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    };
+
+                    break;
+
                 default:
                     break;
             }
