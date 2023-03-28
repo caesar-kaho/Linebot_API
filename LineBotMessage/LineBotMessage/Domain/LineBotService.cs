@@ -215,6 +215,50 @@ namespace LineBotMessage.Domain
 
                     break;
 
+                case "dataType=survey":
+                    //校園網路滿意度調查
+                    replyMessage = new ReplyMessageRequestDto<TemplateMessageDto<ButtonsTemplateDto>>
+                    {
+                        ReplyToken = eventDto.ReplyToken,
+                        Messages = new List<TemplateMessageDto<ButtonsTemplateDto>>
+                        {
+                            new TemplateMessageDto<ButtonsTemplateDto>
+                            {
+                                AltText = "校園網路滿意度調查",
+                                Template = new ButtonsTemplateDto
+                                {
+                                    Title = "校園網路滿意度調查",
+                                    Text = "完成報修服務，煩請填寫以下之校園網路、校務系統及入口網(含單一簽入)應用系統滿意度調查表：",
+
+                                    Actions = new List<ActionDto>
+                                    {
+                                        new ActionDto
+                                        {
+                                            Type = ActionTypeEnum.Uri,
+                                            Label = "校園網路滿意度調查",
+                                            Uri = "https://docs.google.com/forms/d/e/1FAIpQLSeddapJFvZlOxDToZqpOHvmHjA4tVojQ3yBlr_9Dzhp1M1-Fg/viewform"
+                                        },
+                                        new ActionDto
+                                        {
+                                            Type = ActionTypeEnum.Uri,
+                                            Label = "校務系統滿意度調查",
+                                            Uri = "https://docs.google.com/forms/d/e/1FAIpQLSeuwsG4fJWLgRY6sMplT8WonUTToDjXbjutGXpGeA2sryd4MA/viewform"
+                                        },
+                                        new ActionDto
+                                        {
+                                            Type = ActionTypeEnum.Uri,
+                                            Label = "校園入口網暨單一簽入滿意度調查表",
+                                            Uri = "https://docs.google.com/forms/d/e/1FAIpQLSd9rZgZsfshkHdnBM53uJknMFQcNjbBgMxKuAmkD6Z16gY_LQ/viewform"
+                                        }
+                                        
+                                    }
+                                }
+                            }
+                        }
+                    };
+
+                    break;
+
                 default:
                     break;
             }
