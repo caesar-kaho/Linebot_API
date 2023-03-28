@@ -131,12 +131,17 @@ namespace LineBotMessage.Domain
 
                 case "dataType=job":
                     // 回傳業務職掌
-                    replyMessage = CreateFlexMessageFromFile("C:\\Users\\caesa\\source\\repos\\Linebot_WebAPI\\LineBotMessage\\LineBotMessage\\JsonMessages\\richmenuJob.json", eventDto, "業務職掌");
+                    replyMessage = CreateFlexCarouselFromFile("C:\\Users\\caesa\\source\\repos\\Linebot_WebAPI\\LineBotMessage\\LineBotMessage\\JsonMessages\\richmenuJob.json", eventDto, "業務職掌");
                     break;
 
                 case "dataType=service":
-                    // 回傳業務職掌
-                    replyMessage = CreateFlexMessageFromFile("C:\\Users\\caesa\\source\\repos\\Linebot_WebAPI\\LineBotMessage\\LineBotMessage\\JsonMessages\\richmenuService.json", eventDto, "服務項目");
+                    // 回傳服務項目
+                    replyMessage = CreateFlexCarouselFromFile("C:\\Users\\caesa\\source\\repos\\Linebot_WebAPI\\LineBotMessage\\LineBotMessage\\JsonMessages\\richmenuService.json", eventDto, "服務項目");
+                    break;
+
+                case "dataType=network":
+                    // 回傳校園網路服務
+                    replyMessage = CreateFlexBubbleFromFile("C:\\Users\\caesa\\source\\repos\\Linebot_WebAPI\\LineBotMessage\\LineBotMessage\\JsonMessages\\richmenuNetwork.json", eventDto, "校園網路服務");
                     break;
 
                 case "ex_1":
@@ -198,7 +203,7 @@ namespace LineBotMessage.Domain
             };
         }
 
-        private ReplyMessageRequestDto<FlexMessageDto<FlexCarouselContainerDto>> CreateFlexMessageFromFile(string filePath, WebhookEventDto eventDto, string altText)
+        private ReplyMessageRequestDto<FlexMessageDto<FlexCarouselContainerDto>> CreateFlexCarouselFromFile(string filePath, WebhookEventDto eventDto, string altText)
         {
             var json = File.ReadAllText(filePath);
             return new ReplyMessageRequestDto<FlexMessageDto<FlexCarouselContainerDto>>
@@ -213,7 +218,24 @@ namespace LineBotMessage.Domain
                     }
                 }
             };
-        }               
+        }
+
+        private ReplyMessageRequestDto<FlexMessageDto<FlexBubbleContainerDto>> CreateFlexBubbleFromFile(string filePath, WebhookEventDto eventDto, string altText)
+        {
+            var json = File.ReadAllText(filePath);
+            return new ReplyMessageRequestDto<FlexMessageDto<FlexBubbleContainerDto>>
+            {
+                ReplyToken = eventDto.ReplyToken,
+                Messages = new List<FlexMessageDto<FlexBubbleContainerDto>>
+                {
+                    new FlexMessageDto<FlexBubbleContainerDto>()
+                    {
+                        AltText = altText,
+                        Contents = _jsonProvider.Deserialize<FlexBubbleContainerDto>(json)
+                    }
+                }
+            };
+        }
 
         public void ReceiveMessageWebhookEvent(WebhookEventDto eventDto)
         {

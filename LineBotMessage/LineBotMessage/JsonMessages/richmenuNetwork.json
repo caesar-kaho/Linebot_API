@@ -1,0 +1,122 @@
+﻿{
+  "type": "bubble",
+  "direction": "ltr",
+  "header": {
+    "type": "box",
+    "layout": "vertical",
+    "contents": [
+      {
+        "type": "text",
+        "text": "校園網路服務",
+        "size": "xl",
+        "color": "#FFFFFFFF",
+        "align": "center",
+        "margin": "none",
+        "offsetTop": "30%",
+        "contents": []
+      }
+    ]
+  },
+  "body": {
+    "type": "box",
+    "layout": "vertical",
+    "contents": [
+      {
+        "type": "button",
+        "action": {
+          "type": "postback",
+          "label": "校園網路報修系統",
+          "data": "dataType=report"
+        }
+      },
+      {
+        "type": "separator",
+        "margin": "md",
+        "color": "#FFFFFF00"
+      },
+      {
+        "type": "button",
+        "action": {
+          "type": "postback",
+          "label": "校園網路滿意度調查",
+          "data": "dataType=survey"
+        }
+      },
+      {
+        "type": "separator",
+        "margin": "md",
+        "color": "#FFFFFF00"
+      },
+      {
+        "type": "button",
+        "action": {
+          "type": "postback",
+          "label": "校園無線區域網路操作說明",
+          "data": "dataType=wifi"
+        }
+      },
+      {
+        "type": "separator",
+        "margin": "md",
+        "color": "#FFFFFF00"
+      },
+      {
+        "type": "button",
+        "action": {
+          "type": "postback",
+          "label": "廣告信和攻擊行為反應處理",
+          "data": "dataType=ads"
+        }
+      },
+      {
+        "type": "separator",
+        "margin": "md",
+        "color": "#FFFFFF00"
+      },
+      {
+        "type": "button",
+        "action": {
+          "type": "postback",
+          "label": "網路流量管理 ",
+          "data": "dataType=networkmanage"
+        }
+      },
+      {
+        "type": "separator",
+        "margin": "md",
+        "color": "#FFFFFF00"
+      },
+      {
+        "type": "button",
+        "action": {
+          "type": "postback",
+          "label": "Abuse 和 copyright 帳號",
+          "data": "dataType=abuse"
+        }
+      },
+      {
+        "type": "separator",
+        "margin": "md",
+        "color": "#FFFFFF00"
+      },
+      {
+        "type": "button",
+        "action": {
+          "type": "postback",
+          "label": "校園網路使用相關規範",
+          "data": "dataType=rules"
+        }
+      },
+      {
+        "type": "separator",
+        "margin": "md",
+        "color": "#FFFFFF00"
+      }
+    ]
+  },
+  "styles": {
+    "header": {
+      "backgroundColor": "#006CFFFF"
+    }
+  }
+}
