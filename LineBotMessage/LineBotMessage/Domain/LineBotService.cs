@@ -184,6 +184,37 @@ namespace LineBotMessage.Domain
                     replyMessage = CreateTextMessage("Email: ", eventDto);
                     break;
 
+                case "dataType=report":
+                    //校園網路報修系統
+                    replyMessage = new ReplyMessageRequestDto<TemplateMessageDto<ButtonsTemplateDto>>
+                    {
+                        ReplyToken = eventDto.ReplyToken,
+                        Messages = new List<TemplateMessageDto<ButtonsTemplateDto>>
+                        {
+                            new TemplateMessageDto<ButtonsTemplateDto>
+                            {
+                                AltText = "校園網路報修系統",
+                                Template = new ButtonsTemplateDto
+                                {
+                                    Title = "校園網路報修系統",
+                                    Text = "若有校園網路、虛擬機及系統問題，煩請填寫以下報修單：",
+
+                                    Actions = new List<ActionDto>
+                                    {
+                                        new ActionDto
+                                        {
+                                            Type = ActionTypeEnum.Uri,
+                                            Label = "校園網路、虛擬機及系統報修單",
+                                            Uri = "https://docs.google.com/forms/d/e/1FAIpQLSeAqe71-NZxWJoYnSfkwcI4tBif3Kty0FymuYTckqjv4-XOHg/viewform"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    };
+
+                    break;
+
                 default:
                     break;
             }
