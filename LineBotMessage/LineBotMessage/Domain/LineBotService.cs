@@ -366,6 +366,46 @@ namespace LineBotMessage.Domain
                     replyMessage = CreateFlexBubbleFromFile("C:\\Users\\caesa\\source\\repos\\Linebot_WebAPI\\LineBotMessage\\LineBotMessage\\JsonMessages\\information.json", eventDto, "資訊服務申請");
                     break;
 
+                //case "dataType=apiApply":
+                //    //api申請
+                //    replyMessage = new ReplyMessageRequestDto<TemplateMessageDto<ButtonsTemplateDto>>
+                //    {
+                //        ReplyToken = eventDto.ReplyToken,
+                //        Messages = new List<TemplateMessageDto<ButtonsTemplateDto>>
+                //        {
+                //            new TemplateMessageDto<ButtonsTemplateDto>
+                //            {
+                //                AltText = "學校組織與人員API服務申請單",
+                //                Template = new ButtonsTemplateDto
+                //                {
+                //                    Title ="學校組織與人員API服務申請單",
+                //                    Text = "有關學校組織與人員API服務申請單之新增/修改/刪除功能需求，請填寫以下二附件，並送至資訊服務組：\r\n\r\n資訊系統需求申請單\r\n學校組織人員API服務申請單\r\n\r\n※需事先申請過OAuth 2.0服務，才能申請本服務。",
+
+                //                    Actions = new List<ActionDto>
+                //                    {
+                //                        new ActionDto
+                //                        {
+                //                            Type = ActionTypeEnum.Uri,
+                //                            Label = "資訊系統需求申請單.docx",
+                //                            Uri = "https://lis.ntus.edu.tw/upload/library/attachment/ceddfdd12c3851cd1e2316400255971e.docx"
+
+                //                        },
+                //                        new ActionDto
+                //                        {
+                //                            Type = ActionTypeEnum.Uri,
+                //                            Label = "組織人員資料讀取WebAPI服務申請資料表.odt",
+                //                            Uri = "https://lis.ntus.edu.tw/upload/library/attachment/d60a9796e21e04d8cf0b90a2e9b5cf24.odt"
+
+                //                        }
+                //                    }
+
+                //                }
+                //            }
+                //        }
+                //    };
+
+                    break;
+
                 default:
                     break;
             }
