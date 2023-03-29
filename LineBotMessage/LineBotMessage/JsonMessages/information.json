@@ -1,0 +1,102 @@
+﻿{
+  "type": "bubble",
+  "size": "giga",
+  "direction": "ltr",
+  "header": {
+    "type": "box",
+    "layout": "vertical",
+    "contents": [
+      {
+        "type": "text",
+        "text": "資訊服務申請",
+        "size": "xl",
+        "color": "#FFFFFFFF",
+        "align": "center",
+        "margin": "none",
+        "offsetTop": "30%",
+        "contents": []
+      }
+    ]
+  },
+  "body": {
+    "type": "box",
+    "layout": "vertical",
+    "contents": [
+      {
+        "type": "separator",
+        "margin": "md",
+        "color": "#FFFFFF00"
+      },
+      {
+        "type": "button",
+        "action": {
+          "type": "postback",
+          "label": "學校組織與人員API服務申請單",
+          "data": "dataType=apiApply"
+        }
+      },
+      {
+        "type": "separator",
+        "margin": "md",
+        "color": "#FFFFFF00"
+      },
+      {
+        "type": "button",
+        "action": {
+          "type": "postback",
+          "label": "單一簽入OAuth 2.0機制介接需求申",
+          "data": "dataType=authApply"
+        }
+      },
+      {
+        "type": "separator",
+        "margin": "md",
+        "color": "#FFFFFF00"
+      },
+      {
+        "type": "button",
+        "action": {
+          "type": "postback",
+          "label": "資訊系統需求申請單",
+          "data": "dataType=systemApply"
+        }
+      },
+      {
+        "type": "separator",
+        "margin": "md",
+        "color": "#FFFFFF00"
+      },
+      {
+        "type": "button",
+        "action": {
+          "type": "postback",
+          "label": "資訊系統使用權限申請單",
+          "data": "dataType=accessApply"
+        }
+      },
+      {
+        "type": "separator",
+        "margin": "md",
+        "color": "#FFFFFF00"
+      },
+      {
+        "type": "button",
+        "action": {
+          "type": "postback",
+          "label": "新一代校務資訊系統之系統維護申請單教學",
+          "data": "dataType=campusSystemApply"
+        }
+      },
+      {
+        "type": "separator",
+        "margin": "md",
+        "color": "#FFFFFF00"
+      }
+    ]
+  },
+  "styles": {
+    "header": {
+      "backgroundColor": "#006CFFFF"
+    }
+  }
+}

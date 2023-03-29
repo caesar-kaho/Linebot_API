@@ -361,6 +361,11 @@ namespace LineBotMessage.Domain
 
                 //    break;
 
+                case "dataType=information":
+                    // 回傳資訊服務申請
+                    replyMessage = CreateFlexBubbleFromFile("C:\\Users\\caesa\\source\\repos\\Linebot_WebAPI\\LineBotMessage\\LineBotMessage\\JsonMessages\\information.json", eventDto, "資訊服務申請");
+                    break;
+
                 default:
                     break;
             }
