@@ -9,6 +9,8 @@ using System.Linq;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Newtonsoft.Json;
 using System.Net.WebSockets;
+using isRock.LineBot;
+using Microsoft.Extensions.FileProviders.Composite;
 
 namespace LineBotMessage.Domain
 {
@@ -343,6 +345,21 @@ namespace LineBotMessage.Domain
                     };
 
                     break;
+
+                //case "campusNetworkApply":
+                //    //測試imagesMap
+                //    var json = File.ReadAllText("C:\\Users\\caesa\\source\\repos\\Linebot_WebAPI\\LineBotMessage\\LineBotMessage\\JsonMessages\\imageMapDemo.json");
+                //    replyMessage = new ReplyMessageRequestDto<ImagemapMessageDto>
+                //    {
+                //        ReplyToken = eventDto.ReplyToken,
+                //        Messages = new List<ImagemapMessageDto>
+                //        {                          
+
+
+                //        }
+                //    };
+
+                //    break;
 
                 default:
                     break;
