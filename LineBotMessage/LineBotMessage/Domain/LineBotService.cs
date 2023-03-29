@@ -306,6 +306,44 @@ namespace LineBotMessage.Domain
 
                     break;
 
+                case "dataType=networkApply":
+                    //回傳網路服務申請
+                    replyMessage = new ReplyMessageRequestDto<TemplateMessageDto<ButtonsTemplateDto>>
+                    {
+                        ReplyToken = eventDto.ReplyToken,
+                        Messages = new List<TemplateMessageDto<ButtonsTemplateDto>>
+                        {
+                             new TemplateMessageDto<ButtonsTemplateDto>
+                            {
+                                AltText = "網路服務申請",
+                                Template = new ButtonsTemplateDto
+                                {
+                                    Text = "網路服務申請",
+
+                                    Actions = new List<ActionDto>
+                                    {
+                                        new ActionDto
+                                        {
+                                            Type = ActionTypeEnum.Postback,
+                                            Label = "校園網路服務申請",
+                                            Data = "campusNetworkApply"
+                                        },
+
+                                        new ActionDto
+                                        {
+                                            Type = ActionTypeEnum.Postback,
+                                            Label = "校園伺服器申請",
+                                            Data = "campusServerApply"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                       
+                    };
+
+                    break;
+
                 default:
                     break;
             }
