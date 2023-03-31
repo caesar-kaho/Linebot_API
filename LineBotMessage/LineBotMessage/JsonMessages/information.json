@@ -44,7 +44,7 @@
         "type": "button",
         "action": {
           "type": "postback",
-          "label": "單一簽入OAuth 2.0機制介接需求申",
+          "label": "單一簽入OAuth 2.0機制介接需求申請單",
           "data": "dataType=authApply"
         }
       },

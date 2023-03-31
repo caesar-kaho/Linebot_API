@@ -1,0 +1,91 @@
+﻿{
+  "type": "bubble",
+  "direction": "ltr",
+  "header": {
+    "type": "box",
+    "layout": "vertical",
+    "contents": [
+      {
+        "type": "text",
+        "text": "學校組織與人員API服務申請單",
+        "size": "lg",
+        "color": "#FFFFFFFF",
+        "align": "center",
+        "contents": []
+      }
+    ]
+  },
+  "body": {
+    "type": "box",
+    "layout": "vertical",
+    "contents": [
+      {
+        "type": "text",
+        "text": "有關學校組織與人員API服務申請單之新增/修改/刪除功能需求，請填寫以下二附件，並送至資訊服務組：",
+        "size": "lg",
+        "align": "start",
+        "wrap": true,
+        "contents": []
+      },
+      {
+        "type": "separator",
+        "margin": "md",
+        "color": "#FFFFFFFF"
+      },
+      {
+        "type": "text",
+        "text": "1. 資訊系統需求申請單",
+        "contents": []
+      },
+      {
+        "type": "text",
+        "text": "2. 學校組織人員API服務申請單",
+        "contents": []
+      },
+      {
+        "type": "separator",
+        "margin": "md",
+        "color": "#FFFFFFFF"
+      },
+      {
+        "type": "text",
+        "text": "※需事先申請過OAuth 2.0服務，才能申請本服務。",
+        "color": "#0057FFFF",
+        "wrap": true,
+        "contents": []
+      },
+      {
+        "type": "separator",
+        "margin": "md",
+        "color": "#FFFFFFFF"
+      },
+      {
+        "type": "text",
+        "text": "附件下載",
+        "size": "xs",
+        "contents": []
+      },
+      {
+        "type": "button",
+        "action": {
+          "type": "uri",
+          "label": "資訊系統需求申請單.docx",
+          "uri": "https://lis.ntus.edu.tw/upload/library/attachment/ceddfdd12c3851cd1e2316400255971e.docx"
+        }
+      },
+      {
+        "type": "button",
+        "action": {
+          "type": "uri",
+          "label": "學校組織人員API服務申請單",
+          "uri": "https://lis.ntus.edu.tw/upload/library/attachment/d60a9796e21e04d8cf0b90a2e9b5cf24.odt"
+        }
+      }
+    ]
+  },
+  "styles": {
+    "header": {
+      "backgroundColor": "#0021FFFF"
+    }
+  }
+}
