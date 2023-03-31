@@ -373,28 +373,148 @@ namespace LineBotMessage.Domain
                     break;
 
                 case "dataType=authApply":
-                    //api申請
+                    //單一簽入OAuth 2.0機制介接需求申請單
                     replyMessage = CreateFlexBubbleFromFile("C:\\Users\\caesa\\source\\repos\\Linebot_WebAPI\\LineBotMessage\\LineBotMessage\\JsonMessages\\authApply.json", eventDto, "單一簽入OAuth 2.0機制介接需求申請單");
 
                     break;
 
                 case "dataType=systemApply":
-                    //api申請
+                    //資訊系統需求申請單
                     replyMessage = CreateFlexBubbleFromFile("C:\\Users\\caesa\\source\\repos\\Linebot_WebAPI\\LineBotMessage\\LineBotMessage\\JsonMessages\\systemApply.json", eventDto, "資訊系統需求申請單");
 
                     break;
 
                 case "dataType=accessApply":
-                    //api申請
+                    //資訊系統使用權限申請單
                     replyMessage = CreateFlexBubbleFromFile("C:\\Users\\caesa\\source\\repos\\Linebot_WebAPI\\LineBotMessage\\LineBotMessage\\JsonMessages\\accessApply.json", eventDto, "資訊系統使用權限申請單");
 
                     break;
 
                 case "dataType=campusSystemApply":
-                    //api申請
-                    replyMessage = CreateFlexBubbleFromFile("C:\\Users\\caesa\\source\\repos\\Linebot_WebAPI\\LineBotMessage\\LineBotMessage\\JsonMessages\\campusSystemApply.json", eventDto, "新一代校務資訊系統之系統維護申請單教學  ");
+                    //新一代校務資訊系統之系統維護申請單教學
+                    replyMessage = CreateFlexBubbleFromFile("C:\\Users\\caesa\\source\\repos\\Linebot_WebAPI\\LineBotMessage\\LineBotMessage\\JsonMessages\\campusSystemApply.json", eventDto, "新一代校務資訊系統之系統維護申請單教學");
 
                     break;
+
+                case "dataType=pc":
+                    //電腦設備預算專區
+                    replyMessage = CreateFlexBubbleFromFile("C:\\Users\\caesa\\source\\repos\\Linebot_WebAPI\\LineBotMessage\\LineBotMessage\\JsonMessages\\pc.json", eventDto, "電腦設備預算專區");
+
+                    break;
+
+                case "dataType=pcBudget112":
+                    //112年度電腦設備預算編列
+                    replyMessage = new ReplyMessageRequestDto<TemplateMessageDto<ButtonsTemplateDto>>
+                    {
+                        ReplyToken = eventDto.ReplyToken,
+                        Messages = new List<TemplateMessageDto<ButtonsTemplateDto>>
+                        {
+                            new TemplateMessageDto<ButtonsTemplateDto>
+                            {
+                                AltText = "112年度電腦設備預算編列",
+                                Template = new ButtonsTemplateDto
+                                {
+                                    Title = "112年度電腦設備預算編列",
+                                    Text = "附件下載",
+
+
+                                    Actions = new List<ActionDto>
+                                    {
+                                        new ActionDto
+                                        {
+                                            Type = ActionTypeEnum.Uri,
+                                            Label = "112年各單位電腦經費預算分配表.ods",
+                                            Uri = "https://lis.ntus.edu.tw/upload/library/attachment/021a1766bf13ef416a4bfca0aabdcb0b.ods"
+                                        },
+                                        new ActionDto
+                                        {
+                                            Type = ActionTypeEnum.Uri,
+                                            Label = "111-1圖委會_紀錄1.odt",
+                                            Uri = "https://lis.ntus.edu.tw/upload/library/attachment/f2c82d49e1c514f56a61c1d5159f87a7.odt"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    };
+
+                    break;
+
+                case "dataType=pcBudget111":
+                    //111年度電腦設備預算編列
+                    replyMessage = new ReplyMessageRequestDto<TemplateMessageDto<ButtonsTemplateDto>>
+                    {
+                        ReplyToken = eventDto.ReplyToken,
+                        Messages = new List<TemplateMessageDto<ButtonsTemplateDto>>
+                        {
+                            new TemplateMessageDto<ButtonsTemplateDto>
+                            {
+                                AltText = "111年度電腦設備預算編列",
+                                Template = new ButtonsTemplateDto
+                                {
+                                    Title = "111年度電腦設備預算編列",
+                                    Text = "請參考110學年度第1次圖書資訊委員會會議紀錄，預算編列詳如提案五：",
+
+
+                                    Actions = new List<ActionDto>
+                                    {
+                                        new ActionDto
+                                        {
+                                            Type = ActionTypeEnum.Uri,
+                                            Label = "會議決議",
+                                            Uri = "https://www.ntus.edu.tw/upload/ckfinder/files/110-111%E5%9C%96%E5%A7%94%E6%84%B7%E7%B4%80%E9%8C%84.pdf"
+                                        },
+                                        new ActionDto
+                                        {
+                                            Type = ActionTypeEnum.Uri,
+                                            Label = "各單位電腦設備預算編列",
+                                            Uri = "https://www.ntus.edu.tw/upload/ckfinder/files/111%E5%B9%B4%E5%90%84%E5%96%AE%E4%BD%8D%E9%9B%BB%E8%85%A6%E7%B6%93%E8%B2%BB%E9%A0%90%E7%AE%97%E5%88%86%E9%85%8D%E8%A1%A8.pdf"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    };
+
+                    break;
+
+                case "dataType=pcBudget110":
+                    //110年度電腦設備預算編列
+                    replyMessage = new ReplyMessageRequestDto<TemplateMessageDto<ButtonsTemplateDto>>
+                    {
+                        ReplyToken = eventDto.ReplyToken,
+                        Messages = new List<TemplateMessageDto<ButtonsTemplateDto>>
+                        {
+                            new TemplateMessageDto<ButtonsTemplateDto>
+                            {
+                                AltText = "110年度電腦設備預算編列",
+                                Template = new ButtonsTemplateDto
+                                {                                    
+                                    Text = "110年度電腦設備預算列表",
+
+
+                                    Actions = new List<ActionDto>
+                                    {
+                                        new ActionDto
+                                        {
+                                            Type = ActionTypeEnum.Uri,
+                                            Label = "各單位電腦設備預算編列",
+                                            Uri = "https://lis.ntus.edu.tw/index.php?act=download&ids=24280&path=https://lis.ntus.edu.tw/upload/library/attachment/e1833e1f2005cf941a35ea79ed950898.ods&title=110%E5%B9%B4%E5%BA%A6%E9%9B%BB%E8%85%A6%E8%A8%AD%E5%82%99%E9%A0%90%E7%AE%97%E7%B7%A8%E5%88%97"
+                                        },
+                                        new ActionDto
+                                        {
+                                            Type = ActionTypeEnum.Uri,
+                                            Label = "教學單位主機汰換經費分配表",
+                                            Uri = "https://lis.ntus.edu.tw/index.php?act=download&ids=24321&path=https://lis.ntus.edu.tw/upload/library/attachment/80579f86800a71fff91d78ea2b0db954.pdf&title=110%E5%B9%B4%E6%95%99%E5%AD%B8%E5%96%AE%E4%BD%8D%E4%B8%BB%E6%A9%9F%E6%B1%B0%E6%8F%9B%E7%B6%93%E8%B2%BB%E5%88%86%E9%85%8D%E8%A1%A8"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    };
+
+                    break;
+
 
                 default:
                     break;
