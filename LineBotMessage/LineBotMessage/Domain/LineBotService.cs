@@ -372,6 +372,12 @@ namespace LineBotMessage.Domain
 
                     break;
 
+                case "dataType=authApply":
+                    //api申請
+                    replyMessage = CreateFlexBubbleFromFile("C:\\Users\\caesa\\source\\repos\\Linebot_WebAPI\\LineBotMessage\\LineBotMessage\\JsonMessages\\authApply.json", eventDto, "單一簽入OAuth 2.0機制介接需求申請單");
+
+                    break;
+
                 default:
                     break;
             }
