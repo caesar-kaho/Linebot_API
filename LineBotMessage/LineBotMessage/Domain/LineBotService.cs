@@ -378,6 +378,24 @@ namespace LineBotMessage.Domain
 
                     break;
 
+                case "dataType=systemApply":
+                    //api申請
+                    replyMessage = CreateFlexBubbleFromFile("C:\\Users\\caesa\\source\\repos\\Linebot_WebAPI\\LineBotMessage\\LineBotMessage\\JsonMessages\\systemApply.json", eventDto, "資訊系統需求申請單");
+
+                    break;
+
+                case "dataType=accessApply":
+                    //api申請
+                    replyMessage = CreateFlexBubbleFromFile("C:\\Users\\caesa\\source\\repos\\Linebot_WebAPI\\LineBotMessage\\LineBotMessage\\JsonMessages\\accessApply.json", eventDto, "資訊系統使用權限申請單");
+
+                    break;
+
+                case "dataType=campusSystemApply":
+                    //api申請
+                    replyMessage = CreateFlexBubbleFromFile("C:\\Users\\caesa\\source\\repos\\Linebot_WebAPI\\LineBotMessage\\LineBotMessage\\JsonMessages\\campusSystemApply.json", eventDto, "新一代校務資訊系統之系統維護申請單教學  ");
+
+                    break;
+
                 default:
                     break;
             }
