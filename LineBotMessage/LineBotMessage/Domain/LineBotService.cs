@@ -359,7 +359,7 @@ namespace LineBotMessage.Domain
                     break;
 
                 case "campusNetworkApply":
-                    //imagesMap
+                    //校園網路服務申請
                     var json = File.ReadAllText("C:\\Users\\caesa\\source\\repos\\Linebot_WebAPI\\LineBotMessage\\LineBotMessage\\JsonMessages\\campusNetworkApply.json");
                     replyMessage = new ReplyMessageRequestDto<ImagemapMessageDto>
                     {
@@ -368,6 +368,44 @@ namespace LineBotMessage.Domain
                         {
                             _jsonProvider.Deserialize<ImagemapMessageDto>(json) 
                         }
+                    };
+
+                    break;
+
+                case "campusServerApply":
+                    //校園伺服器申請
+                    replyMessage = new ReplyMessageRequestDto<TemplateMessageDto<ButtonsTemplateDto>>
+                    {
+                        ReplyToken = eventDto.ReplyToken,
+                        Messages = new List<TemplateMessageDto<ButtonsTemplateDto>>
+                        {
+                             new TemplateMessageDto<ButtonsTemplateDto>
+                            {
+                                AltText = "校園伺服器申請",
+                                Template = new ButtonsTemplateDto
+                                {
+                                    Text = "ISMS-W-004-05校園伺服器設立變更取消申請表_V1.0",
+                                    Title = "校園伺服器申請",
+                                    Actions = new List<ActionDto>
+                                    {
+                                        new ActionDto
+                                        {
+                                            Type = ActionTypeEnum.Uri,
+                                            Label = "PDF",
+                                            Uri = "https://www.ntus.edu.tw/upload/ckfinder/files/ISMS-W-004-05%E6%A0%A1%E5%9C%92%E4%BC%BA%E6%9C%8D%E5%99%A8%E8%A8%AD%E7%AB%8B%E8%AE%8A%E6%9B%B4%E5%8F%96%E6%B6%88%E7%94%B3%E8%AB%8B%E8%A1%A8_V1_0.doc"
+                                        },
+
+                                        new ActionDto
+                                        {
+                                            Type = ActionTypeEnum.Uri,
+                                            Label = "ODT",
+                                            Uri = "https://www.ntus.edu.tw/upload/ckfinder/files/ISMS-W-004-05%E6%A0%A1%E5%9C%92%E4%BC%BA%E6%9C%8D%E5%99%A8%E8%A8%AD%E7%AB%8B%E8%AE%8A%E6%9B%B4%E5%8F%96%E6%B6%88%E7%94%B3%E8%AB%8B%E8%A1%A8_V1_0.odt"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
                     };
 
                     break;
