@@ -1,0 +1,132 @@
+﻿
+    {
+      "type": "imagemap",
+      "baseUrl": "https://cd56-211-20-175-134.ngrok-free.app/api/File/UploadFiles/ImagemapImages/campusNetworkApply",
+      "altText": "校園網路服務申請",
+      "baseSize": {
+        "width": 1040,
+        "height": 1174
+      },
+      "actions": [
+        {
+          "type": "uri",
+          "area": {
+            "x": 196,
+            "y": 203,
+            "width": 92,
+            "height": 93
+          },
+          "linkUri": "https://www.ntus.edu.tw/upload/ckfinder/files/ISMS-W-004-06%20%E5%9B%BA%E5%AE%9AIP%E7%B6%B2%E5%9F%9F%E5%90%8D%E7%A8%B1%E7%94%B3%E8%AB%8B%E5%96%AE_V1_0.doc"
+        },
+        {
+          "type": "uri",
+          "area": {
+            "x": 302,
+            "y": 210,
+            "width": 101,
+            "height": 100
+          },
+          "linkUri": "https://www.ntus.edu.tw/upload/ckfinder/files/ISMS-W-004-06%20%E5%9B%BA%E5%AE%9AIP%E7%B6%B2%E5%9F%9F%E5%90%8D%E7%A8%B1%E7%94%B3%E8%AB%8B%E5%96%AE_V1_0.odt"
+        },
+        {
+          "type": "uri",
+          "area": {
+            "x": 201,
+            "y": 352,
+            "width": 98,
+            "height": 107
+          },
+          "linkUri": "https://www.ntus.edu.tw/upload/ckfinder/files/ISMS-W-004-01對外服務申請單_V1_0.doc"
+        },
+        {
+          "type": "uri",
+          "area": {
+            "x": 295,
+            "y": 344,
+            "width": 94,
+            "height": 102
+          },
+          "linkUri": "https://www.ntus.edu.tw/upload/ckfinder/files/ISMS-W-004-01對外服務申請單_V1_0.odt"
+        },
+        {
+          "type": "uri",
+          "area": {
+            "x": 192,
+            "y": 512,
+            "width": 111,
+            "height": 102
+          },
+          "linkUri": "https://www.ntus.edu.tw/upload/ckfinder/files/ISMS-W-004-03-網路頻寬管制申請單_V1_0.doc"
+        },
+        {
+          "type": "uri",
+          "area": {
+            "x": 311,
+            "y": 504,
+            "width": 90,
+            "height": 127
+          },
+          "linkUri": "https://www.ntus.edu.tw/upload/ckfinder/files/ISMS-W-004-03-網路頻寬管制申請單_V1_0.odt"
+        },
+        {
+          "type": "uri",
+          "area": {
+            "x": 201,
+            "y": 659,
+            "width": 102,
+            "height": 107
+          },
+          "linkUri": "https://www.ntus.edu.tw/upload/ckfinder/files/ISMS-W-004-03-網路頻寬管制申請單_V1_0.doc"
+        },
+        {
+          "type": "uri",
+          "area": {
+            "x": 303,
+            "y": 655,
+            "width": 106,
+            "height": 123
+          },
+          "linkUri": "https://www.ntus.edu.tw/upload/ckfinder/files/ISMS-W-004-03-網路頻寬管制申請單_V1_0.odt"
+        },
+        {
+          "type": "uri",
+          "area": {
+            "x": 205,
+            "y": 798,
+            "width": 110,
+            "height": 136
+          },
+          "linkUri": "https://www.ntus.edu.tw/upload/ckfinder/files/ISMS-W-004-03-網路頻寬管制申請單_V1_0.doc"
+        },
+        {
+          "type": "uri",
+          "area": {
+            "x": 307,
+            "y": 794,
+            "width": 107,
+            "height": 144
+          },
+          "linkUri": "https://www.ntus.edu.tw/upload/ckfinder/files/ISMS-W-004-03-網路頻寬管制申請單_V1_0.odt"
+        },
+        {
+          "type": "uri",
+          "area": {
+            "x": 188,
+            "y": 979,
+            "width": 127,
+            "height": 131
+          },
+          "linkUri": "https://www.ntus.edu.tw/upload/ckfinder/files/ISMS-W-004-03-網路頻寬管制申請單_V1_0.doc"
+        },
+        {
+          "type": "uri",
+          "area": {
+            "x": 311,
+            "y": 970,
+            "width": 123,
+            "height": 123
+          },
+          "linkUri": "https://www.ntus.edu.tw/upload/ckfinder/files/ISMS-W-004-03-網路頻寬管制申請單_V1_0.odt"
+        }
+      ]
+    }

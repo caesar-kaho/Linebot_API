@@ -60,47 +60,12 @@ namespace LineBotMessage.Domain
                         break;
 
                     case WebhookEventTypeEnum.Follow:
-                        replyMessage = new ReplyMessageRequestDto<TemplateMessageDto<ButtonsTemplateDto>>
+                        replyMessage = new ReplyMessageRequestDto<TextMessageDto>
                         {
                             ReplyToken = eventObject.ReplyToken,
-                            Messages = new List<TemplateMessageDto<ButtonsTemplateDto>>
+                            Messages = new List<TextMessageDto>
                             {
-                                new TemplateMessageDto<ButtonsTemplateDto>
-                                {
-                                    AltText = "資訊服務組歡迎您",
-                                    Template = new ButtonsTemplateDto
-                                    {
-                                        ThumbnailImageUrl = "https://i.imgur.com/lAhzp6L.png?2",
-                                        ImageAspectRatio = TemplateImageAspectRatioEnum.Rectangle,
-                                        ImageSize = TemplateImageSizeEnum.Contain,
-                                        Title = "親愛的用戶您好，歡迎您使用分機查尋系統",
-                                        Text = "請選擇需要查尋的資訊",
-                                        Actions = new List<ActionDto>
-                                        {
-                                            new ActionDto
-                                            {
-                                                Type = ActionTypeEnum.Postback,
-                                                Data = "dataType=staffs",
-                                                Label = "職員",
-                                                DisplayText = "職員"
-                                            },
-                                            new ActionDto
-                                            {
-                                                Type = ActionTypeEnum.Postback,
-                                                Data = "dataType=departments",
-                                                Label = "單位",
-                                                DisplayText = "單位"
-                                            },
-                                            new ActionDto
-                                            {
-                                                Type = ActionTypeEnum.Postback,
-                                                Data = "dataType=extentionNumbers",
-                                                Label = "分機",
-                                                DisplayText = "分機"
-                                            }
-                                        }
-                                    }
-                                }
+                                new TextMessageDto(){Text = $"歡迎使用資訊服務組Line服務"}
                             }
                         };
 
@@ -116,6 +81,53 @@ namespace LineBotMessage.Domain
 
             switch (eventDto.Postback.Data)
             {
+                case "dataType=phoneSearch":
+                    //分機查詢系統
+                    replyMessage = new ReplyMessageRequestDto<TemplateMessageDto<ButtonsTemplateDto>>
+                    {
+                        ReplyToken = eventDto.ReplyToken,
+                        Messages = new List<TemplateMessageDto<ButtonsTemplateDto>>
+                        {
+                            new TemplateMessageDto<ButtonsTemplateDto>
+                            {
+                                AltText = "分機查詢系統",
+                                Template = new ButtonsTemplateDto
+                                {
+                                    ThumbnailImageUrl = "https://i.imgur.com/lAhzp6L.png?2",
+                                    ImageAspectRatio = TemplateImageAspectRatioEnum.Rectangle,
+                                    ImageSize = TemplateImageSizeEnum.Contain,
+                                    Title = "親愛的用戶您好，歡迎您使用分機查尋系統",
+                                    Text = "請選擇需要查尋的資訊",
+                                    Actions = new List<ActionDto>
+                                    {
+                                        new ActionDto
+                                        {
+                                            Type = ActionTypeEnum.Postback,
+                                            Data = "dataType=staffs",
+                                            Label = "職員",
+                                            DisplayText = "職員"
+                                        },
+                                        new ActionDto
+                                        {
+                                            Type = ActionTypeEnum.Postback,
+                                            Data = "dataType=departments",
+                                            Label = "單位",
+                                            DisplayText = "單位"
+                                        },
+                                        new ActionDto
+                                        {
+                                            Type = ActionTypeEnum.Postback,
+                                            Data = "dataType=extentionNumbers",
+                                            Label = "分機",
+                                            DisplayText = "分機"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    };
+                    break;
+
                 case "dataType=staffs":
                     // 回傳使用職員名稱查詢的功能
                     replyMessage = CreateTextMessage("請輸入職員名稱，例:陳小明", eventDto);
@@ -346,20 +358,19 @@ namespace LineBotMessage.Domain
 
                     break;
 
-                //case "campusNetworkApply":
-                //    //測試imagesMap
-                //    var json = File.ReadAllText("C:\\Users\\caesa\\source\\repos\\Linebot_WebAPI\\LineBotMessage\\LineBotMessage\\JsonMessages\\imageMapDemo.json");
-                //    replyMessage = new ReplyMessageRequestDto<ImagemapMessageDto>
-                //    {
-                //        ReplyToken = eventDto.ReplyToken,
-                //        Messages = new List<ImagemapMessageDto>
-                //        {                          
+                case "campusNetworkApply":
+                    //imagesMap
+                    var json = File.ReadAllText("C:\\Users\\caesa\\source\\repos\\Linebot_WebAPI\\LineBotMessage\\LineBotMessage\\JsonMessages\\campusNetworkApply.json");
+                    replyMessage = new ReplyMessageRequestDto<ImagemapMessageDto>
+                    {
+                        ReplyToken = eventDto.ReplyToken,
+                        Messages = new List<ImagemapMessageDto>
+                        {
+                            _jsonProvider.Deserialize<ImagemapMessageDto>(json) 
+                        }
+                    };
 
-
-                //        }
-                //    };
-
-                //    break;
+                    break;
 
                 case "dataType=information":
                     // 回傳資訊服務申請
@@ -514,6 +525,14 @@ namespace LineBotMessage.Domain
                     };
 
                     break;
+
+                case "dataType=docs":
+                    //技術說明文件
+                    replyMessage = CreateFlexBubbleFromFile("C:\\Users\\caesa\\source\\repos\\Linebot_WebAPI\\LineBotMessage\\LineBotMessage\\JsonMessages\\docs.json", eventDto, "技術說明文件");
+
+                    break;
+
+
 
 
                 default:
