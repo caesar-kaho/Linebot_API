@@ -655,12 +655,13 @@ namespace LineBotMessage.Domain
 
                     var staff = _context.Staffs
                         .Include(s => s.StaffsDepartmentNavigation)
-                        .FirstOrDefault(pext => pext.StaffsName.Equals(userInput));
+                        .Where(pext => pext.StaffsName.Contains(userInput))
+                        .ToList();
 
                     var staffMulti = staff == null ?
                         _context.StaffsMultiExtentionnumbers
                         .Include(s => s.StaffsDepartmentNavigation)
-                        .FirstOrDefault(pext => pext.StaffsName.Equals(userInput)) :
+                        .FirstOrDefault(pext => pext.StaffsName.Contains(userInput)) :
                         null;
                                      
                     var dept = from department in _context.Departments
@@ -673,35 +674,39 @@ namespace LineBotMessage.Domain
 
 
                     // 判斷是否找到對應的 PhoneExtentionNumber、Staff 或 Department 記錄
-                    if (staff != null)
+                    if (staff.Any())
                     {
-                        messageText = $"所屬單位: {staff.StaffsDepartmentNavigation.DepartmentsName}\n分機號碼: {staff.StaffsExtentionnumber}";
-                    }
-                    else if (staffMulti != null)                      
-                    {
-                        string extNumbers = "";
-                        if (staffMulti.StaffsExtentionnumber1 != null)
+                        messageText = "";
+                        foreach (var staffcount in staff)
                         {
-                            extNumbers += staffMulti.StaffsExtentionnumber1 + " ";
+                            messageText += $"{staffcount.StaffsName}\n所屬單位:{staffcount.StaffsDepartmentNavigation.DepartmentsName}\n分機: {staffcount.StaffsExtentionnumber}\n\n";
                         }
-                        if (staffMulti.StaffsExtentionnumber2 != null)
-                        {
-                            extNumbers += staffMulti.StaffsExtentionnumber2 + " ";
-                        }
-                        if (staffMulti.StaffsExtentionnumber3 != null)
-                        {
-                            extNumbers += staffMulti.StaffsExtentionnumber3 + " ";
-                        }
-                        messageText = $"所屬單位: {staffMulti.StaffsDepartmentNavigation.DepartmentsName}\n分機號碼: {extNumbers}";
                     }
-                    else if (extentionnumber != null)
-                    {
-                        messageText = $"{extentionnumber.StaffsName} \n所屬單位: {extentionnumber.StaffsDepartmentNavigation.DepartmentsName}";
-                    }
-                    else if(multiExtentionnumber != null)
-                    {
-                        messageText = $"{multiExtentionnumber.StaffsName} \n所屬單位: {multiExtentionnumber.StaffsDepartmentNavigation.DepartmentsName}";
-                    }
+                    //else if (staffMulti != null)
+                    //{
+                    //    string extNumbers = "";
+                    //    if (staffMulti.StaffsExtentionnumber1 != null)
+                    //    {
+                    //        extNumbers += staffMulti.StaffsExtentionnumber1 + " ";
+                    //    }
+                    //    if (staffMulti.StaffsExtentionnumber2 != null)
+                    //    {
+                    //        extNumbers += staffMulti.StaffsExtentionnumber2 + " ";
+                    //    }
+                    //    if (staffMulti.StaffsExtentionnumber3 != null)
+                    //    {
+                    //        extNumbers += staffMulti.StaffsExtentionnumber3 + " ";
+                    //    }
+                    //    messageText = $"所屬單位: {staffMulti.StaffsDepartmentNavigation.DepartmentsName}\n分機號碼: {extNumbers}";
+                    //}
+                    //else if (extentionnumber != null)
+                    //{
+                    //    messageText = $"{extentionnumber.StaffsName} \n所屬單位: {extentionnumber.StaffsDepartmentNavigation.DepartmentsName}";
+                    //}
+                    //else if (multiExtentionnumber != null)
+                    //{
+                    //    messageText = $"{multiExtentionnumber.StaffsName} \n所屬單位: {multiExtentionnumber.StaffsDepartmentNavigation.DepartmentsName}";
+                    //}
                     else if (dept.Any())
                     {
                         messageText = "";
@@ -710,28 +715,28 @@ namespace LineBotMessage.Domain
                         {
                             messageText += $"{staffcount.staff_dept.StaffsName}\n分機: {staffcount.staff_dept.StaffsExtentionnumber}\n\n";
 
-                            if (!isExecuted && staffcount.staffMulti_dept != null)
-                            {
-                                isExecuted = true;
-                                string extNumbers = "";
-                                if (staffcount.staffMulti_dept.StaffsExtentionnumber1 != null)
-                                {
-                                    extNumbers += staffcount.staffMulti_dept.StaffsExtentionnumber1 + " ";
-                                }
-                                if (staffcount.staffMulti_dept.StaffsExtentionnumber2 != null)
-                                {
-                                    extNumbers += staffcount.staffMulti_dept.StaffsExtentionnumber2 + " ";
-                                }
-                                if (staffcount.staffMulti_dept.StaffsExtentionnumber3 != null)
-                                {
-                                    extNumbers += staffcount.staffMulti_dept.StaffsExtentionnumber3 + " ";
-                                }
-                                messageText += $"{staffcount.staffMulti_dept.StaffsName}\n分機: {extNumbers}\n\n";
-                            }
-                            else
-                            {
-                                messageText += "\n";
-                            }
+                            //if (!isExecuted && staffcount.staffMulti_dept != null)
+                            //{
+                            //    isExecuted = true;
+                            //    string extNumbers = "";
+                            //    if (staffcount.staffMulti_dept.StaffsExtentionnumber1 != null)
+                            //    {
+                            //        extNumbers += staffcount.staffMulti_dept.StaffsExtentionnumber1 + " ";
+                            //    }
+                            //    if (staffcount.staffMulti_dept.StaffsExtentionnumber2 != null)
+                            //    {
+                            //        extNumbers += staffcount.staffMulti_dept.StaffsExtentionnumber2 + " ";
+                            //    }
+                            //    if (staffcount.staffMulti_dept.StaffsExtentionnumber3 != null)
+                            //    {
+                            //        extNumbers += staffcount.staffMulti_dept.StaffsExtentionnumber3 + " ";
+                            //    }
+                            //    messageText += $"{staffcount.staffMulti_dept.StaffsName}\n分機: {extNumbers}\n\n";
+                            //}
+                            //else
+                            //{
+                            //    messageText += "\n";
+                            //}
                         }
 
                     }
