@@ -404,6 +404,7 @@ namespace LineBotMessage.Domain
                                     }
                                 }
                             }
+
                         }
 
                     };
@@ -695,20 +696,23 @@ namespace LineBotMessage.Domain
                     }
                     else if (extentionnumber != null)
                     {
-                        messageText = $"職員名稱: {extentionnumber.StaffsName} \n所屬單位: {extentionnumber.StaffsDepartmentNavigation.DepartmentsName}";
+                        messageText = $"{extentionnumber.StaffsName} \n所屬單位: {extentionnumber.StaffsDepartmentNavigation.DepartmentsName}";
                     }
                     else if(multiExtentionnumber != null)
                     {
-                        messageText = $"職員名稱: {multiExtentionnumber.StaffsName} \n所屬單位: {multiExtentionnumber.StaffsDepartmentNavigation.DepartmentsName}";
+                        messageText = $"{multiExtentionnumber.StaffsName} \n所屬單位: {multiExtentionnumber.StaffsDepartmentNavigation.DepartmentsName}";
                     }
                     else if (dept.Any())
                     {
                         messageText = "";
+                        bool isExecuted = false;
                         foreach (var staffcount in dept)
                         {
-                            messageText += $"職員名稱: {staffcount.staff_dept.StaffsName}\n分機: {staffcount.staff_dept.StaffsExtentionnumber}\n";
-                            if (staffcount.staffMulti_dept != null)
+                            messageText += $"{staffcount.staff_dept.StaffsName}\n分機: {staffcount.staff_dept.StaffsExtentionnumber}\n\n";
+
+                            if (!isExecuted && staffcount.staffMulti_dept != null)
                             {
+                                isExecuted = true;
                                 string extNumbers = "";
                                 if (staffcount.staffMulti_dept.StaffsExtentionnumber1 != null)
                                 {
@@ -722,10 +726,14 @@ namespace LineBotMessage.Domain
                                 {
                                     extNumbers += staffcount.staffMulti_dept.StaffsExtentionnumber3 + " ";
                                 }
-                                messageText += $"職員名稱: {staffcount.staffMulti_dept.StaffsName}\n分機: {extNumbers}";
+                                messageText += $"{staffcount.staffMulti_dept.StaffsName}\n分機: {extNumbers}\n\n";
                             }
-                            messageText += "\n\n";
+                            else
+                            {
+                                messageText += "\n";
+                            }
                         }
+
                     }
                     else
                     {
