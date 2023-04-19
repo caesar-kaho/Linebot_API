@@ -36,8 +36,7 @@ namespace LineBotMessage.Domain
             _context = context;
         }
 
-
-
+      
         /// <summary>
         /// 接收 webhook event 處理
         /// </summary>
@@ -145,17 +144,17 @@ namespace LineBotMessage.Domain
 
                 case "dataType=job":
                     // 回傳業務職掌
-                    replyMessage = CreateFlexCarouselFromFile("C:\\Users\\caesa\\source\\repos\\Linebot_WebAPI\\LineBotMessage\\LineBotMessage\\JsonMessages\\richmenuJob.json", eventDto, "業務職掌");
+                    replyMessage = CreateFlexCarouselFromFile(".\\JsonMessages\\richmenuJob.json", eventDto, "業務職掌");
                     break;
 
                 case "dataType=service":
                     // 回傳服務項目
-                    replyMessage = CreateFlexCarouselFromFile("C:\\Users\\caesa\\source\\repos\\Linebot_WebAPI\\LineBotMessage\\LineBotMessage\\JsonMessages\\richmenuService.json", eventDto, "服務項目");
+                    replyMessage = CreateFlexCarouselFromFile(".\\JsonMessages\\richmenuService.json", eventDto, "服務項目");
                     break;
 
                 case "dataType=network":
                     // 回傳校園網路服務
-                    replyMessage = CreateFlexBubbleFromFile("C:\\Users\\caesa\\source\\repos\\Linebot_WebAPI\\LineBotMessage\\LineBotMessage\\JsonMessages\\richmenuNetwork.json", eventDto, "校園網路服務");
+                    replyMessage = CreateFlexBubbleFromFile(".\\JsonMessages\\richmenuNetwork.json", eventDto, "校園網路服務");
                     break;
 
                 case "ex_1":
@@ -360,7 +359,7 @@ namespace LineBotMessage.Domain
 
                 case "campusNetworkApply":
                     //校園網路服務申請
-                    var json = File.ReadAllText("C:\\Users\\caesa\\source\\repos\\Linebot_WebAPI\\LineBotMessage\\LineBotMessage\\JsonMessages\\campusNetworkApply.json");
+                    var json = File.ReadAllText(".\\JsonMessages\\campusNetworkApply.json");
                     replyMessage = new ReplyMessageRequestDto<ImagemapMessageDto>
                     {
                         ReplyToken = eventDto.ReplyToken,
@@ -413,42 +412,42 @@ namespace LineBotMessage.Domain
 
                 case "dataType=information":
                     // 回傳資訊服務申請
-                    replyMessage = CreateFlexBubbleFromFile("C:\\Users\\caesa\\source\\repos\\Linebot_WebAPI\\LineBotMessage\\LineBotMessage\\JsonMessages\\information.json", eventDto, "資訊服務申請");
+                    replyMessage = CreateFlexBubbleFromFile(".\\JsonMessages\\information.json", eventDto, "資訊服務申請");
                     break;
 
                 case "dataType=apiApply":
                     //api申請
-                    replyMessage = CreateFlexBubbleFromFile("C:\\Users\\caesa\\source\\repos\\Linebot_WebAPI\\LineBotMessage\\LineBotMessage\\JsonMessages\\apiApply.json", eventDto, "學校組織與人員API服務申請單");
+                    replyMessage = CreateFlexBubbleFromFile(".\\JsonMessages\\apiApply.json", eventDto, "學校組織與人員API服務申請單");
 
                     break;
 
                 case "dataType=authApply":
                     //單一簽入OAuth 2.0機制介接需求申請單
-                    replyMessage = CreateFlexBubbleFromFile("C:\\Users\\caesa\\source\\repos\\Linebot_WebAPI\\LineBotMessage\\LineBotMessage\\JsonMessages\\authApply.json", eventDto, "單一簽入OAuth 2.0機制介接需求申請單");
+                    replyMessage = CreateFlexBubbleFromFile(".\\JsonMessages\\authApply.json", eventDto, "單一簽入OAuth 2.0機制介接需求申請單");
 
                     break;
 
                 case "dataType=systemApply":
                     //資訊系統需求申請單
-                    replyMessage = CreateFlexBubbleFromFile("C:\\Users\\caesa\\source\\repos\\Linebot_WebAPI\\LineBotMessage\\LineBotMessage\\JsonMessages\\systemApply.json", eventDto, "資訊系統需求申請單");
+                    replyMessage = CreateFlexBubbleFromFile(".\\JsonMessages\\systemApply.json", eventDto, "資訊系統需求申請單");
 
                     break;
 
                 case "dataType=accessApply":
                     //資訊系統使用權限申請單
-                    replyMessage = CreateFlexBubbleFromFile("C:\\Users\\caesa\\source\\repos\\Linebot_WebAPI\\LineBotMessage\\LineBotMessage\\JsonMessages\\accessApply.json", eventDto, "資訊系統使用權限申請單");
+                    replyMessage = CreateFlexBubbleFromFile(".\\JsonMessages\\accessApply.json", eventDto, "資訊系統使用權限申請單");
 
                     break;
 
                 case "dataType=campusSystemApply":
                     //新一代校務資訊系統之系統維護申請單教學
-                    replyMessage = CreateFlexBubbleFromFile("C:\\Users\\caesa\\source\\repos\\Linebot_WebAPI\\LineBotMessage\\LineBotMessage\\JsonMessages\\campusSystemApply.json", eventDto, "新一代校務資訊系統之系統維護申請單教學");
+                    replyMessage = CreateFlexBubbleFromFile(".\\JsonMessages\\campusSystemApply.json", eventDto, "新一代校務資訊系統之系統維護申請單教學");
 
                     break;
 
                 case "dataType=pc":
                     //電腦設備預算專區
-                    replyMessage = CreateFlexBubbleFromFile("C:\\Users\\caesa\\source\\repos\\Linebot_WebAPI\\LineBotMessage\\LineBotMessage\\JsonMessages\\pc.json", eventDto, "電腦設備預算專區");
+                    replyMessage = CreateFlexBubbleFromFile(".\\JsonMessages\\pc.json", eventDto, "電腦設備預算專區");
 
                     break;
 
@@ -567,7 +566,7 @@ namespace LineBotMessage.Domain
 
                 case "dataType=docs":
                     //技術說明文件
-                    replyMessage = CreateFlexBubbleFromFile("C:\\Users\\caesa\\source\\repos\\Linebot_WebAPI\\LineBotMessage\\LineBotMessage\\JsonMessages\\docs.json", eventDto, "技術說明文件");
+                    replyMessage = CreateFlexBubbleFromFile(".\\JsonMessages\\docs.json", eventDto, "技術說明文件");
 
                     break;
 
