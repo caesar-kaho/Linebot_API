@@ -641,26 +641,23 @@ namespace LineBotMessage.Domain
                         .Include(e => e.StaffsDepartmentNavigation)
                         .FirstOrDefault(pext => pext.StaffsExtentionnumber.Equals(userInput));
 
-                    var multiExtentionnumber = extentionnumber == null ?
-                        _context.StaffsMultiExtentionnumbers
+                    var multiExtentionnumber = _context.StaffsMultiExtentionnumbers
                         .Include(e => e.StaffsDepartmentNavigation)
                         .FirstOrDefault(pext =>
                         pext.StaffsExtentionnumber1.Equals(userInput) ||
                         pext.StaffsExtentionnumber2.Equals(userInput) ||
-                        pext.StaffsExtentionnumber3.Equals(userInput)) :
-                        null;
+                        pext.StaffsExtentionnumber3.Equals(userInput));
 
                     var staff = _context.Staffs
                         .Include(s => s.StaffsDepartmentNavigation)
                         .Where(pext => pext.StaffsName.Contains(userInput))
                         .ToList();
 
-                    var staffMulti = staff == null ?
-                        _context.StaffsMultiExtentionnumbers
+                    var staffMulti = _context.StaffsMultiExtentionnumbers
                         .Include(s => s.StaffsDepartmentNavigation)
-                        .FirstOrDefault(pext => pext.StaffsName.Contains(userInput)) :
-                        null;
-                                     
+                        .FirstOrDefault(pext => pext.StaffsName.Contains(userInput));
+
+
                     var dept = from department in _context.Departments
                                join staff_dept in _context.Staffs on department.Id equals staff_dept.StaffsDepartment into staffsGroup
                                from staff_dept in staffsGroup.DefaultIfEmpty()
@@ -709,7 +706,7 @@ namespace LineBotMessage.Domain
                         messageText = "";
                         bool isExecuted = false;
                         foreach (var staffcount in dept)
-                        {                            
+                        {
                             if (!isExecuted && staffcount.staffMulti_dept != null)
                             {
                                 isExecuted = true;
@@ -731,7 +728,6 @@ namespace LineBotMessage.Domain
 
                             messageText += $"{staffcount.staff_dept.StaffsName}\n分機: {staffcount.staff_dept.StaffsExtentionnumber}\n\n";
                         }
-
                     }
                     else
                     {
