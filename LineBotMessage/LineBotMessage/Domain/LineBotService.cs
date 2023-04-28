@@ -668,13 +668,28 @@ namespace LineBotMessage.Domain
 
 
                     // 判斷是否找到對應的 PhoneExtentionNumber、Staff 或 Department 記錄
-                    if (staff.Any())
+                    if (staff.Any() || staffMulti !=null)
                     {
                         messageText = "";
                         foreach (var staffcount in staff)
                         {
                             messageText += $"{staffcount.StaffsName}\n所屬單位:{staffcount.StaffsDepartmentNavigation.DepartmentsName}\n分機: {staffcount.StaffsExtentionnumber}\n\n";
                         }
+                        string extNumbers = "";
+                        if (staffMulti.StaffsExtentionnumber1 != null)
+                        {
+                            extNumbers += staffMulti.StaffsExtentionnumber1 + " ";
+                        }
+                        if (staffMulti.StaffsExtentionnumber2 != null)
+                        {
+                            extNumbers += staffMulti.StaffsExtentionnumber2 + " ";
+                        }
+                        if (staffMulti.StaffsExtentionnumber3 != null)
+                        {
+                            extNumbers += staffMulti.StaffsExtentionnumber3 + " ";
+                        }
+                        messageText += $"{staffMulti.StaffsName}\n所屬單位:{staffMulti.StaffsDepartmentNavigation.DepartmentsName}\n分機: {extNumbers}\n\n";
+
                     }
                     else if (staffMulti != null)
                     {
