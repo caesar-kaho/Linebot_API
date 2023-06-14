@@ -1,0 +1,56 @@
+﻿{
+  "type": "bubble",
+  "direction": "ltr",
+  "header": {
+    "type": "box",
+    "layout": "vertical",
+    "contents": [
+      {
+        "type": "text",
+        "text": "資訊系統使用權限申請單",
+        "size": "lg",
+        "color": "#FFFFFFFF",
+        "align": "center",
+        "contents": []
+      }
+    ]
+  },
+  "body": {
+    "type": "box",
+    "layout": "vertical",
+    "contents": [
+      {
+        "type": "text",
+        "text": "資訊系統使用權限申請單(新一代校務資訊系統、Email電子郵件、全球資訊網、無線網路 等系統服務) ",
+        "size": "lg",
+        "align": "start",
+        "wrap": true,
+        "contents": []
+      },
+      {
+        "type": "separator",
+        "margin": "md",
+        "color": "#FFFFFFFF"
+      },
+      {
+        "type": "text",
+        "text": "附件下載",
+        "size": "xs",
+        "contents": []
+      },
+      {
+        "type": "button",
+        "action": {
+          "type": "uri",
+          "label": "資訊系統使用權限申請單_V1.1.doc",
+          "uri": "https://lis.ntus.edu.tw/upload/library/attachment/39066e13001dadd0c76d15409fd4dc6a.doc"
+        }
+      }
+    ]
+  },
+  "styles": {
+    "header": {
+      "backgroundColor": "#0021FFFF"
+    }
+  }
+}

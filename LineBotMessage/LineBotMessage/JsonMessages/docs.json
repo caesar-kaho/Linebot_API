@@ -1,0 +1,117 @@
+﻿{
+  "type": "bubble",
+  "direction": "ltr",
+  "header": {
+    "type": "box",
+    "layout": "vertical",
+    "contents": [
+      {
+        "type": "text",
+        "text": "技術說明文件",
+        "size": "xl",
+        "color": "#FFFFFFFF",
+        "align": "center",
+        "margin": "none",
+        "offsetTop": "30%",
+        "contents": []
+      }
+    ]
+  },
+  "body": {
+    "type": "box",
+    "layout": "vertical",
+    "contents": [
+      {
+        "type": "text",
+        "text": "本校無線網路 NTUS_STAFF 使用教學",
+        "align": "start",
+        "wrap": true,
+        "contents": []
+      },
+      {
+        "type": "button",
+        "action": {
+          "type": "uri",
+          "label": "iOS 16 ",
+          "uri": "https://lis.ntus.edu.tw/index.php?code=list&flag=detail&ids=31&article_id=31038"
+        }
+      },
+      {
+        "type": "text",
+        "text": "本校無線網路 eduroam 使用教學",
+        "align": "center",
+        "wrap": true,
+        "contents": []
+      },
+      {
+        "type": "button",
+        "action": {
+          "type": "uri",
+          "label": "iOS 16",
+          "uri": "https://lis.ntus.edu.tw/index.php?code=list&flag=detail&ids=31&article_id=31037"
+        }
+      },
+      {
+        "type": "button",
+        "action": {
+          "type": "uri",
+          "label": "Android 13",
+          "uri": "https://lis.ntus.edu.tw/index.php?code=list&flag=detail&ids=31&article_id=31028"
+        }
+      },
+      {
+        "type": "button",
+        "action": {
+          "type": "uri",
+          "label": "Windows 10",
+          "uri": "https://lis.ntus.edu.tw/index.php?code=list&flag=detail&ids=31&article_id=23328"
+        }
+      },
+      {
+        "type": "button",
+        "action": {
+          "type": "uri",
+          "label": "Android 9～10版本",
+          "uri": "https://lis.ntus.edu.tw/index.php?code=list&flag=detail&ids=31&article_id=23338"
+        }
+      },
+      {
+        "type": "button",
+        "action": {
+          "type": "postback",
+          "label": "安全性網站免費憑證安裝說明",
+          "data": "dataType=letsEncrypt"
+        }
+      },
+      {
+        "type": "button",
+        "action": {
+          "type": "postback",
+          "label": "本校KMS 認證方式",
+          "data": "dataType=KMS"
+        }
+      },
+      {
+        "type": "button",
+        "action": {
+          "type": "uri",
+          "label": "如何偵測使用之電腦之IP位址",
+          "uri": "https://lis.ntus.edu.tw/index.php?act=download&ids=201&path=https://lis.ntus.edu.tw/upload/library/attachment/8e4ce1ef560aded39eae96ca76bb218c.pdf&title=%E5%A6%82%E4%BD%95%E5%81%B5%E6%B8%AC%E4%BD%BF%E7%94%A8%E4%B9%8B%E9%9B%BB%E8%85%A6%E4%B9%8BIP%E4%BD%8D%E5%9D%80"
+        }
+      },
+      {
+        "type": "button",
+        "action": {
+          "type": "uri",
+          "label": "自我檢查連線狀況",
+          "uri": "https://lis.ntus.edu.tw/index.php?act=download&ids=200&path=https://lis.ntus.edu.tw/upload/library/attachment/9a3fe9ef8a7ff9480d2a48ed548dc41a.pdf&title=%E8%87%AA%E6%88%91%E6%AA%A2%E6%9F%A5%E9%80%A3%E7%B7%9A%E7%8B%80%E6%B3%81"
+        }
+      }
+    ]
+  },
+  "styles": {
+    "header": {
+      "backgroundColor": "#0021FFFF"
+    }
+  }
+}

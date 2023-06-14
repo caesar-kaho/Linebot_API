@@ -1,0 +1,74 @@
+﻿{
+  "type": "bubble",
+  "direction": "ltr",
+  "header": {
+    "type": "box",
+    "layout": "vertical",
+    "contents": [
+      {
+        "type": "text",
+        "text": "資訊系統需求申請單",
+        "size": "lg",
+        "color": "#FFFFFFFF",
+        "align": "center",
+        "contents": []
+      }
+    ]
+  },
+  "body": {
+    "type": "box",
+    "layout": "vertical",
+    "contents": [
+      {
+        "type": "text",
+        "text": "資訊系統需求申請單 資訊服務(如:系統之新增/修改/刪除功能、系統介接資料、憑證申請/變更等) 新一代校務資訊系統之新增/修改/刪除功能需求，請至系統內填寫「系統維護單」， 詳細操作如 ： ",
+        "size": "lg",
+        "align": "start",
+        "wrap": true,
+        "contents": []
+      },
+      {
+        "type": "separator",
+        "margin": "md",
+        "color": "#FFFFFFFF"
+      },
+      {
+        "type": "button",
+        "action": {
+          "type": "uri",
+          "label": "連結",
+          "uri": "https://sites.google.com/d/1Lf-y56t8nYabVU5QNT0LrFNMOkaGkjxj/p/1Pu_w-6lyxckz_2GAA8tG7_A_aVCDP8ht/edit"
+        }
+      },
+      {
+        "type": "separator",
+        "margin": "md",
+        "color": "#FFFFFFFF"
+      },
+      {
+        "type": "separator",
+        "margin": "md",
+        "color": "#FFFFFFFF"
+      },
+      {
+        "type": "text",
+        "text": "附件下載",
+        "size": "xs",
+        "contents": []
+      },
+      {
+        "type": "button",
+        "action": {
+          "type": "uri",
+          "label": "資訊系統需求申請單",
+          "uri": "https://lis.ntus.edu.tw/upload/library/attachment/6941652459115924afe233c4867b5ea9.docx"
+        }
+      }
+    ]
+  },
+  "styles": {
+    "header": {
+      "backgroundColor": "#0021FFFF"
+    }
+  }
+}

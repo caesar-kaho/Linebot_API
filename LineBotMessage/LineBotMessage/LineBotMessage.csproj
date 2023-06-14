@@ -1,0 +1,66 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>2dda1d39-3b99-46e8-bd59-2e85e48215b1</UserSecretsId>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="LineBotSDK" Version="2.10.37" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.3" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.3">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.17.0" />
+    <PackageReference Include="MySql.Data" Version="8.0.32" />
+    <PackageReference Include="MySql.Data.EntityFrameworkCore" Version="8.0.22" />
+    <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="7.0.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" Version="5.0.0" />
+    <PackageReference Include="Autofac" Version="6.4.0" />
+    <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="8.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer" Version="5.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Controllers\" />
+    <None Remove="Microsoft.AspNetCore.Mvc.Versioning" />
+    <None Remove="Autofac" />
+    <None Remove="Autofac.Extensions.DependencyInjection" />
+    <None Remove="Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer" />
+    <None Remove="Dtos\" />
+    <None Remove="Dtos\Webhook\" />
+    <None Remove="Domain\" />
+    <None Remove="Enum\" />
+    <None Remove="Dtos\Messages\" />
+    <None Remove="Providers\" />
+    <None Remove="Dtos\Messages\Request\" />
+    <None Remove="UploadFiles\" />
+    <None Remove="Dtos\Actions\" />
+    <None Remove="Dtos\Richmenu\" />
+    <None Remove="Dtos\Login\" />
+    <None Remove="Dtos\Profile\" />
+    <None Remove="Dtos\LinePay\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Dtos\Webhook\" />
+    <Folder Include="Domain\" />
+    <Folder Include="Enum\" />
+    <Folder Include="JsonMessages\" />
+    <Folder Include="Providers\" />
+    <Folder Include="Dtos\Messages\Request\" />
+    <Folder Include="Dtos\Actions\" />
+    <Folder Include="Dtos\Richmenu\" />
+    <Folder Include="Dtos\Login\" />
+    <Folder Include="Dtos\Profile\" />
+    <Folder Include="Dtos\LinePay\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\.editorconfig" />
+  </ItemGroup>
+  <ProjectExtensions><VisualStudio><UserProperties /></VisualStudio></ProjectExtensions>
+</Project>

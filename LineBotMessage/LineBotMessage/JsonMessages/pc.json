@@ -1,0 +1,65 @@
+﻿{
+  "type": "bubble",
+  "direction": "ltr",
+  "header": {
+    "type": "box",
+    "layout": "vertical",
+    "contents": [
+      {
+        "type": "text",
+        "text": "電腦設備預算專區",
+        "size": "xl",
+        "color": "#FFFFFFFF",
+        "align": "center",
+        "margin": "none",
+        "offsetTop": "30%",
+        "contents": []
+      }
+    ]
+  },
+  "body": {
+    "type": "box",
+    "layout": "vertical",
+    "contents": [
+      {
+        "type": "button",
+        "action": {
+          "type": "postback",
+          "label": "112年度電腦設備預算編列",
+          "data": "dataType=pcBudget112"
+        }
+      },
+      {
+        "type": "separator",
+        "margin": "md",
+        "color": "#FFFFFF00"
+      },
+      {
+        "type": "button",
+        "action": {
+          "type": "postback",
+          "label": "111年度電腦設備預算編列",
+          "data": "dataType=pcBudget111"
+        }
+      },
+      {
+        "type": "separator",
+        "margin": "md",
+        "color": "#FFFFFF00"
+      },
+      {
+        "type": "button",
+        "action": {
+          "type": "postback",
+          "label": "110年度電腦設備預算編列",
+          "data": "dataType=pcBudget110"
+        }
+      }
+    ]
+  },
+  "styles": {
+    "header": {
+      "backgroundColor": "#0021FFFF"
+    }
+  }
+}

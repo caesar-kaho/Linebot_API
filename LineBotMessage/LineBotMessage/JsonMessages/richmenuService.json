@@ -1,0 +1,270 @@
+﻿{
+  "type": "carousel",
+  "contents": [
+    {
+      "type": "bubble",
+      "direction": "ltr",
+      "header": {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "separator",
+            "margin": "md",
+            "color": "#FFFFFF00"
+          },
+          {
+            "type": "text",
+            "text": "項目",
+            "size": "lg",
+            "color": "#000000FF",
+            "align": "center",
+            "margin": "none",
+            "contents": []
+          },
+          {
+            "type": "separator",
+            "margin": "md",
+            "color": "#FFFFFF00"
+          }
+        ]
+      },
+      "body": {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "button",
+            "action": {
+              "type": "uri",
+              "label": "校園入口網站系統服務",
+              "uri": "https://portal.ntus.edu.tw/"
+            },
+            "margin": "lg",
+            "height": "md",
+            "gravity": "center",
+            "position": "relative",
+            "offsetTop": "50%"
+          },
+          {
+            "type": "button",
+            "action": {
+              "type": "uri",
+              "label": "新一代校務資訊系統服務",
+              "uri": "https://school.ntus.edu.tw/ntupes/"
+            },
+            "margin": "lg",
+            "height": "md",
+            "position": "relative"
+          }
+        ]
+      },
+      "styles": {
+        "header": {
+          "backgroundColor": "#FFF100FF"
+        }
+      }
+    },
+    {
+      "type": "bubble",
+      "direction": "ltr",
+      "header": {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "separator",
+            "margin": "md",
+            "color": "#FFFFFF00"
+          },
+          {
+            "type": "text",
+            "text": "項目",
+            "size": "lg",
+            "color": "#000000FF",
+            "align": "center",
+            "contents": []
+          },
+          {
+            "type": "separator",
+            "margin": "md",
+            "color": "#FFFFFF00"
+          }
+        ]
+      },
+      "body": {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "text": "校園無線網路",
+            "size": "lg",
+            "align": "center",
+            "contents": []
+          },
+          {
+            "type": "text",
+            "text": "(eduroam及TANet漫遊)服務",
+            "size": "lg",
+            "align": "center",
+            "contents": []
+          },
+          {
+            "type": "separator",
+            "margin": "lg",
+            "color": "#FFFFFF00"
+          },
+          {
+            "type": "text",
+            "text": "校園骨幹網路",
+            "size": "lg",
+            "align": "center",
+            "contents": []
+          },
+          {
+            "type": "separator",
+            "margin": "lg",
+            "color": "#FFFFFF00"
+          },
+          {
+            "type": "text",
+            "text": "校園網路安全防禦",
+            "size": "lg",
+            "align": "center",
+            "contents": []
+          },
+          {
+            "type": "separator",
+            "margin": "lg",
+            "color": "#FFFFFF00"
+          },
+          {
+            "type": "text",
+            "text": "電腦機房服務",
+            "size": "lg",
+            "align": "center",
+            "contents": []
+          },
+          {
+            "type": "separator",
+            "margin": "lg",
+            "color": "#FFFFFF00"
+          },
+          {
+            "type": "text",
+            "text": "雲端伺服器管理服務",
+            "size": "lg",
+            "align": "center",
+            "contents": []
+          },
+          {
+            "type": "separator",
+            "margin": "lg",
+            "color": "#FFFFFF00"
+          }
+        ]
+      },
+      "styles": {
+        "header": {
+          "backgroundColor": "#FFF100FF"
+        }
+      }
+    },
+    {
+      "type": "bubble",
+      "direction": "ltr",
+      "header": {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "separator",
+            "margin": "md",
+            "color": "#FFFFFF00"
+          },
+          {
+            "type": "text",
+            "text": "項目",
+            "size": "lg",
+            "color": "#000000FF",
+            "align": "center",
+            "contents": []
+          },
+          {
+            "type": "separator",
+            "margin": "md",
+            "color": "#FFFFFF00"
+          }
+        ]
+      },
+      "body": {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "text": "小型網站服務開發",
+            "size": "lg",
+            "align": "center",
+            "position": "relative",
+            "offsetTop": "15%",
+            "contents": []
+          },
+          {
+            "type": "separator",
+            "margin": "xl",
+            "color": "#FFFFFF00"
+          },
+          {
+            "type": "text",
+            "text": "全校電腦設備預算編列",
+            "size": "lg",
+            "align": "center",
+            "position": "relative",
+            "offsetTop": "15%",
+            "contents": []
+          },
+          {
+            "type": "separator",
+            "margin": "xl",
+            "color": "#FFFFFF00"
+          },
+          {
+            "type": "text",
+            "text": "資訊技術諮詢服務",
+            "size": "lg",
+            "align": "center",
+            "position": "relative",
+            "offsetTop": "15%",
+            "contents": []
+          },
+          {
+            "type": "separator",
+            "margin": "xl",
+            "color": "#FFFFFF00"
+          },
+          {
+            "type": "text",
+            "text": "資安技術諮詢服務",
+            "size": "lg",
+            "align": "center",
+            "position": "relative",
+            "offsetTop": "15%",
+            "contents": []
+          },
+          {
+            "type": "separator",
+            "margin": "xl",
+            "color": "#FFFFFF00"
+          }
+        ]
+      },
+      "styles": {
+        "header": {
+          "backgroundColor": "#FFF100FF"
+        }
+      }
+    }
+  ]
+}

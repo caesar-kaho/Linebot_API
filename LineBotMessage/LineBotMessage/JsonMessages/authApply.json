@@ -1,0 +1,85 @@
+﻿{
+  "type": "bubble",
+  "size": "giga",
+  "direction": "ltr",
+  "header": {
+    "type": "box",
+    "layout": "vertical",
+    "contents": [
+      {
+        "type": "text",
+        "text": "單一簽入OAuth 2.0機制介接需求申請單",
+        "size": "lg",
+        "color": "#FFFFFFFF",
+        "align": "center",
+        "contents": []
+      }
+    ]
+  },
+  "body": {
+    "type": "box",
+    "layout": "vertical",
+    "contents": [
+      {
+        "type": "text",
+        "text": "有關單一簽入OAuth 2.0機制介接之新增/修改/刪除功能需求，請填寫以下二附件，並送至資訊服務組：",
+        "size": "lg",
+        "align": "start",
+        "wrap": true,
+        "contents": []
+      },
+      {
+        "type": "separator",
+        "margin": "md",
+        "color": "#FFFFFFFF"
+      },
+      {
+        "type": "text",
+        "text": "1. 資訊系統需求申請單",
+        "contents": []
+      },
+      {
+        "type": "text",
+        "text": "2. OAuth2.0驗證服務基本資料表",
+        "contents": []
+      },
+      {
+        "type": "separator",
+        "margin": "md",
+        "color": "#FFFFFFFF"
+      },
+      {
+        "type": "separator",
+        "margin": "md",
+        "color": "#FFFFFFFF"
+      },
+      {
+        "type": "text",
+        "text": "附件下載",
+        "size": "xs",
+        "contents": []
+      },
+      {
+        "type": "button",
+        "action": {
+          "type": "uri",
+          "label": "資訊系統需求申請單.docx",
+          "uri": "https://lis.ntus.edu.tw/upload/library/attachment/36257c37f7a1ba38adc6b87efe2491c1.docx"
+        }
+      },
+      {
+        "type": "button",
+        "action": {
+          "type": "uri",
+          "label": "OAuth 2.0驗證服務申請基本資料表",
+          "uri": "https://lis.ntus.edu.tw/upload/library/attachment/c397d7e3dc0e6008cdb2ebe9135831e9.odt"
+        }
+      }
+    ]
+  },
+  "styles": {
+    "header": {
+      "backgroundColor": "#0021FFFF"
+    }
+  }
+}
