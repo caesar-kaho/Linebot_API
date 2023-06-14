@@ -10,8 +10,8 @@ namespace LinebotAPI.Controllers
     {
 
         // 貼上 messaging api channel 中的 accessToken & secret
-        private readonly string channelAccessToken = "/PwKqaK8nQ02MVsw2FnSZ6q0bCjrwaMUZz4LUhqbXvXeAzC3urypi8c1/2BfTxwpXzKUaVtyy44t4gUeUqMYGbO2XY+MXG1brtgCLqYFlZt0SiWgl0j7xx1xLOEHl+MPz4ehhIjIb7/p2nZkD6w3oAdB04t89/1O/w1cDnyilFU=";
-        private readonly string channelSecret = "d6cb0eeb502d5bac960b89a55f249cd4";
+        private readonly string channelAccessToken = "";
+        private readonly string channelSecret = "";
 
         // constructor
         public LineBotController()
